@@ -19,7 +19,8 @@ package artofillusion.tapDesigner;
 
 import buoy.event.*;
 import buoy.widget.*;
-import java.awt.*;
+import java.awt.Point;
+
 import java.util.*;
 import javax.swing.*;
 
@@ -600,23 +601,23 @@ public class TapProcPanel extends BTabbedPane
      */
     protected void checkMainEntry()
     {
-        Vector modules = procedure.getModules();
+        List<TapModule> modules = procedure.getModules();
         boolean hasMainEntry = false;
 
-        for ( int i = 0; i < modules.size(); ++i )
+        for (TapModule module: modules)
         {
-            hasMainEntry |= ( (TapModule) modules.elementAt( i ) ).isMainEntry();
+            hasMainEntry |= module.isMainEntry();
         }
 
-        if ( !hasMainEntry )
+        if ( hasMainEntry )
         {
-            ( (TapModule) modules.elementAt( modules.size() - 1 ) ).setMainEntry( true );
             getHolder().validObject( true );
-            repaint();
         }
         else
         {
+            modules.get( modules.size() - 1 ).setMainEntry( true );
             getHolder().validObject( true );
+            repaint();
         }
     }
 
@@ -626,12 +627,12 @@ public class TapProcPanel extends BTabbedPane
      */
     protected void checkValidObject()
     {
-        Vector modules = procedure.getModules();
+        List<TapModule> modules = procedure.getModules();
         boolean hasMainEntry = false;
 
-        for ( int i = 0; i < modules.size(); ++i )
+        for (TapModule module: modules)
         {
-            hasMainEntry |= ( (TapModule) modules.elementAt( i ) ).isMainEntry();
+            hasMainEntry |= module.isMainEntry();
         }
 
         getHolder().validObject( hasMainEntry );
@@ -926,12 +927,10 @@ public class TapProcPanel extends BTabbedPane
      */
     public void clearModulesState()
     {
-        Vector modules = procedure.getModules();
-
-        for ( int i = 0; i < modules.size(); ++i )
+        for (TapModule module: procedure.getModules())
         {
-            ( (TapModule) modules.elementAt( i ) ).updateModuleWindow();
-            ( (TapModule) modules.elementAt( i ) ).changed = false;
+            module.updateModuleWindow();
+            module.changed = false;
         }
     }
 

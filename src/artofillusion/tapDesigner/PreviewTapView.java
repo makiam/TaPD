@@ -18,12 +18,13 @@ import artofillusion.*;
 import artofillusion.object.*;
 import buoy.event.*;
 import buoy.widget.*;
-import java.awt.*;
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.tree.*;
 import artofillusion.tapDesigner.TapModule.*;
+import java.awt.Dimension;
+import java.awt.Insets;
 
 
 
@@ -165,7 +166,7 @@ public class PreviewTapView extends BSplitPane implements TapView
     {
         DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
         TreePath selectedNode = tree.getSelectedNode();
-        Vector modules = procPanel.getProcedure().getModules();
+        List<TapModule> modules = procPanel.getProcedure().getModules();
         int count = tree.getChildNodeCount( tree.getRootNode() );
         if ( count > 0 )
         {
@@ -184,7 +185,7 @@ public class PreviewTapView extends BSplitPane implements TapView
                     if ( modules != null )
                         for ( int k = 0; k < modules.size(); ++k )
                         {
-                            if ( modules.elementAt( k ) == mod )
+                            if ( modules.get( k ) == mod )
                                 delete = false;
                         }
                     if ( delete )
@@ -214,13 +215,13 @@ public class PreviewTapView extends BSplitPane implements TapView
                         TreePath tp2 = tree.getChildNode( tp, k );
                         Object mod = tp2.getLastPathComponent();
                         mod = ( (DefaultMutableTreeNode) mod ).getUserObject();
-                        if ( modules.elementAt( i ) == mod )
+                        if ( modules.get( i ) == mod )
                             add = false;
                     }
                 }
                 if ( add )
                 {
-                    TapModule module = (TapModule) modules.elementAt( i );
+                    TapModule module = modules.get( i );
                     if ( module.acceptsPreview() )
                         addModule( module );
                 }
@@ -321,7 +322,6 @@ public class PreviewTapView extends BSplitPane implements TapView
         }
         DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 
-        Vector modules = procPanel.getProcedure().getModules();
         int count = tree.getChildNodeCount( tree.getRootNode() );
         if ( count > 0 )
         {
@@ -437,15 +437,13 @@ public class PreviewTapView extends BSplitPane implements TapView
             }
             else
             {
-                Vector modules = procPanel.getProcedure().getModules();
+                List<TapModule> modules = procPanel.getProcedure().getModules();
                 if ( modules == null )
                     return;
-                TapModule mod = null;
-                for ( int i = 0; i < modules.size(); ++i )
+                for (TapModule module: modules)
                 {
-                    if ( ( (TapModule) modules.elementAt( i ) ).isMainEntry() )
+                    if (module.isMainEntry())
                     {
-                        TapModule module = (TapModule) (TapModule) modules.elementAt( i );
                         upTo = false;
                         Scene previewScene = module.getPreviewScene( upTo );
                         if ( previewScene != null )
@@ -487,7 +485,7 @@ public class PreviewTapView extends BSplitPane implements TapView
                 tree.setNodeSelected( tree.getRootNode(), true );
                 doSelectionChanged( false );
             }
-            Vector modules = procPanel.getProcedure().getModules();
+            List<TapModule> modules = procPanel.getProcedure().getModules();
             if ( selectedModule < 0 || selectedModule >= modules.size() )
             {
                 tree.setNodeSelected( tree.getRootNode(), true );
@@ -495,7 +493,7 @@ public class PreviewTapView extends BSplitPane implements TapView
                 return;
             }
 
-            TapModule module = (TapModule) modules.elementAt( selectedModule );
+            TapModule module = modules.get( selectedModule );
             int count = tree.getChildNodeCount( tree.getRootNode() );
             TreePath classTreePath = null;
             for ( int j = count - 1; j >= 0; --j )
