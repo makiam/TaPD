@@ -113,7 +113,7 @@ public class CoilModule extends TapModule
      */
     public CoilModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "coil" ), position );
+        super(procedure, TapBTranslate.text( "coil" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "coilName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/coil_tree.png" ) ) );
         setNumInput( 5 );
@@ -182,14 +182,14 @@ public class CoilModule extends TapModule
         outputNature[0] = OBJECT_PORT;
         outputNature[1] = VALUE_PORT;
         inputTooltips = new String[5];
-        inputTooltips[0] = TapDesignerTranslate.text( "objectDecorate" );
-        inputTooltips[1] = TapDesignerTranslate.text( "objectDecorated" );
-        inputTooltips[2] = TapDesignerTranslate.text( "yValueInput" );
-        inputTooltips[3] = TapDesignerTranslate.text( "rSizeValue" );
-        inputTooltips[4] = TapDesignerTranslate.text( "ySizeValue" );
+        inputTooltips[0] = TapBTranslate.text( "objectDecorate" );
+        inputTooltips[1] = TapBTranslate.text( "objectDecorated" );
+        inputTooltips[2] = TapBTranslate.text( "yValueInput" );
+        inputTooltips[3] = TapBTranslate.text( "rSizeValue" );
+        inputTooltips[4] = TapBTranslate.text( "ySizeValue" );
         outputTooltips = new String[2];
-        outputTooltips[0] = TapDesignerTranslate.text( "objectOutput" );
-        outputTooltips[1] = TapDesignerTranslate.text( "yValueOutput" );
+        outputTooltips[0] = TapBTranslate.text( "objectOutput" );
+        outputTooltips[1] = TapBTranslate.text( "yValueOutput" );
         setBackgroundColor( Color.orange.darker() );
         module = this;
     }
@@ -1289,7 +1289,7 @@ public class CoilModule extends TapModule
             else
                 dampingTF.setEnabled( false );
 
-            TitledBorder border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "generationParameters" ) );
+            TitledBorder border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "generationParameters" ) );
             p.setBorder( border );
             first.add( p );
 
@@ -1305,7 +1305,7 @@ public class CoilModule extends TapModule
             useGoldenCB.setSelected( useGoldenRatio );
             p.add( flipChildrenCB = TapDesignerTranslate.jCheckBox( "flipChildren", this ) );
             flipChildrenCB.setSelected( flipChildren );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "RParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "RParameters" ) );
             p.setBorder( border );
             first.add( p );
 
@@ -1336,7 +1336,7 @@ public class CoilModule extends TapModule
             pRB.add( YdistURB );
             pRB.add( YdistGRB );
             p.add( pRB );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "YParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "YParameters" ) );
             p.setBorder( border );
             first.add( p );
 
@@ -1395,7 +1395,7 @@ public class CoilModule extends TapModule
             rShiftFunctionInputCB.setAlignmentX( 0.5f );
             p.add( yvPanel );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "angularParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "angularParameters" ) );
             pp.setBorder( border );
             first.add( pp );
 
@@ -1475,7 +1475,7 @@ public class CoilModule extends TapModule
             dim.height = densityParameterSL.getPreferredSize().height;
             densityParameterSL.setPreferredSize( dim );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "sizeParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "sizeParameters" ) );
             pp.setBorder( border );
             first.add( pp );
 
@@ -1542,7 +1542,7 @@ public class CoilModule extends TapModule
             curveRateFunctionInputCB.setAlignmentX( 0.5f );
             p.add( yvPanel );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "yCurveParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "yCurveParameters" ) );
             pp.setBorder( border );
             second.add( pp );
 
@@ -1579,7 +1579,7 @@ public class CoilModule extends TapModule
             p.add( perpCurveRateTF = new JTextField( format.format( smParms.perpCurveRate ) ) );
             perpCurveRateTF.setColumns( 4 );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "rCurveParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "rCurveParameters" ) );
             pp.setBorder( border );
             second.add( pp );
 
@@ -1595,7 +1595,7 @@ public class CoilModule extends TapModule
             p.add( TapDesignerTranslate.jlabel( "recoverRate" ) );
             p.add( recoverRateTF = new JTextField( format.format( smParms.recoverRate ) ) );
             recoverRateTF.setColumns( 4 );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "branchReaction" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "branchReaction" ) );
             p.setBorder( border );
             second.add( p );
 
@@ -1607,7 +1607,7 @@ public class CoilModule extends TapModule
             p.add( TapDesignerTranslate.jlabel( "randomTiltDiv" ) );
             p.add( randomTiltDivTF = new JTextField( format.format( smParms.randomTiltDiv ) ) );
             randomTiltDivTF.setColumns( 3 );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "randomTilt" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "randomTilt" ) );
             p.setBorder( border );
             second.add( p );
 
@@ -1627,7 +1627,7 @@ public class CoilModule extends TapModule
             pRB.add( twistDistURB );
             pRB.add( twistDistGRB );
             p.add( pRB );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "sectionParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "sectionParameters" ) );
             p.setBorder( border );
 
             pp = new JPanel();
@@ -1687,7 +1687,7 @@ public class CoilModule extends TapModule
             leafRRatioSL.setLabelTable( labelTable );
             leafRRatioSL.setPaintLabels( true );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "leafCurveParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "leafCurveParameters" ) );
             pp.setBorder( border );
             second.add( pp );
 
@@ -1702,8 +1702,8 @@ public class CoilModule extends TapModule
             yCurveLeafFunctionInputCB.setSelected( yCurveLeafFunctionInput );
             yLeafDepartureAngleFunctionInputCB.setSelected( yLeafDepartureAngleFunctionInput );
 
-            tabbedPane.addTab( TapDesignerTranslate.text( "commonParameters" ), null, first, null );
-            tabbedPane.addTab( TapDesignerTranslate.text( "tapdParameters" ), null, second, null );
+            tabbedPane.addTab(TapBTranslate.text( "commonParameters" ), null, first, null );
+            tabbedPane.addTab(TapBTranslate.text( "tapdParameters" ), null, second, null );
             tabbedPane.setSelectedIndex( 0 );
             contentPane.add( tabbedPane );
 
@@ -1713,7 +1713,7 @@ public class CoilModule extends TapModule
             p.add( applyButton = TapDesignerTranslate.jButton( "apply", this ) );
             p.add( cancelButton = TapDesignerTranslate.jButton( "cancel", this ) );
             contentPane.add( p );
-            this.setTitle( TapDesignerTranslate.text( "coilModuleTitle", module.getName() ) );
+            this.setTitle(TapBTranslate.text( "coilModuleTitle", module.getName() ) );
 
             addWindowListener(
                 new java.awt.event.WindowAdapter()
@@ -2429,7 +2429,7 @@ public class CoilModule extends TapModule
         {
             if ( modified )
             {
-                int r = JOptionPane.showConfirmDialog( this, TapDesignerTranslate.text( "parametersModified" ), TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
+                int r = JOptionPane.showConfirmDialog(this, TapBTranslate.text( "parametersModified" ), TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
 
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;

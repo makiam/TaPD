@@ -58,7 +58,7 @@ public class TopModule extends TapModule implements Cloneable
      */
     public TopModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "top" ), position );
+        super(procedure, TapBTranslate.text( "top" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "topName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/top_tree.png" ) ) );
 
@@ -84,10 +84,10 @@ public class TopModule extends TapModule implements Cloneable
         inputNature[1] = OBJECT_PORT;
         outputNature[0] = OBJECT_PORT;
         inputTooltips = new String[2];
-        inputTooltips[0] = TapDesignerTranslate.text( "objectDecorate" );
-        inputTooltips[1] = TapDesignerTranslate.text( "objectDecorated" );
+        inputTooltips[0] = TapBTranslate.text( "objectDecorate" );
+        inputTooltips[1] = TapBTranslate.text( "objectDecorated" );
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "objectOutput" );
+        outputTooltips[0] = TapBTranslate.text( "objectOutput" );
         setBackgroundColor( Color.orange.darker() );
         module = this;
     }
@@ -698,7 +698,7 @@ public class TopModule extends TapModule implements Cloneable
 
             contentPane.add( p );
 
-            this.setTitle( TapDesignerTranslate.text( "topModuleTitle", module.getName() ) );
+            this.setTitle(TapBTranslate.text( "topModuleTitle", module.getName() ) );
             addWindowListener(
                 new java.awt.event.WindowAdapter()
                 {
@@ -893,7 +893,7 @@ public class TopModule extends TapModule implements Cloneable
             {
                 getBackValues();
                 randomYRotation = backRandomYRotation;
-                JOptionPane.showMessageDialog( null, TapDesignerTranslate.text( "nonValueMessage" ), TapDesignerTranslate.text( "error" ), JOptionPane.ERROR_MESSAGE );
+                JOptionPane.showMessageDialog(null, TapBTranslate.text( "nonValueMessage" ), TapBTranslate.text( "error" ), JOptionPane.ERROR_MESSAGE );
             }
         }
 
@@ -920,7 +920,7 @@ public class TopModule extends TapModule implements Cloneable
         {
             if ( modified )
             {
-                int r = JOptionPane.showConfirmDialog( this, TapDesignerTranslate.text( "parametersModified" ), TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
+                int r = JOptionPane.showConfirmDialog(this, TapBTranslate.text( "parametersModified" ), TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
 
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;

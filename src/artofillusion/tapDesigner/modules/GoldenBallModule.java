@@ -82,7 +82,7 @@ public class GoldenBallModule extends TapModule
      */
     public GoldenBallModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "goldenBall" ), position );
+        super(procedure, TapBTranslate.text( "goldenBall" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "goldenBallName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/golden_tree.png" ) ) );
 
@@ -131,14 +131,14 @@ public class GoldenBallModule extends TapModule
         outputNature[0] = OBJECT_PORT;
         outputNature[1] = VALUE_PORT;
         inputTooltips = new String[5];
-        inputTooltips[0] = TapDesignerTranslate.text( "objectDecorate" );
-        inputTooltips[1] = TapDesignerTranslate.text( "objectDecorated" );
-        inputTooltips[2] = TapDesignerTranslate.text( "yValueInput" );
-        inputTooltips[3] = TapDesignerTranslate.text( "rSizeValue" );
-        inputTooltips[4] = TapDesignerTranslate.text( "ySizeValue" );
+        inputTooltips[0] = TapBTranslate.text( "objectDecorate" );
+        inputTooltips[1] = TapBTranslate.text( "objectDecorated" );
+        inputTooltips[2] = TapBTranslate.text( "yValueInput" );
+        inputTooltips[3] = TapBTranslate.text( "rSizeValue" );
+        inputTooltips[4] = TapBTranslate.text( "ySizeValue" );
         outputTooltips = new String[2];
-        outputTooltips[0] = TapDesignerTranslate.text( "objectOutput" );
-        outputTooltips[1] = TapDesignerTranslate.text( "yValueOutput" );
+        outputTooltips[0] = TapBTranslate.text( "objectOutput" );
+        outputTooltips[1] = TapBTranslate.text( "yValueOutput" );
         setBackgroundColor( Color.orange.darker() );
         module = this;
     }
@@ -1246,7 +1246,7 @@ public class GoldenBallModule extends TapModule
             curveRateFunctionInputCB.setAlignmentX( 0.5f );
             p.add( yvPanel );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "yCurveParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "yCurveParameters" ) );
             pp.setBorder( border );
             second.add( pp );
             pp = new JPanel();
@@ -1282,7 +1282,7 @@ public class GoldenBallModule extends TapModule
             p.add( perpCurveRateTF = new JTextField( format.format( smParms.perpCurveRate ) ) );
             perpCurveRateTF.setColumns( 4 );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "rCurveParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "rCurveParameters" ) );
             pp.setBorder( border );
             second.add( pp );
             p = new JPanel();
@@ -1293,7 +1293,7 @@ public class GoldenBallModule extends TapModule
             p.add( TapDesignerTranslate.jlabel( "randomTiltDiv" ) );
             p.add( randomTiltDivTF = new JTextField( format.format( smParms.randomTiltDiv ) ) );
             randomTiltDivTF.setColumns( 3 );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "randomTilt" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "randomTilt" ) );
             p.setBorder( border );
             second.add( p );
             p = new JPanel();
@@ -1312,7 +1312,7 @@ public class GoldenBallModule extends TapModule
             pRB.add( twistDistURB );
             pRB.add( twistDistGRB );
             p.add( pRB );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "sectionParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "sectionParameters" ) );
             p.setBorder( border );
             second.add( p );
             pp = new JPanel();
@@ -1372,7 +1372,7 @@ public class GoldenBallModule extends TapModule
             leafRRatioSL.setLabelTable( labelTable );
             leafRRatioSL.setPaintLabels( true );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "leafCurveParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "leafCurveParameters" ) );
             pp.setBorder( border );
             second.add( pp );
             curveAngleFunctionInputCB.setSelected( curveAngleFunctionInput );
@@ -1382,8 +1382,8 @@ public class GoldenBallModule extends TapModule
             curveRateFunctionInputCB.setSelected( curveRateFunctionInput );
             yCurveLeafFunctionInputCB.setSelected( yCurveLeafFunctionInput );
             yLeafDepartureAngleFunctionInputCB.setSelected( yLeafDepartureAngleFunctionInput );
-            tabbedPane.addTab( TapDesignerTranslate.text( "commonParameters" ), null, first, null );
-            tabbedPane.addTab( TapDesignerTranslate.text( "tapdParameters" ), null, second, null );
+            tabbedPane.addTab(TapBTranslate.text( "commonParameters" ), null, first, null );
+            tabbedPane.addTab(TapBTranslate.text( "tapdParameters" ), null, second, null );
             tabbedPane.setSelectedIndex( 0 );
             contentPane.add( tabbedPane );
             p = new JPanel();
@@ -1392,7 +1392,7 @@ public class GoldenBallModule extends TapModule
             p.add( applyButton = TapDesignerTranslate.jButton( "apply", this ) );
             p.add( cancelButton = TapDesignerTranslate.jButton( "cancel", this ) );
             contentPane.add( p );
-            this.setTitle( TapDesignerTranslate.text( "goldenBallModuleTitle", module.getName() ) );
+            this.setTitle(TapBTranslate.text( "goldenBallModuleTitle", module.getName() ) );
             addWindowListener(
                 new java.awt.event.WindowAdapter()
                 {
@@ -1922,7 +1922,7 @@ public class GoldenBallModule extends TapModule
         {
             if ( modified )
             {
-                int r = JOptionPane.showConfirmDialog( this, TapDesignerTranslate.text( "parametersModified" ), TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
+                int r = JOptionPane.showConfirmDialog(this, TapBTranslate.text( "parametersModified" ), TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
 
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;

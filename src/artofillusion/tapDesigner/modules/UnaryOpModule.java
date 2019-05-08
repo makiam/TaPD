@@ -82,10 +82,10 @@ public class UnaryOpModule extends TapModule
     {
         outputNature[0] = VALUE_PORT;
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "resultOutput" );
+        outputTooltips[0] = TapBTranslate.text( "resultOutput" );
         inputNature[0] = VALUE_PORT;
         inputTooltips = new String[1];
-        inputTooltips[0] = TapDesignerTranslate.text( "a" );
+        inputTooltips[0] = TapBTranslate.text( "a" );
         opNames[ABS] = TapBTranslate.text( "abs" );
         opNames[SINE] = TapBTranslate.text( "sine" );
         opNames[COSINE] = TapBTranslate.text( "cosine" );

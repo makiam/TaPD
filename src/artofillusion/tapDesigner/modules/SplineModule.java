@@ -53,7 +53,7 @@ public class SplineModule extends ObjectModule
      */
     public SplineModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "spline" ), position );
+        super(procedure, TapBTranslate.text( "spline" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "splineName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/spline_tree.png" ) ) );
 
@@ -414,7 +414,7 @@ public class SplineModule extends ObjectModule
                         .elementAt( dum - 1 );
                 ObjectInfo csc = currentObject.duplicate();
                 csc.object = csCurve;
-                csc.name = module.getName() + ": " + TapDesignerTranslate.text( "crossSectionCurve" ) + dum;
+                csc.name = module.getName() + ": " + TapBTranslate.text( "crossSectionCurve" ) + dum;
                 csCurve.edit( procedure.getWindow(), csc,
                     new Runnable()
                     {
@@ -490,7 +490,7 @@ public class SplineModule extends ObjectModule
         {
             ObjectInfo yc = currentObject.duplicate();
             yc.object = ( (TapSplineMesh) currentObject.object ).getYCurve();
-            yc.name = module.getName() + ": " + TapDesignerTranslate.text( "yPath" );
+            yc.name = module.getName() + ": " + TapBTranslate.text( "yPath" );
             ( (TapSplineMesh) currentObject.object ).getYCurve().edit( procedure.getWindow(), yc,
                 new Runnable()
                 {
@@ -891,7 +891,7 @@ public class SplineModule extends ObjectModule
             cancelButton = TapDesignerTranslate.jButton( "cancel", this );
             contentPane.add( cancelButton, c );
 
-            this.setTitle( TapDesignerTranslate.text( "splineModuleTitle", module.getName() ) );
+            this.setTitle(TapBTranslate.text( "splineModuleTitle", module.getName() ) );
 
             addWindowListener(
                 new java.awt.event.WindowAdapter()
@@ -1043,7 +1043,7 @@ public class SplineModule extends ObjectModule
                             .elementAt( dum - 1 );
                     ObjectInfo csc = currentObject.duplicate();
                     csc.object = csCurve;
-                    csc.name = module.getName() + ": " + TapDesignerTranslate.text( "crossSectionCurve" ) + dum;
+                    csc.name = module.getName() + ": " + TapBTranslate.text( "crossSectionCurve" ) + dum;
                     csCurve.edit(procedure.getWindow(), csc,
                         new Runnable()
                         {
@@ -1112,7 +1112,7 @@ public class SplineModule extends ObjectModule
                 editDialogClosed();
             }
             else if ( command.equals( rShapeButton.getActionCommand() ) )
-                ( (TapSplineMesh) currentObject.object ).getRShape().edit(this, TapDesignerTranslate.text( "rShape" ),
+                ( (TapSplineMesh) currentObject.object ).getRShape().edit(this, TapBTranslate.text( "rShape" ),
                     new Runnable()
                     {
                 @Override
@@ -1125,7 +1125,7 @@ public class SplineModule extends ObjectModule
             {
                 ObjectInfo yc = currentObject.duplicate();
                 yc.object = ( (TapSplineMesh) currentObject.object ).getYCurve();
-                yc.name = module.getName() + ": " + TapDesignerTranslate.text( "yPath" );
+                yc.name = module.getName() + ": " + TapBTranslate.text( "yPath" );
                 ( (TapSplineMesh) currentObject.object ).getYCurve().edit(procedure.getWindow(), yc,
                     new Runnable()
                     {
@@ -1255,7 +1255,7 @@ public class SplineModule extends ObjectModule
         {
             if ( modified )
             {
-                int r = JOptionPane.showConfirmDialog( this, TapDesignerTranslate.text( "parametersModified" ), TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
+                int r = JOptionPane.showConfirmDialog(this, TapBTranslate.text( "parametersModified" ), TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
 
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;

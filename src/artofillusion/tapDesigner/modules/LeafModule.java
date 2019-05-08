@@ -46,7 +46,7 @@ public class LeafModule extends ObjectModule
      */
     public LeafModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "leaf" ), position );
+        super(procedure, TapBTranslate.text( "leaf" ), position );
         Scene scene = procedure.getScene();
         for ( int i = 0; i < procedure.getNumObjects(); ++i )
         {
@@ -71,7 +71,7 @@ public class LeafModule extends ObjectModule
      */
     public LeafModule( TapProcedure procedure, Point position, ObjectInfo leaf )
     {
-        super( procedure, TapDesignerTranslate.text( "leaf" ), position );
+        super(procedure, TapBTranslate.text( "leaf" ), position );
         setCurrentObject( leaf );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "leafName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/aoi_tree.png" ) ) );

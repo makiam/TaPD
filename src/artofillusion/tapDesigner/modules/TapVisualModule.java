@@ -889,7 +889,7 @@ public class TapVisualModule extends OverlayContainer
                         return "No tooltip";
                 }
 
-            return TapDesignerTranslate.text( "clickSelectMove" );
+            return TapBTranslate.text( "clickSelectMove" );
         }
 
 

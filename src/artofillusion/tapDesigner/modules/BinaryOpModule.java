@@ -81,12 +81,12 @@ public class BinaryOpModule extends TapModule
     {
         outputNature[0] = VALUE_PORT;
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "resultOutput" );
+        outputTooltips[0] = TapBTranslate.text( "resultOutput" );
         inputNature[0] = VALUE_PORT;
         inputNature[1] = VALUE_PORT;
         inputTooltips = new String[2];
-        inputTooltips[0] = TapDesignerTranslate.text( "a" );
-        inputTooltips[1] = TapDesignerTranslate.text( "b" );
+        inputTooltips[0] = TapBTranslate.text( "a" );
+        inputTooltips[1] = TapBTranslate.text( "b" );
         setBackgroundColor( Color.black );
         opNames[POWER] = TapBTranslate.text( "power" );
         opNames[MIN] = TapBTranslate.text( "min" );

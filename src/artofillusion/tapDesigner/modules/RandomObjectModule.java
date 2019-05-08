@@ -62,7 +62,7 @@ public class RandomObjectModule extends TapModule
      */
     public RandomObjectModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "random" ), position );
+        super(procedure, TapBTranslate.text( "random" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "randomObjectName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/randobj_tree.png" ) ) );
 
@@ -86,9 +86,9 @@ public class RandomObjectModule extends TapModule
         inputNature[0] = OBJECT_PORT;
         outputNature[0] = OBJECT_PORT;
         inputTooltips = new String[1];
-        inputTooltips[0] = TapDesignerTranslate.text( "portInput" );
+        inputTooltips[0] = TapBTranslate.text( "portInput" );
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "portOutput" );
+        outputTooltips[0] = TapBTranslate.text( "portOutput" );
         setBackgroundColor( Color.orange.darker() );
         module = this;
     }

@@ -69,7 +69,7 @@ public class RandomValueModule extends TapModule
     {
         outputNature[0] = VALUE_PORT;
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "randomValueOutput" );
+        outputTooltips[0] = TapBTranslate.text( "randomValueOutput" );
 
         setBackgroundColor( Color.black );
         module = this;

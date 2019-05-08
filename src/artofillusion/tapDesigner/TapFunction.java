@@ -979,9 +979,9 @@ public class TapFunction
         {
             if ( modified )
             {
-                int r = JOptionPane.showConfirmDialog( this,
-                        TapDesignerTranslate.text( "parametersModified" ),
-                        TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE,
+                int r = JOptionPane.showConfirmDialog(this,
+                        TapBTranslate.text( "parametersModified" ),
+                        TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE,
                         JOptionPane.YES_NO_OPTION );
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;

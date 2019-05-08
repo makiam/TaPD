@@ -46,7 +46,7 @@ public class AoIObjectModule
      */
     public AoIObjectModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "object" ), position );
+        super(procedure, TapBTranslate.text( "object" ), position );
         setCurrentObject( procedure.getScene().getObject( 0 ).duplicate() );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "aoiObjectName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/aoi_tree.png" ) ) );

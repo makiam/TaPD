@@ -51,7 +51,7 @@ public class DistortModule extends TapModule
      */
     public DistortModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "distort" ), position );
+        super(procedure, TapBTranslate.text( "distort" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "distortName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/distort_tree.png" ) ) );
 
@@ -71,9 +71,9 @@ public class DistortModule extends TapModule
         inputNature[0] = OBJECT_PORT;
         outputNature[0] = OBJECT_PORT;
         inputTooltips = new String[1];
-        inputTooltips[0] = TapDesignerTranslate.text( "objectToDistort" );
+        inputTooltips[0] = TapBTranslate.text( "objectToDistort" );
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "distortedObject" );
+        outputTooltips[0] = TapBTranslate.text( "distortedObject" );
         setBackgroundColor( Color.orange.darker() );
         module = this;
     }
@@ -507,7 +507,7 @@ public class DistortModule extends TapModule
             curveRateTF.setColumns( 4 );
             pp.add( p );
 
-            TitledBorder border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "yCurveParameters" ) );
+            TitledBorder border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "yCurveParameters" ) );
             pp.setBorder( border );
             contentPane.add( pp );
 
@@ -536,7 +536,7 @@ public class DistortModule extends TapModule
             p.add( perpCurveRateTF = new JTextField( format.format( smParms.perpCurveRate ) ) );
             perpCurveRateTF.setColumns( 4 );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "rCurveParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "rCurveParameters" ) );
             pp.setBorder( border );
             contentPane.add( pp );
 
@@ -548,7 +548,7 @@ public class DistortModule extends TapModule
             p.add( TapDesignerTranslate.jlabel( "randomTiltDiv" ) );
             p.add( randomTiltDivTF = new JTextField( format.format( smParms.randomTiltDiv ) ) );
             randomTiltDivTF.setColumns( 3 );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "randomTilt" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "randomTilt" ) );
             p.setBorder( border );
             contentPane.add( p );
 
@@ -568,7 +568,7 @@ public class DistortModule extends TapModule
             pRB.add( twistDistURB );
             pRB.add( twistDistGRB );
             p.add( pRB );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "sectionParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "sectionParameters" ) );
             p.setBorder( border );
             contentPane.add( p );
 
@@ -615,7 +615,7 @@ public class DistortModule extends TapModule
             leafRRatioSL.setLabelTable( labelTable );
             leafRRatioSL.setPaintLabels( true );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "leafCurveParameters" ) );
+            border = BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "leafCurveParameters" ) );
             pp.setBorder( border );
             contentPane.add( pp );
 
@@ -625,7 +625,7 @@ public class DistortModule extends TapModule
             p.add( applyButton = TapDesignerTranslate.jButton( "apply", this ) );
             p.add( cancelButton = TapDesignerTranslate.jButton( "cancel", this ) );
             contentPane.add( p );
-            this.setTitle( TapDesignerTranslate.text( "distortModuleTitle", module.getName() ) );
+            this.setTitle(TapBTranslate.text( "distortModuleTitle", module.getName() ) );
 
             addWindowListener(
                 new java.awt.event.WindowAdapter()
@@ -930,7 +930,7 @@ public class DistortModule extends TapModule
         {
             if ( modified )
             {
-                int r = JOptionPane.showConfirmDialog( this, TapDesignerTranslate.text( "parametersModified" ), TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
+                int r = JOptionPane.showConfirmDialog(this, TapBTranslate.text( "parametersModified" ), TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
 
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;

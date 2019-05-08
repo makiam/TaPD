@@ -1325,7 +1325,7 @@ public class TapProcedure
             }
             catch ( NumberFormatException e )
             {
-                JOptionPane.showMessageDialog( null, TapDesignerTranslate.text( "nonSeedMessage" ), TapDesignerTranslate.text( "error" ), JOptionPane.ERROR_MESSAGE );
+                JOptionPane.showMessageDialog(null, TapBTranslate.text( "nonSeedMessage" ), TapBTranslate.text( "error" ), JOptionPane.ERROR_MESSAGE );
             }
         }
 

@@ -68,7 +68,7 @@ public class FieldModule extends TapModule
      */
     public FieldModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "field" ), position );
+        super(procedure, TapBTranslate.text( "field" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "fieldName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/field_tree.png" ) ) );
 
@@ -100,10 +100,10 @@ public class FieldModule extends TapModule
         inputNature[1] = OBJECT_PORT;
         outputNature[0] = OBJECT_PORT;
         inputTooltips = new String[2];
-        inputTooltips[0] = TapDesignerTranslate.text( "objectDecorate" );
-        inputTooltips[1] = TapDesignerTranslate.text( "objectDecorated" );
+        inputTooltips[0] = TapBTranslate.text( "objectDecorate" );
+        inputTooltips[1] = TapBTranslate.text( "objectDecorated" );
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "objectOutput" );
+        outputTooltips[0] = TapBTranslate.text( "objectOutput" );
         setBackgroundColor( Color.orange.darker() );
         module = this;
     }

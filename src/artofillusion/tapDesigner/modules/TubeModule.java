@@ -47,7 +47,7 @@ public class TubeModule extends ObjectModule
      */
     public TubeModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "tube" ), position );
+        super(procedure, TapBTranslate.text( "tube" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "tubeName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/tube_tree.png" ) ) );
 
@@ -342,7 +342,7 @@ public class TubeModule extends ObjectModule
         private void doYCurve()
         {
             ObjectInfo yc = currentObject.duplicate();
-            yc.name = module.getName() + ": " + TapDesignerTranslate.text( "tube" );
+            yc.name = module.getName() + ": " + TapBTranslate.text( "tube" );
             ( (Tube) currentObject.object ).edit( procedure.getWindow(), yc,
                 new Runnable()
                 {
@@ -629,7 +629,7 @@ public class TubeModule extends ObjectModule
             cancelButton = TapDesignerTranslate.jButton( "cancel", this );
             contentPane.add( cancelButton, c );
 
-            this.setTitle( TapDesignerTranslate.text( "tubeModuleTitle", module.getName() ) );
+            this.setTitle(TapBTranslate.text( "tubeModuleTitle", module.getName() ) );
 
             addWindowListener(
                 new java.awt.event.WindowAdapter()
@@ -778,7 +778,7 @@ public class TubeModule extends ObjectModule
                 editDialogClosed();
             }
             else if ( command.equals( rShapeButton.getActionCommand() ) )
-                ( (TapTube) currentObject.object ).getRShape().edit(this, TapDesignerTranslate.text( "rShape" ),
+                ( (TapTube) currentObject.object ).getRShape().edit(this, TapBTranslate.text( "rShape" ),
                     new Runnable()
                     {
                 @Override
@@ -790,7 +790,7 @@ public class TubeModule extends ObjectModule
             else if ( command.equals( yCurveButton.getActionCommand() ) )
             {
                 ObjectInfo yc = currentObject.duplicate();
-                yc.name = module.getName() + ": " + TapDesignerTranslate.text( "tube" );
+                yc.name = module.getName() + ": " + TapBTranslate.text( "tube" );
                 ( (Tube) currentObject.object ).edit(procedure.getWindow(), yc,
                     new Runnable()
                     {
@@ -876,7 +876,7 @@ public class TubeModule extends ObjectModule
         {
             if ( modified )
             {
-                int r = JOptionPane.showConfirmDialog( this, TapDesignerTranslate.text( "parametersModified" ), TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
+                int r = JOptionPane.showConfirmDialog(this, TapBTranslate.text( "parametersModified" ), TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
 
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;

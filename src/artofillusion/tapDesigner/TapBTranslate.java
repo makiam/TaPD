@@ -398,7 +398,7 @@ public class TapBTranslate
 
     /**
      *  Get the text given by the property "name". If the property is not found,
-     *  this simply uses name. Any occurrances of the patterns "{0}" and "{1}"
+     *  this simply uses name. Any occurrences of the patterns "{0}" and "{1}"
      *  in the text string will be replaced with the strings representations of
      *  arg1 and arg2, respectively.
      *
@@ -433,7 +433,7 @@ public class TapBTranslate
      *@return       Description of the Return Value
      */
 
-    public static String text( String name, Object args[] )
+    public static String text( String name, Object... args)
     {
         String pattern = name;
         try

@@ -917,7 +917,7 @@ public class TapProcPanel extends BTabbedPane
     {
         if ( getChildCount() == 1 )
         {
-            JOptionPane.showMessageDialog( null, TapDesignerTranslate.text( "cannotDeleteLastView" ), TapDesignerTranslate.text( "warning" ), JOptionPane.INFORMATION_MESSAGE );
+            JOptionPane.showMessageDialog(null, TapBTranslate.text( "cannotDeleteLastView" ), TapBTranslate.text( "warning" ), JOptionPane.INFORMATION_MESSAGE );
         }
         else
         {
@@ -931,7 +931,7 @@ public class TapProcPanel extends BTabbedPane
      */
     public void doRenameTab()
     {
-        String inputValue = JOptionPane.showInputDialog( TapDesignerTranslate.text( "tabName" ), getTabName( getSelectedTab() ) );
+        String inputValue = JOptionPane.showInputDialog(TapBTranslate.text( "tabName" ), getTabName( getSelectedTab() ) );
         if ( inputValue != null && !inputValue.equals( "" ) )
         {
             setTabName( getSelectedTab(), inputValue );

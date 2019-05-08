@@ -97,12 +97,12 @@ public abstract class ObjectModule extends TapModule
     {
         outputNature[0] = OBJECT_PORT;
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "objectOutput" );
+        outputTooltips[0] = TapBTranslate.text( "objectOutput" );
         inputNature[0] = VALUE_PORT;
         inputNature[1] = VALUE_PORT;
         inputTooltips = new String[2];
-        inputTooltips[0] = TapDesignerTranslate.text( "sizeRInput", "1" );
-        inputTooltips[1] = TapDesignerTranslate.text( "sizeYInput", "1" );
+        inputTooltips[0] = TapBTranslate.text( "sizeRInput", "1" );
+        inputTooltips[1] = TapBTranslate.text( "sizeYInput", "1" );
         setBackgroundColor( Color.blue.darker() );
         currentSizeY = 1.0;
         currentSizeR = 1.0;

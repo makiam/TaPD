@@ -49,7 +49,7 @@ public class ConstantValueModule extends TapModule
      */
     public ConstantValueModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "value" ), position );
+        super(procedure, TapBTranslate.text( "value" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "constantValueName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/value_tree.png" ) ) );
 
@@ -68,7 +68,7 @@ public class ConstantValueModule extends TapModule
     {
         outputNature[0] = VALUE_PORT;
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "valueOutput" );
+        outputTooltips[0] = TapBTranslate.text( "valueOutput" );
         setBackgroundColor( Color.black );
         module = this;
     }
@@ -287,7 +287,7 @@ public class ConstantValueModule extends TapModule
             cancelButton = TapDesignerTranslate.jButton( "cancel", this );
             contentPane.add( cancelButton, gc );
 
-            this.setTitle( TapDesignerTranslate.text( "constantValueModuleTitle", module.getName() ) );
+            this.setTitle(TapBTranslate.text( "constantValueModuleTitle", module.getName() ) );
             addWindowListener(
                 new java.awt.event.WindowAdapter()
                 {
@@ -342,7 +342,7 @@ public class ConstantValueModule extends TapModule
                 catch ( NumberFormatException e )
                 {
                     constantValue = backupValue;
-                    JOptionPane.showMessageDialog( null, TapDesignerTranslate.text( "nonValueMessage" ), TapDesignerTranslate.text( "error" ), JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog(null, TapBTranslate.text( "nonValueMessage" ), TapBTranslate.text( "error" ), JOptionPane.ERROR_MESSAGE );
                 }
             }
             else if ( command.equals( okButton.getActionCommand() ) )
@@ -369,7 +369,7 @@ public class ConstantValueModule extends TapModule
                 {
                     constantValue = backupValue;
                     updateVisualModuleName();
-                    JOptionPane.showMessageDialog( null, TapDesignerTranslate.text( "nonValueMessage" ), TapDesignerTranslate.text( "error" ), JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog(null, TapBTranslate.text( "nonValueMessage" ), TapBTranslate.text( "error" ), JOptionPane.ERROR_MESSAGE );
                 }
             }
         }
@@ -459,7 +459,7 @@ public class ConstantValueModule extends TapModule
         {
             if ( modified )
             {
-                int r = JOptionPane.showConfirmDialog( this, TapDesignerTranslate.text( "parametersModified" ), TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
+                int r = JOptionPane.showConfirmDialog(this, TapBTranslate.text( "parametersModified" ), TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
 
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;

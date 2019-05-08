@@ -48,7 +48,7 @@ public class ValueFunctionModule extends TapModule
      */
     public ValueFunctionModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "function" ), position );
+        super(procedure, TapBTranslate.text( "function" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "functionName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/function_tree.png" ) ) );
 
@@ -66,7 +66,7 @@ public class ValueFunctionModule extends TapModule
     {
         outputNature[0] = VALUE_PORT;
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "value" );
+        outputTooltips[0] = TapBTranslate.text( "value" );
         setBackgroundColor( Color.black );
         module = this;
     }
@@ -150,7 +150,7 @@ public class ValueFunctionModule extends TapModule
         else
         {
             previousFunction = function.duplicate();
-            editDialog = function.edit((JFrame) parentFrame.getComponent(), TapDesignerTranslate.text( "valueFunctionModuleTitle", module.getName() ),
+            editDialog = function.edit((JFrame) parentFrame.getComponent(), TapBTranslate.text( "valueFunctionModuleTitle", module.getName() ),
                 new Runnable()
                 {
                 @Override
