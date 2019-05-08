@@ -92,7 +92,7 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
         EditingTool altTool;
         tools.addTool( metaTool = new MoveViewTool( this ) );
         tools.addTool( altTool = new RotateViewTool( this ) );
-        ( (RotateViewTool) altTool ).setUseSelectionCenter( true );
+        
         defaultTool = metaTool;
         tools.selectTool( defaultTool );
         theView.setTool( defaultTool );
