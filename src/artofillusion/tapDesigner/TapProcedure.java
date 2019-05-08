@@ -867,8 +867,8 @@ public class TapProcedure
             module.setProcedure( this );
         }
 
-        for ( i = 0; i < modules.size(); ++i )
-            ( (TapModule) modules.elementAt( i ) ).remapOutput();
+        for (TapModule module: modules)
+            module.remapOutput();
 
         if ( version >= 1 )
             undoRecordSize = in.readInt();
@@ -1269,7 +1269,7 @@ public class TapProcedure
         {
             try
             {
-                long dum = ( Long.valueOf( textField.getText() ) ).longValue();
+                long dum = Long.valueOf( textField.getText() );
                 seed = dum;
             }
             catch ( NumberFormatException e )
@@ -1305,7 +1305,7 @@ public class TapProcedure
 
             try
             {
-                long dum = ( Long.valueOf( textField.getText() ) ).longValue();
+                long dum = Long.valueOf( textField.getText() );
 
                 if ( dum == 0 )
                     ( (JTextField) textField.getComponent() ).setForeground( Color.red );
