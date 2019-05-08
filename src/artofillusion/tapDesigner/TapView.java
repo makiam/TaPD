@@ -18,7 +18,7 @@ import buoy.widget.*;
 /**
  *  interface implemented by all TaPD views that appear in the proc panel.
  *
- *@author     François Guillet
+ *@author     Francois Guillet
  *@created    1 mai 2004
  */
 public interface TapView
