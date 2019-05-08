@@ -58,7 +58,7 @@ public class SplineModule extends ObjectModule
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "splineName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/spline_tree.png" ) ) );
 
         int i;
-        int j;
+
         numCurvePoints = 6;
 
         int numYPoints = 8;
@@ -266,8 +266,7 @@ public class SplineModule extends ObjectModule
      *@author     Francois Guillet
      *@created    06 june 2004
      */
-    private class SplineEditWidget
-             extends EditWidgetBase
+    private class SplineEditWidget extends EditWidgetBase
     {
         private BCheckBox deliverCB;
         private BCheckBox hiddenCB;
@@ -312,7 +311,7 @@ public class SplineModule extends ObjectModule
             hiddenCB = TapBTranslate.bCheckBox( "hidden", !currentObject.visible );
             hiddenCB.addEventLink( ValueChangedEvent.class, this, "doModified" );
 
-            BorderContainer content = new BorderContainer();
+            
             ColumnContainer cc = new ColumnContainer();
             LayoutInfo layout = new LayoutInfo( LayoutInfo.WEST, LayoutInfo.NONE, new Insets( 3, 3, 3, 3 ), new Dimension( 0, 0 ) );
             LayoutInfo buttonLayout = new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.HORIZONTAL, new Insets( 3, 3, 3, 3 ), new Dimension( 0, 0 ) );
@@ -335,8 +334,8 @@ public class SplineModule extends ObjectModule
             numPoints = new BSpinner( ( (TapSplineMesh) currentObject.object ).getUUSize(), 3, 1000, 1 );
             subcc.add( numPoints, numPointsLayout );
 
-            BOutline bo;
-            cc.add( bo = new BOutline( subcc, BorderFactory.createTitledBorder( BorderFactory.createRaisedBevelBorder(), TapBTranslate.text( "curvesShape" ) ) ), new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 1, 1, 1, 1 ), new Dimension( 0, 0 ) ) );
+            
+            cc.add(new BOutline( subcc, BorderFactory.createTitledBorder( BorderFactory.createRaisedBevelBorder(), TapBTranslate.text( "curvesShape" ) ) ), new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 1, 1, 1, 1 ), new Dimension( 0, 0 ) ) );
 
             GridContainer subgc = new GridContainer( 2, 2 );
             subgc.setDefaultLayout( new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 2, 2, 2, 2 ), new Dimension( 0, 0 ) ) );
@@ -344,7 +343,7 @@ public class SplineModule extends ObjectModule
             subgc.add( uSmoothnessVF = new ValueField( ( (TapSplineMesh) currentObject.object ).getSplineMeshUSmoothness(), ValueField.NONNEGATIVE ), 0, 1 );
             subgc.add( TapBTranslate.bLabel( "y" ), 1, 0 );
             subgc.add( vSmoothnessVF = new ValueField( ( (TapSplineMesh) currentObject.object ).getSplineMeshVSmoothness(), ValueField.NONNEGATIVE ), 1, 1 );
-            cc.add( bo = new BOutline( subgc, BorderFactory.createTitledBorder( BorderFactory.createRaisedBevelBorder(), TapBTranslate.text( "smoothness" ) ) ), new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 1, 1, 1, 1 ), new Dimension( 0, 0 ) ) );
+            cc.add(new BOutline( subgc, BorderFactory.createTitledBorder( BorderFactory.createRaisedBevelBorder(), TapBTranslate.text( "smoothness" ) ) ), new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 1, 1, 1, 1 ), new Dimension( 0, 0 ) ) );
 
             uSmoothnessVF.addEventLink( ValueChangedEvent.class, this, "doValueFieldChanged" );
             vSmoothnessVF.addEventLink( ValueChangedEvent.class, this, "doValueFieldChanged" );

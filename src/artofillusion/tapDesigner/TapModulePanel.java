@@ -61,7 +61,6 @@ public class TapModulePanel extends OverlayContainer implements TapView
     private boolean fromPortIsOutput;
     private BPopupMenu popup;
     private BPopupMenu viewPopup;
-    private TapProcPanelHolder holder;
     private Vector clipboardModules;
     private boolean popupOn = false;
     private boolean init;
@@ -162,7 +161,6 @@ public class TapModulePanel extends OverlayContainer implements TapView
         linksLinesFrom = null;
         linksLinesTo = null;
         selectedLinks = null;
-        init = true;
 
         Vector modules = procedure.getModules();
 
@@ -177,7 +175,6 @@ public class TapModulePanel extends OverlayContainer implements TapView
             buildModuleLinks();
         }
 
-        init = false;
         layoutChildren();
         repaint();
     }

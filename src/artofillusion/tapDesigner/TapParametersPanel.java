@@ -37,7 +37,6 @@ import artofillusion.tapDesigner.TapModule.*;
 public class TapParametersPanel extends BSplitPane implements TapView
 {
     private TapProcPanel procPanel;
-    private BScrollPane spl;
     private BScrollPane spr;
     private BTree tree;
     private ViewPopup viewPopup;
@@ -57,8 +56,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
     {
         super();
         this.procPanel = procPanel;
-        BScrollPane sp;
-        add( spl = new BScrollPane( tree = new BTree() ), 0 );
+        add(new BScrollPane( tree = new BTree() ), 0 );
         tree.setRootNodeShown( false );
         tree.setCellRenderer( new ParametersTreeRenderer() );
         editContent = new BorderContainer();

@@ -41,8 +41,6 @@ public class RandomObjectModule extends TapModule
     private RandomObjectModule module;
     private static TapModule.ModuleTypeInfo typeInfo;
 
-    private TapDistortParameters smParms;
-    private boolean deliverDuplicates;
     private int numInputProbs;
     private int numOutputProbs;
     private int[] inputProbsTable;

@@ -30,9 +30,7 @@ import java.io.*;
  *@author     pims
  *@created    16 ao�t 2004
  */
-public class TapTube
-         extends Tube
-         implements TapObject
+public class TapTube extends Tube implements TapObject
 {
     private double[] yPositions;
     private Vec3[] yVert;

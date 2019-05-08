@@ -40,7 +40,6 @@ public class ClipModule extends TapModule
     private static TapModule.ModuleTypeInfo typeInfo;
     private double min;
     private double max;
-    private ClipModule module;
 
 
     /**
@@ -76,7 +75,7 @@ public class ClipModule extends TapModule
         inputTooltips[0] = TapBTranslate.text( "valueToClip" );
 
         setBackgroundColor( Color.black );
-        module = this;
+
     }
 
 

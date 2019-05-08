@@ -38,7 +38,7 @@ import javax.swing.*;
  */
 public class TapProcedure
 {
-    //{{{ variables
+    
     private Vector modules;
     //the full module list
     private Scene theScene;
@@ -113,7 +113,6 @@ public class TapProcedure
         //to paste objects into the TaPD procedure scene
 
         Vector textures = new Vector();
-        int numObjects = getNumObjects();
 
         for ( int i = 0; i < obj.length; i++ )
         {

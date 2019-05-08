@@ -28,8 +28,6 @@ import javax.swing.*;
  */
 public class TapBToolTip extends BToolTip
 {
-    private Widget w;
-
 
     /**
      *  Constructor for the TapBToolTip object

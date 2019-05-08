@@ -20,7 +20,6 @@ import artofillusion.object.*;
 import artofillusion.object.TriangleMesh.*;
 import artofillusion.texture.*;
 import artofillusion.material.*;
-import artofillusion.image.*;
 import buoy.widget.*;
 import java.awt.*;
 import javax.swing.*;
@@ -34,10 +33,6 @@ import javax.swing.border.*;
  */
 public class TapUtils
 {
-    private static Texture clipboardTexture[];
-    private static Material clipboardMaterial[];
-    private static ImageMap clipboardImage[];
-    private static JToolTip tooltip;
 
 
     /**
@@ -244,7 +239,6 @@ public class TapUtils
             double yangle;
             double rangle;
             double ratio;
-            double rRatio;
             double curveAngle;
             double perpCurveAngle;
             double ysign;

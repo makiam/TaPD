@@ -32,8 +32,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *@author     Francois Guillet
  *@created    19 avril 2004
  */
-public class AoIObjectModule
-         extends ObjectModule
+public class AoIObjectModule extends ObjectModule
 {
     private static TapModule.ModuleTypeInfo typeInfo;
 
@@ -83,8 +82,7 @@ public class AoIObjectModule
      *@exception  IOException  Description of the Exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );

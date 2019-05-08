@@ -27,13 +27,11 @@ import javax.swing.*;
 /**
  *  This tabbed pane holds all the panels necessary for procedure editing
  *
- *@author     Fran�ois Guillet
+ *@author     Francois Guillet
  *@created    14 mars 2004
  */
 public class TapProcPanel extends BTabbedPane
 {
-    //{{{ variables
-    private TapModuleScrollPane scrollpane;
     private Vector views;
     private TapProcPanelHolder holder;
     private TapProcedure procedure;
@@ -101,10 +99,6 @@ public class TapProcPanel extends BTabbedPane
 
     }
 
-
-    //}}}
-
-    //{{{ initialization
     /**
      *  Initialization
      */
@@ -116,10 +110,6 @@ public class TapProcPanel extends BTabbedPane
         }
     }
 
-
-    //}}}
-
-//{{{ Cleanup when closing
 
     /**
      *  Cleanup when closing editor window
@@ -134,9 +124,6 @@ public class TapProcPanel extends BTabbedPane
     }
 
 
-    //}}}
-
-//{{{ Events
     /**
      *  Description of the Method
      *
@@ -161,9 +148,6 @@ public class TapProcPanel extends BTabbedPane
     }
 
 
-    //}}}
-
-//{{{ Undo operations
     /**
      *  Adds a feature to the UndoRecord attribute of the TapProcPanel object
      */
@@ -203,10 +187,6 @@ public class TapProcPanel extends BTabbedPane
         undoRecord.setRecordSize( procedure.getUndoRecordSize() );
     }
 
-
-    //}}}
-
-//{{{ Getters for modulePanel, main frame as BFrame, procedure and holder
     /**
      *  Gets the modulePanel attribute of the TapProcPanel object
      *
@@ -250,10 +230,6 @@ public class TapProcPanel extends BTabbedPane
         return holder;
     }
 
-
-    //}}}
-
-//{{{  attaches a new procedure to the ProcPanel
     /**
      *  Attaches a new procedure to the TapProcPanel
      *
@@ -275,11 +251,7 @@ public class TapProcPanel extends BTabbedPane
             //holder.requestFocus();
         }
     }
-
-
-    //}}}
-
-//{{{ edit seed dialog
+    
     /**
      *  Triggers the choose seed dialog from the procedure
      */
@@ -288,10 +260,6 @@ public class TapProcPanel extends BTabbedPane
         procedure.editSeed( holder.getBFrame() );
     }
 
-
-    //}}}
-
-//{{{ Texture and material management
 
     /**
      *  Imports/exports textures from/to the AoI Scene
@@ -352,10 +320,6 @@ public class TapProcPanel extends BTabbedPane
         procedure.manageObjects( holder.getBFrame() );
     }
 
-
-//}}}
-
-//{{{ Cut, Copy, Paste, Clear
 
     /**
      *  Cut menu command

@@ -37,7 +37,6 @@ import artofillusion.tapDesigner.TapModule.*;
  */
 public class FieldModule extends TapModule
 {
-    private FieldModule module;
     private static TapModule.ModuleTypeInfo typeInfo;
 
     private double occupancy;
@@ -52,7 +51,6 @@ public class FieldModule extends TapModule
     private boolean sizeChildren;
     private double sizeDist;
     private short sizeDistType;
-    private TapDistortParameters parms;
     private final static short UNIFORM = 0;
     private final static short VERTICES = 1;
     private final static short FACE_CENTERS = 2;
@@ -105,7 +103,6 @@ public class FieldModule extends TapModule
         outputTooltips = new String[1];
         outputTooltips[0] = TapBTranslate.text( "objectOutput" );
         setBackgroundColor( Color.orange.darker() );
-        module = this;
     }
 
 

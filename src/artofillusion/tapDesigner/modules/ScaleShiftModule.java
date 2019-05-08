@@ -36,7 +36,6 @@ public class ScaleShiftModule extends TapModule
 {
     private double scale;
     private double shift;
-    private ScaleShiftModule module;
 
     private static TapModule.ModuleTypeInfo typeInfo;
 
@@ -74,7 +73,6 @@ public class ScaleShiftModule extends TapModule
         inputTooltips[0] = TapBTranslate.text( "valueToScaleShift" );
 
         setBackgroundColor( Color.black );
-        module = this;
     }
 
 

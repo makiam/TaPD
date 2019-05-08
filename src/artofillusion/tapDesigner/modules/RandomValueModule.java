@@ -38,7 +38,6 @@ public class RandomValueModule extends TapModule
     private double mean;
     private double stdDev;
     private short distType;
-    private RandomValueModule module;
 
 
     /**
@@ -72,7 +71,6 @@ public class RandomValueModule extends TapModule
         outputTooltips[0] = TapBTranslate.text( "randomValueOutput" );
 
         setBackgroundColor( Color.black );
-        module = this;
     }
 
 

@@ -22,13 +22,6 @@ import artofillusion.*;
 public class TapDesignerTool implements ModellingTool
 {
     /**
-     *  instance this tool,load it in memory
-     */
-
-    public TapDesignerTool() { }
-
-
-    /**
      *  Get the text that appear as the menu item.
      *
      *@return    The name value

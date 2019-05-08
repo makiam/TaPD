@@ -26,7 +26,6 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 
-//}}}
 
 /**
  *  This frame allows the user to design a Tree or a Plant object. Its function
@@ -37,14 +36,12 @@ import javax.swing.*;
  */
 public class TapFrame extends BFrame implements TapProcPanelHolder
 {
-    //{{{ Variables
     private LayoutWindow window;
     private BMenuBar theMenuBar;
     private BMenu editMenu;
     private BMenu moduleMenu;
     private BMenu insertMenu;
     private BMenu sceneMenu;
-    private BMenu optionsMenu;
     private BMenuItem aoiObjItem;
     private BMenuItem pasteAsObjectItem;
     private BMenuItem pasteAsPlantItem;
@@ -53,20 +50,16 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
     private BMenuItem cutItem;
     private BMenuItem copyItem;
     private BMenuItem clearItem;
-    private BMenuItem pasteItem;
     private BMenuItem renameItem;
     private BMenuItem mainEntryItem;
     private BMenuItem manageObjectsItem;
     private BMenuItem[] layoutItem = new BMenuItem[4];
-    private BMenuItem[] plafItems;
     private BButton aoiObjButton;
     private BButton leafButton;
     private TapProcPanel procPanel;
     private BButton okButton;
     private BButton cancelButton;
     private AWTWidget toolbarWidget;
-    private UIManager.LookAndFeelInfo[] plafInfo;
-    private Vector visualModules;
     private Scene theScene;
     private ObjectInfo tapdObject;
     private ObjectInfo savedTapdObject;
@@ -82,7 +75,7 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
      */
     public TapFrame( LayoutWindow window, ObjectInfo editedObject )
     {
-        super( "" );
+        super("");
 
         TapProcedure procedure = null;
 
@@ -166,7 +159,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         moduleMenu = TapBTranslate.bMenu( "module" );
         insertMenu = TapBTranslate.bMenu( "insert" );
         sceneMenu = TapBTranslate.bMenu( "scene" );
-        optionsMenu = TapBTranslate.bMenu( "options" );
 
         BorderContainer content = new BorderContainer();
         BorderContainer frameContent = new BorderContainer();
@@ -321,7 +313,7 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         editMenu.addSeparator();
         editMenu.add( cutItem = TapBTranslate.bMenuItem( "cut", procPanel, "doCut" ) );
         editMenu.add( copyItem = TapBTranslate.bMenuItem( "copy", procPanel, "doCopy" ) );
-        editMenu.add( pasteItem = TapBTranslate.bMenuItem( "paste", procPanel, "doPaste" ) );
+        editMenu.add(TapBTranslate.bMenuItem( "paste", procPanel, "doPaste" ) );
         editMenu.add( clearItem = TapBTranslate.bMenuItem( "clear", procPanel, "doClear" ) );
         editMenu.addSeparator();
         editMenu.add( TapBTranslate.bMenuItem( "editUndoLevel", procPanel, "doEditUndoLevel" ) );

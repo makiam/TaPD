@@ -36,7 +36,7 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
     private Scene theScene;
     private TapModule module;
     private ToolPalette tools;
-    private EditingTool defaultTool, currentTool;
+    private EditingTool defaultTool;
     private BRadioButton displayItem[];
 
 
@@ -265,7 +265,6 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
     public void setTool( EditingTool tool )
     {
         theView.setTool( tool );
-        currentTool = tool;
     }
 
 

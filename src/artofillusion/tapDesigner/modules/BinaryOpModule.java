@@ -131,8 +131,7 @@ public class BinaryOpModule extends TapModule
      *@exception  IOException  Write exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );

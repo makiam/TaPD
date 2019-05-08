@@ -18,7 +18,7 @@ import artofillusion.object.*;
 
 
 /** TapObjectInfo stores information
-specific to the TapDesigner construction. At the moement, this concerns only the
+specific to the TapDesigner construction. At the moment, this concerns only the
 decoration level. */
 public class TapObjectInfo
 {

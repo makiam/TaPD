@@ -27,9 +27,7 @@ import java.io.*;
  *@author     pims
  *@created    20 juin 2004
  */
-public class TapLeaf
-         extends TriangleMesh
-         implements TapObject
+public class TapLeaf extends TriangleMesh implements TapObject
 {
     float vertSmoothness;
     float edgeSmoothness;

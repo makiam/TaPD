@@ -30,9 +30,7 @@ import java.util.Vector;
  *@author     pims
  *@created    20 juin 2004
  */
-public class TapSplineMesh
-         extends Object3D
-         implements TapObject
+public class TapSplineMesh extends Object3D implements TapObject
 {
     double xscale;
     double yscale;

@@ -50,7 +50,6 @@ public class TapObjectsFrame extends BDialog
     {
         super( parentFrame, TapBTranslate.text( "importedObjectsList" ), true );
 
-        int i;
 
         theScene = procedure.getScene();
         this.procedure = procedure;
@@ -60,13 +59,13 @@ public class TapObjectsFrame extends BDialog
 
         BButton deleteButton = TapBTranslate.bButton( "delete", this, "doDelete" );
 
-        if ( getObjectNames() != null )
+        if ( getObjectNames() == null )
         {
-            list = new BList( getObjectNames() );
+            list = new BList();
         }
         else
         {
-            list = new BList();
+            list = new BList( getObjectNames() );
         }
 
         BScrollPane scrollPane = new BScrollPane( list );
