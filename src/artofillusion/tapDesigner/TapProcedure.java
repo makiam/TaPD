@@ -22,7 +22,10 @@ import artofillusion.object.*;
 import artofillusion.texture.*;
 import buoy.event.*;
 import buoy.widget.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.Rectangle;
 import java.io.*;
 import java.lang.reflect.*;
 import java.text.*;
@@ -39,7 +42,7 @@ import javax.swing.*;
 public class TapProcedure
 {
     
-    private Vector modules;
+    private List<TapModule> modules;
     //the full module list
     private Scene theScene;
     //private scene holding textures, objects imported from the TaPD
@@ -64,10 +67,6 @@ public class TapProcedure
      */
     public final static int MAX_UNDO = 11;
 
-
-    //}}}
-
-    //{{{ Constructor
     /**
      *  Constructor for the TapProcedure object
      *
@@ -76,7 +75,7 @@ public class TapProcedure
     public TapProcedure( Vector objVec )
     {
         theScene = new Scene();
-        modules = new Vector();
+        modules = new ArrayList<>();
 
         if ( objVec != null )
         {
@@ -108,7 +107,7 @@ public class TapProcedure
      *@param  obj  The feature to be added to the ObjectToScene attribute
      *@return      Description of the Return Value
      */
-    public ObjectInfo[] addObjectToScene( ObjectInfo[] obj )
+    private ObjectInfo[] addObjectToScene( ObjectInfo[] obj )
     {
         //to paste objects into the TaPD procedure scene
 
@@ -304,7 +303,7 @@ public class TapProcedure
         String name;
 
         found = true;
-        name = new String( info.name );
+        name = info.name;
 
         int count = 1;
         int numObjects = getNumObjects();
@@ -328,29 +327,6 @@ public class TapProcedure
         return ( addObjectToScene( obj ) )[0];
     }
 
-
-    //}}}
-
-    //{{{ Debug printout method
-    /*
-     *  used to debug
-     */
-    /**
-     *  Description of the Method
-     */
-    public void printSceneContent()
-    {
-        System.out.println( "Scene --------------" );
-
-        for ( int i = 0; i < theScene.getNumObjects(); ++i )
-            System.out.println( theScene.getObject( i ).name + " " + theScene.getObject( i ) );
-
-        System.out.println( "--------------" );
-    }
-
-
-    //}}}
-
     //{{{ getters and setters
     /**
      *  Gets the scene attribute of the TapProcedure object
@@ -368,7 +344,7 @@ public class TapProcedure
      *
      *@return    The modules value
      */
-    public Vector getModules()
+    public List<TapModule> getModules()
     {
         return modules;
     }
@@ -382,10 +358,7 @@ public class TapProcedure
      */
     public int getModuleIndex( TapModule module )
     {
-        for ( int i = 0; i < modules.size(); ++i )
-            if ( modules.elementAt( i ) == module )
-                return i;
-        return -1;
+        return modules.indexOf(module);
     }
 
 
@@ -506,19 +479,18 @@ public class TapProcedure
             byte[] bytes = bos.toByteArray();
             Scene newScene = new Scene( new DataInputStream( new ByteArrayInputStream( bytes ) ), true );
 
-            for ( int i = 0; i < modules.size(); ++i )
+            for (TapModule module: modules)
             {
-                TapModule mod = (TapModule) modules.elementAt( i );
                 TapModule newMod = null;
 
-                if ( mod instanceof ObjectModule )
-                    newMod = ( (ObjectModule) mod ).duplicate( newScene );
+                if ( module instanceof ObjectModule )
+                    newMod = ( (ObjectModule) module ).duplicate( newScene );
                 else
-                    newMod = mod.duplicate();
+                    newMod = module.duplicate();
 
                 newProcedure.addModule( newMod );
 
-                if ( mod.isMainEntry() )
+                if ( module.isMainEntry() )
                     newMod.setMainEntry( true );
             }
 
@@ -566,21 +538,19 @@ public class TapProcedure
     public void setLink( int fromModule, int outputPort, int toModule, int inputPort )
     {
         if ( modules.isEmpty() )
-            System.out.println( "Pocedure.setLink : empty Modules vector" );
+            System.out.println( "Procedure.setLink : empty Modules vector" );
         else if ( fromModule >= modules.size() || toModule >= modules.size() )
-            System.out.println( "Pocedure.setLink : fromModule or toModule out of bounds " + fromModule + " " + toModule );
-        else if ( outputPort >= ( (TapModule) modules.elementAt( fromModule ) ).getNumOutput() || inputPort >= ( (TapModule) modules.elementAt( toModule ) ).getNumInput() )
-            System.out.println( "Pocedure.setLink : outputPort or inputPort out of bounds " + fromModule + " " + ( (TapModule) modules.elementAt( fromModule ) ).getNumOutput() + " " + toModule + " " + ( (TapModule) modules.elementAt( toModule ) ).getNumInput() );
+            System.out.println( "Procedure.setLink : fromModule or toModule out of bounds " + fromModule + " " + toModule );
+        else if ( outputPort >= modules.get( fromModule ).getNumOutput() || inputPort >= modules.get( toModule ).getNumInput() )
+            System.out.println( "Procedure.setLink : outputPort or inputPort out of bounds " + fromModule + " " + modules.get( fromModule ).getNumOutput() + " " + toModule + " " + modules.get( toModule ).getNumInput() );
         else
-            ( (TapModule) modules.elementAt( toModule ) ).setLink( fromModule, inputPort, outputPort );
+            modules.get( toModule ).setLink( fromModule, inputPort, outputPort );
 
         modified = true;
     }
 
 
-    //}}}
 
-    //{{{ adds a module
 
     /*
      *  adds a module to the procedure
@@ -611,7 +581,7 @@ public class TapProcedure
      */
     public void addModulesFromProcedure( TapProcedure externalProc )
     {
-        Vector additionalModules = externalProc.getModules();
+        List<TapModule> additionalModules = externalProc.getModules();
         Scene externalScene = externalProc.getScene();
         //System.out.println( theScene.getNumObjects() + " " + externalScene.getNumObjects() );
         //for ( int i = 0; i < theScene.getNumObjects(); i++ )
@@ -630,20 +600,20 @@ public class TapProcedure
         {
             translation[i] = theScene.indexOf( objInfo[i] );
         }
-        //for ( int i = 0; i < theScene.getNumObjects(); i++ )
-        //    System.out.println( i + ": " + theScene.getObject( i ).object );
+
+        
         int size = modules.size();
         for ( int l = 0; l < additionalModules.size(); ++l )
         {
 
             TapModule newModule = null;
-            if ( additionalModules.elementAt( l ) instanceof ObjectModule )
+            if ( additionalModules.get( l ) instanceof ObjectModule )
             {
-                newModule = (TapModule) ( (ObjectModule) additionalModules.elementAt( l ) ).duplicate( theScene, translation );
-
+                newModule = (TapModule) ( (ObjectModule) additionalModules.get( l ) ).duplicate( theScene, translation );
             }
             else
-                newModule = ( (TapModule) additionalModules.elementAt( l ) ).duplicate( size );
+                newModule = ( (TapModule) additionalModules.get( l ) ).duplicate( size );
+            
             if ( newModule != null )
             {
                 for ( int i = 0; i < newModule.numOutput; ++i )
@@ -674,7 +644,7 @@ public class TapProcedure
         int numObjects = theScene.getNumObjects();
 
         for ( int i = 0; i < modules.size(); ++i )
-            if ( modules.elementAt( i ) instanceof ObjectModule )
+            if ( modules.get( i ) instanceof ObjectModule )
                 --numObjects;
 
         return numObjects;
@@ -765,24 +735,22 @@ public class TapProcedure
 
         this.initProcedure();
 
-        for ( int i = 0; i < modules.size(); ++i )
-            ( (TapModule) modules.elementAt( i ) ).initGenerationProcess();
+        for(TapModule module: modules) module.initGenerationProcess();
 
-        for ( int i = 0; i < modules.size(); ++i )
-            if ( ( (TapModule) modules.elementAt( i ) ).isMainEntry() )
+        for(TapModule module: modules) 
+            if(module.isMainEntry())
             {
-                currentObject = ( (TapModule) modules.elementAt( i ) ).getObject( -1, seed );
+                currentObject = module.getObject( -1, seed );
                 currentObject.setViewLevel( viewLevel );
                 currentObject.setRenderingLevel( renderingLevel );
 
                 return currentObject;
             }
 
+
         return null;
     }
 
-
-    //}}}
 
     //{{{ returns a partial object asked by a preview up to (clic preview button).
     //This object should not be stored as the the current procedure object
@@ -795,17 +763,16 @@ public class TapProcedure
     {
         this.initProcedure();
 
-        for ( int i = 0; i < modules.size(); ++i )
-            ( (TapModule) modules.elementAt( i ) ).initGenerationProcess();
+        for(TapModule module: modules)  module.initGenerationProcess();
 
-        for ( int i = 0; i < modules.size(); ++i )
-            if ( ( (TapModule) modules.elementAt( i ) ).isMainEntry() )
+        for(TapModule module: modules)
+            if(module.isMainEntry()) 
             {
-                TapDesignerObjectCollection obj = ( (TapModule) modules.elementAt( i ) ).getObject( -1, seed );
+                TapDesignerObjectCollection obj = module.getObject(-1, seed);
                 obj.setViewLevel( -1 );
                 obj.setRenderingLevel( -1 );
 
-                return obj;
+                return obj;                
             }
 
         return null;
@@ -825,8 +792,7 @@ public class TapProcedure
      *@exception  InvalidObjectException  Description of the Exception
      *@exception  ClassNotFoundException  Description of the Exception
      */
-    public TapProcedure( DataInputStream in, Scene sc )
-        throws IOException, InvalidObjectException, ClassNotFoundException
+    public TapProcedure( DataInputStream in, Scene sc ) throws IOException, InvalidObjectException, ClassNotFoundException
     {
         int i;
         int count;
@@ -843,7 +809,7 @@ public class TapProcedure
         viewLevel = in.readInt();
         theScene = new Scene( in, true );
         count = in.readInt();
-        modules = new Vector( count );
+        modules = new ArrayList<>(count);
 
         int n;
         for ( i = 0; i < count; ++i )
@@ -861,23 +827,16 @@ public class TapProcedure
                 if ( cls == null )
                     throw new IOException( "Unknown class: " + classname );
 
-                Constructor con = cls.getConstructor( new Class[]
-                        {
-                        DataInputStream.class, Scene.class
-                        } );
+                Constructor con = cls.getConstructor(DataInputStream.class, Scene.class);
 
-                modules.addElement( con.newInstance( new Object[]
-                        {
-                        new DataInputStream( new ByteArrayInputStream( bytes ) ),
-                        theScene
-                        } ) );
+                modules.add((TapModule)con.newInstance(new DataInputStream(new ByteArrayInputStream(bytes)), theScene));
                 /*
                  *  compatibility check : any TapLeaf object is redirected to a LeafModule
                  */
                 n = modules.size();
-                if ( modules.elementAt( n - 1 ) instanceof AoIObjectModule )
+                if ( modules.get( n - 1 ) instanceof AoIObjectModule )
                 {
-                    AoIObjectModule obj = (AoIObjectModule) modules.elementAt( n - 1 );
+                    AoIObjectModule obj = (AoIObjectModule) modules.get( n - 1 );
                     if ( obj.currentObject.object instanceof TapLeaf )
                     {
                         LeafModule leaf;
@@ -902,10 +861,10 @@ public class TapProcedure
             }
         }
 
-        for ( i = 0; i < modules.size(); ++i )
+        for (TapModule module: modules)
         {
-            ( (TapModule) modules.elementAt( i ) ).setModules( modules );
-            ( (TapModule) modules.elementAt( i ) ).setProcedure( this );
+            module.setModules( modules );
+            module.setProcedure( this );
         }
 
         for ( i = 0; i < modules.size(); ++i )
@@ -950,8 +909,7 @@ public class TapProcedure
      *@param  sc               Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
-    public void writeToFile( DataOutputStream out, Scene sc )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene sc ) throws IOException
     {
         int i;
 
@@ -962,13 +920,12 @@ public class TapProcedure
         theScene.writeToStream( out );
         out.writeInt( modules.size() );
 
-        for ( i = 0; i < modules.size(); ++i )
+        for (TapModule module: modules)
         {
-            TapModule mod = (TapModule) modules.elementAt( i );
-            out.writeUTF( modules.elementAt( i ).getClass().getName() );
+            out.writeUTF(module.getClass().getName() );
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            mod.writeToFile( new DataOutputStream( bos ), theScene );
+            module.writeToFile( new DataOutputStream( bos ), theScene );
 
             byte[] bytes = bos.toByteArray();
             out.writeInt( bytes.length );
@@ -976,17 +933,17 @@ public class TapProcedure
         }
 
         out.writeInt( undoRecordSize );
-        if ( bounds != null )
+        if ( bounds == null )
+        {
+            for ( i = 0; i < 4; ++i )
+                out.writeInt( 0 );
+        }
+        else
         {
             out.writeInt( bounds.x );
             out.writeInt( bounds.y );
             out.writeInt( bounds.width );
             out.writeInt( bounds.height );
-        }
-        else
-        {
-            for ( i = 0; i < 4; ++i )
-                out.writeInt( 0 );
         }
 
         if ( procPanelLayouts == null )
@@ -1033,8 +990,7 @@ public class TapProcedure
      */
     public BackModuleLink initProcedure()
     {
-        for ( int i = 0; i < modules.size(); ++i )
-            ( (TapModule) modules.elementAt( i ) ).initGenerationProcess();
+        for(TapModule module: modules) module.initGenerationProcess();
 
         backLinks = new BackModuleLink( modules, seed );
 
@@ -1143,18 +1099,12 @@ public class TapProcedure
         setModified( true );
     }
 
-
-    //}}}
-
-    //{{{ Live update
     /**
      *  Description of the Method
      */
     public void doLiveUpdate()
     {
-        for ( int i = 0; i < modules.size(); ++i )
-            ( (TapModule) modules.elementAt( i ) ).updatePreviewFrame();
-
+        for(TapModule module: modules) module.updatePreviewFrame();
     }
 
 

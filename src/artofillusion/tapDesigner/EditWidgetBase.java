@@ -12,7 +12,9 @@
 package artofillusion.tapDesigner;
 
 import buoy.widget.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Insets;
+
 import javax.swing.*;
 import java.util.*;
 
@@ -327,13 +329,12 @@ public abstract class EditWidgetBase extends BorderContainer implements EditWidg
     @Override
     public void doClose()
     {
-        Vector modules = module.getProcedure().getModules();
-        if ( modules == null )
-            return;
-        for ( int i = 0; i < modules.size(); ++i )
+        List<TapModule> modules = module.getProcedure().getModules();
+        if ( modules == null ) return;
+            
+        for (TapModule proModule: modules)
         {
-            if ( (TapModule) modules.elementAt( i ) == module )
-                getBackValues();
+            if (proModule == module ) getBackValues();
         }
     }
 

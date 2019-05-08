@@ -19,11 +19,13 @@ import artofillusion.*;
 import artofillusion.animation.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
-import java.awt.*;
+
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
 import buoy.widget.*;
+import java.awt.Color;
+import java.awt.Point;
 
 
 /**
@@ -43,7 +45,7 @@ public abstract class TapModule
     /**
      *  Description of the Field
      */
-    protected Vector modules;
+    protected List<TapModule> modules;
     //the full module list
     /**
      *  Description of the Field
@@ -321,7 +323,7 @@ public abstract class TapModule
      *
      *@param  modules  The new modules value
      */
-    public void setModules( Vector modules )
+    public void setModules(List<TapModule> modules)
     {
         this.modules = modules;
     }
@@ -332,7 +334,7 @@ public abstract class TapModule
      *
      *@return    The modules value
      */
-    public Vector getModules()
+    public List<TapModule> getModules()
     {
         return modules;
     }
@@ -625,7 +627,7 @@ public abstract class TapModule
             int l = linkToIndex[outputPort].length - 1;
             linkToIndex[outputPort][l] = toModule;
             inputPortLink[outputPort][l] = inputPort;
-            ( (TapModule) modules.elementAt( toModule ) ).newInputLinkCreated();
+            modules.get( toModule ).newInputLinkCreated();
             this.newOutputLinkCreated();
             procedure.setModified( true );
         }
@@ -795,7 +797,7 @@ public abstract class TapModule
         {
             if ( linkToIndex[i] != null )
                 for ( int j = 0; j < linkToIndex[i].length; ++j )
-                    inputPortLink[i][j] = ( (TapModule) modules.elementAt( linkToIndex[i][j] ) ).remap( inputPortLink[i][j] );
+                    inputPortLink[i][j] = modules.get( linkToIndex[i][j] ).remap( inputPortLink[i][j] );
         }
     }
 

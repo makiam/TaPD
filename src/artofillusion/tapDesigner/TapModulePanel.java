@@ -20,7 +20,12 @@ package artofillusion.tapDesigner;
 import artofillusion.math.*;
 import buoy.event.*;
 import buoy.widget.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
+
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
@@ -48,7 +53,7 @@ public class TapModulePanel extends OverlayContainer implements TapView
     private Point[] linksLinesFrom;
     private Point[] linksLinesTo;
     int[] selectedLinks;
-    private Vector visualModules;
+    private Vector<TapVisualModule> visualModules;
     private int movingVM;
     private Point movingVMLocation;
     private Point magneticLocation;
@@ -63,7 +68,6 @@ public class TapModulePanel extends OverlayContainer implements TapView
     private BPopupMenu viewPopup;
     private Vector clipboardModules;
     private boolean popupOn = false;
-    private boolean init;
     private int popupClicked = -1;
     private TapProcPanel procPanel;
     private TapProcedure procedure;
@@ -162,14 +166,14 @@ public class TapModulePanel extends OverlayContainer implements TapView
         linksLinesTo = null;
         selectedLinks = null;
 
-        Vector modules = procedure.getModules();
+        List<TapModule> modules = procedure.getModules();
 
         if ( modules.size() > 0 )
         {
-            for ( int i = 0; i < modules.size(); ++i )
+            for (TapModule module: modules)
             {
-                ( (TapModule) modules.elementAt( i ) ).setProcedure( procedure );
-                addModule( (TapModule) modules.elementAt( i ) );
+                module.setProcedure( procedure );
+                addModule(module);
             }
 
             buildModuleLinks();
@@ -1104,17 +1108,17 @@ public class TapModulePanel extends OverlayContainer implements TapView
     public void doSelectMainEntry( int which )
     {
         TapVisualModule vmod;
-        Vector modules = procPanel.getProcedure().getModules();
+        List<TapModule> modules = procPanel.getProcedure().getModules();
 
-        vmod = (TapVisualModule) visualModules.elementAt( which );
+        vmod = (TapVisualModule) visualModules.get( which );
 
         if ( vmod.getModule().acceptsMainEntry() )
         {
             procPanel.addUndoRecord();
 
-            for ( int i = 0; i < modules.size(); ++i )
+            for (TapModule module: modules)
             {
-                ( (TapModule) modules.elementAt( i ) ).setMainEntry( false );
+                module.setMainEntry( false );
             }
 
             vmod.getModule().setMainEntry( true );
@@ -1511,11 +1515,11 @@ public class TapModulePanel extends OverlayContainer implements TapView
     {
         procPanel.addUndoRecord();
 
-        for ( int i = 0; i < visualModules.size(); ++i )
+        for (TapVisualModule tvm: visualModules)
         {
-            if ( ( (TapVisualModule) visualModules.elementAt( i ) ).getSelected() )
+            if (tvm.getSelected() )
             {
-                ( (TapVisualModule) visualModules.elementAt( i ) ).setDecoration( decoration );
+                tvm.setDecoration( decoration );
             }
         }
 
@@ -1669,11 +1673,11 @@ public class TapModulePanel extends OverlayContainer implements TapView
     @Override
     public void syncModuleAddition()
     {
-        Vector modules = procedure.getModules();
+        List<TapModule> modules = procedure.getModules();
         if ( modules.size() <= visualModules.size() )
             return;
         for ( int i = visualModules.size(); i < modules.size(); ++i )
-            addModule( (TapModule) modules.elementAt( i ) );
+            addModule(modules.get( i ));
     }
 
 

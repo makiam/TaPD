@@ -2,7 +2,8 @@
 linked to a specific module. Used to find upstream path. */
 
 /* Copyright (C) 2003 by Francois Guillet
-
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
    This program is free software; you can redistribute it and/or modify it under the
    terms of the GNU General Public License as published by the Free Software
    Foundation; either version 2 of the License, or (at your option) any later version.
@@ -12,20 +13,19 @@ linked to a specific module. Used to find upstream path. */
    PARTICULAR PURPOSE.  See the GNU General Public License for more details. */
 package artofillusion.tapDesigner;
 
-import artofillusion.tapDesigner.*;
 
 import java.util.*;
 
 
 public class BackModuleLink
 {
-    private Vector             modules;
-    private int[][]            backLinks;
-    private int[][]            backOutputPorts;
-    private int[][]            backInputPorts;
-    private TapRandomGenerator gen;
+    private final List<TapModule> modules;
+    private final int[][]            backLinks;
+    private final int[][]            backOutputPorts;
+    private final int[][]            backInputPorts;
+    private final TapRandomGenerator gen;
 
-    public BackModuleLink(Vector modules, long seed)
+    public BackModuleLink(List<TapModule> modules, long seed)
     {
         this.modules = modules;
         gen = new TapRandomGenerator(seed);
@@ -51,7 +51,7 @@ public class BackModuleLink
 
         for (i = 0; i < modules.size(); ++i)
         {
-            TapModule mod = (TapModule)modules.elementAt(i);
+            TapModule mod = modules.get(i);
             numOutput = mod.getNumOutput();
 
             if (numOutput > 0)
@@ -80,16 +80,15 @@ public class BackModuleLink
         }
     }
 
-    public Vector findAllModules(TapModule toModule, int inputPort)
+    public List<BackLink> findAllModules(TapModule toModule, int inputPort)
     {   int    i;
         int    j;
-        int    k;
         int    index;
-        Vector bl = new Vector();
+        List<BackLink> bl = new Vector();
         index = modules.indexOf(toModule);
 
         for (i = 0; i < modules.size(); ++i)
-            if (modules.elementAt(i) == toModule)
+            if (modules.get(i) == toModule)
                 index = i;
 
         if (backLinks[index] != null)
@@ -97,8 +96,8 @@ public class BackModuleLink
             {
                 if (backInputPorts[index][j] == inputPort)
                 {
-                    BackLink tmpbl = new BackLink((TapModule)modules.elementAt(backLinks[index][j]), backOutputPorts[index][j]);
-                    bl.addElement(tmpbl);
+                    BackLink tmpbl = new BackLink(modules.get(backLinks[index][j]), backOutputPorts[index][j]);
+                    bl.add(tmpbl);
                 }
 
             }
@@ -107,14 +106,14 @@ public class BackModuleLink
     
     public BackLink findModule(TapModule toModule, int inputPort)
     {
-        Vector bl = findAllModules(toModule,inputPort);
+        List<BackLink> bl = findAllModules(toModule,inputPort);
         
         if (bl.size() <= 0)
             return null;
         else if (bl.size() == 1)
-            return (BackLink)bl.elementAt(0);
+            return bl.get(0);
         else
-            return (BackLink)bl.elementAt(gen.integer(bl.size()));
+            return bl.get(gen.integer(bl.size()));
     }
 
     public class BackLink
