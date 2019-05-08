@@ -102,6 +102,7 @@ public class TapTube
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -140,6 +141,7 @@ public class TapTube
      *
      *@param  parms  The new shape value
      */
+    @Override
     public void setShape( TapDistortParameters parms )
     {
         int i;
@@ -359,6 +361,7 @@ public class TapTube
      *
      *@param  thickness  The new thickness value
      */
+    @Override
     public void setThickness( double[] thickness )
     {
         for ( int i = 0; i < getVertexPositions().length; ++i )
@@ -375,6 +378,7 @@ public class TapTube
      *@param  smoothness  The new shape value
      *@param  thickness   The new shape value
      */
+    @Override
     public void setShape( MeshVertex[] v, float[] smoothness, double[] thickness )
     {
         super.setShape( v, smoothness, thickness );
@@ -390,6 +394,7 @@ public class TapTube
      *
      *@return    Description of the Return Value
      */
+    @Override
     public Object3D duplicate()
     {
         TapTube newTube = new TapTube( yVert, getSmoothness(), getThickness() );
@@ -416,6 +421,7 @@ public class TapTube
      *@param  rDisplace  Description of the Parameter
      *@return            The position value
      */
+    @Override
     public Mat4 getPosition( double yPos, double angle, boolean rDisplace )
     {
         int i;
@@ -517,6 +523,7 @@ public class TapTube
      *@param  parms  The new counterAction value
      *@return        Description of the Return Value
      */
+    @Override
     public Mat4 setCounterAction( double yPos, double angle, TapDistortParameters parms )
     {
         int i;
@@ -724,6 +731,7 @@ public class TapTube
      *@param  ysize  The new size value
      *@param  zsize  The new size value
      */
+    @Override
     public void setSize( double xsize, double ysize, double zsize )
     {
         setSize( xsize, ysize, zsize, -rSize, null );
@@ -738,6 +746,7 @@ public class TapTube
      *@param  sizeY  Description of the Parameter
      *@param  parms  Description of the Parameter
      */
+    @Override
     public void resizeAndDistort( Vec3 size, double sizeR, double sizeY, TapDistortParameters parms )
     {
         setSize( size.x, size.y * sizeY, size.z, sizeR, parms );
@@ -777,6 +786,7 @@ public class TapTube
     /**
      *  Description of the Method
      */
+    @Override
     public void regenerateMesh()
     {
         //only for TapObject interface
@@ -788,6 +798,7 @@ public class TapTube
      *
      *@return    The plainAoIObject value
      */
+    @Override
     public Object3D getPlainAoIObject()
     {
         return super.duplicate();

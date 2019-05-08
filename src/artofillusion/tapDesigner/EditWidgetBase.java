@@ -152,6 +152,7 @@ public abstract class EditWidgetBase extends BorderContainer implements EditWidg
      *
      *@return    The validate button value
      */
+    @Override
     public BButton getValidateButton()
     {
         return validateButton;
@@ -163,6 +164,7 @@ public abstract class EditWidgetBase extends BorderContainer implements EditWidg
      *
      *@return    The revert button value
      */
+    @Override
     public BButton getRevertButton()
     {
         return revertButton;
@@ -202,6 +204,7 @@ public abstract class EditWidgetBase extends BorderContainer implements EditWidg
      *
      *@param  force  Description of the Parameter
      */
+    @Override
     public void showValues( boolean force )
     {
         if ( force || module.changed )
@@ -321,6 +324,7 @@ public abstract class EditWidgetBase extends BorderContainer implements EditWidg
     /**
      *  Description of the Method
      */
+    @Override
     public void doClose()
     {
         Vector modules = module.getProcedure().getModules();

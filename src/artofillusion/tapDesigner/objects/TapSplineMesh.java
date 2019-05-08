@@ -167,6 +167,7 @@ public class TapSplineMesh
      *
      *@param  parms  The new shape value
      */
+    @Override
     public void setShape( TapDistortParameters parms )
     {
         if ( parms != null )
@@ -207,6 +208,7 @@ public class TapSplineMesh
      *
      *@return    Description of the Return Value
      */
+    @Override
     public Object3D duplicate()
     {
         TapSplineMesh mesh = new TapSplineMesh();
@@ -252,6 +254,7 @@ public class TapSplineMesh
      *
      *@param  obj  Description of the Parameter
      */
+    @Override
     public void copyObject( Object3D obj )
     {
         TapSplineMesh mesh = (TapSplineMesh) obj;
@@ -648,6 +651,7 @@ public class TapSplineMesh
     /**
      *  Description of the Method
      */
+    @Override
     public void regenerateMesh()
     {
         int i;
@@ -725,6 +729,7 @@ public class TapSplineMesh
      *@param  parms  The new counterAction value
      *@return        Description of the Return Value
      */
+    @Override
     public Mat4 setCounterAction( double yPos, double angle, TapDistortParameters parms )
     {
         int i;
@@ -923,6 +928,7 @@ public class TapSplineMesh
      *@param  rDisplace  Description of the Parameter
      *@return            The position value
      */
+    @Override
     public Mat4 getPosition( double yPos, double angle, boolean rDisplace )
     {
         int i;
@@ -1070,6 +1076,7 @@ public class TapSplineMesh
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -1101,6 +1108,7 @@ public class TapSplineMesh
      *@param  ysize  The new size value
      *@param  zsize  The new size value
      */
+    @Override
     public void setSize( double xsize, double ysize, double zsize )
     {
         setSize( xsize, ysize, zsize, null );
@@ -1115,6 +1123,7 @@ public class TapSplineMesh
      *@param  sizeY  Description of the Parameter
      *@param  parms  Description of the Parameter
      */
+    @Override
     public void resizeAndDistort( Vec3 size, double sizeR, double sizeY, TapDistortParameters parms )
     {
         setSize( size.x * sizeR, size.y * sizeY, size.z * sizeR, parms );
@@ -1188,6 +1197,7 @@ public class TapSplineMesh
      *
      *@return    The bounds value
      */
+    @Override
     public BoundingBox getBounds()
     {
         return splineMesh.getBounds();
@@ -1199,6 +1209,7 @@ public class TapSplineMesh
      *
      *@return    The closed value
      */
+    @Override
     public boolean isClosed()
     {
         return splineMesh.isClosed();
@@ -1211,6 +1222,7 @@ public class TapSplineMesh
      *@param  tex      The new texture value
      *@param  mapping  The new texture value
      */
+    @Override
     public void setTexture( Texture tex, TextureMapping mapping )
     {
         if ( splineMesh != null )
@@ -1224,6 +1236,7 @@ public class TapSplineMesh
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean isEditable()
     {
         return false;
@@ -1235,6 +1248,7 @@ public class TapSplineMesh
      *
      *@return    Description of the Return Value
      */
+    @Override
     public int canConvertToTriangleMesh()
     {
         return splineMesh.canConvertToTriangleMesh();
@@ -1247,6 +1261,7 @@ public class TapSplineMesh
      *@param  tol  Description of the Parameter
      *@return      Description of the Return Value
      */
+    @Override
     public TriangleMesh convertToTriangleMesh( double tol )
     {
         return splineMesh.convertToTriangleMesh( tol );
@@ -1261,6 +1276,7 @@ public class TapSplineMesh
      *@param  info         Description of the Parameter
      *@return              The renderingMesh value
      */
+    @Override
     public RenderingMesh getRenderingMesh( double tol, boolean interactive, ObjectInfo info )
     {
         return splineMesh.getRenderingMesh( tol, interactive, info );
@@ -1272,6 +1288,7 @@ public class TapSplineMesh
      *
      *@return    The wireframeMesh value
      */
+    @Override
     public WireframeMesh getWireframeMesh()
     {
         return splineMesh.getWireframeMesh();
@@ -1283,6 +1300,7 @@ public class TapSplineMesh
      *
      *@return    The plainAoIObject value
      */
+    @Override
     public Object3D getPlainAoIObject()
     {
         return splineMesh.duplicate();
@@ -1294,6 +1312,7 @@ public class TapSplineMesh
      *
      *@return    The poseKeyframe value
      */
+    @Override
     public Keyframe getPoseKeyframe()
     {
         return null;
@@ -1305,6 +1324,7 @@ public class TapSplineMesh
      *
      *@param  k  Description of the Parameter
      */
+    @Override
     public void applyPoseKeyframe( Keyframe k )
     {
     }

@@ -767,6 +767,7 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
      *
      *@return    The bFrame value
      */
+    @Override
     public BFrame getBFrame()
     {
         return (BFrame) this;
@@ -779,6 +780,7 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
      *@param  canUndo  The new undoRedoFlags value
      *@param  canRedo  The new undoRedoFlags value
      */
+    @Override
     public void setUndoRedoFlags( boolean canUndo, boolean canRedo )
     {
         if ( undoItem != null )
@@ -797,6 +799,7 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
      *
      *@param  numSelected  Description of the Parameter
      */
+    @Override
     public void selectionChanged( short numSelected )
     {
         switch ( numSelected )
@@ -856,6 +859,7 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
      *
      *@param  isValid  Description of the Parameter
      */
+    @Override
     public void validObject( boolean isValid )
     {
         if ( isValid )

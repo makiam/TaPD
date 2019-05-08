@@ -4,6 +4,8 @@
  */
 /*
  *  Copyright (C) 2003 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -27,8 +29,7 @@ import java.io.*;
  *@author     pims
  *@created    30 mai 2004
  */
-public abstract class ObjectModule
-         extends TapModule
+public abstract class ObjectModule extends TapModule
 {
     /**
      *  Description of the Field
@@ -141,6 +142,7 @@ public abstract class ObjectModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -157,6 +159,7 @@ public abstract class ObjectModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public abstract TapModule duplicate();
 
 
@@ -272,6 +275,7 @@ public abstract class ObjectModule
     /**
      *  Description of the Method
      */
+    @Override
     public void prepareToBeDeleted()
     {
         Scene theScene = procedure.getScene();
@@ -384,6 +388,7 @@ public abstract class ObjectModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( int outputPort, long seed )
     {
         TapRandomGenerator gen = new TapRandomGenerator( seed );
@@ -442,6 +447,7 @@ public abstract class ObjectModule
      *@param  seed        Description of the Parameter
      *@return             The value value
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         System.out.println( "value asked for AoI object module" );
@@ -456,6 +462,7 @@ public abstract class ObjectModule
      *
      *@param  modifiers  Description of the Parameter
      */
+    @Override
     public void showPreviewFrame( int modifiers )
     {
         super.showPreviewFrame( modifiers );
@@ -484,6 +491,7 @@ public abstract class ObjectModule
     /**
      *  Description of the Method
      */
+    @Override
     public void initGenerationProcess()
     {
         //called once before generation
@@ -497,6 +505,7 @@ public abstract class ObjectModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return true;
@@ -508,6 +517,7 @@ public abstract class ObjectModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return true;

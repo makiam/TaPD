@@ -84,6 +84,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
      *
      *@return    The procPanel value
      */
+    @Override
     public TapProcPanel getProcPanel()
     {
         return procPanel;
@@ -93,6 +94,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
     /**
      *  Initializes the module parameter tree from the modules names
      */
+    @Override
     public void initialize()
     {
         /*
@@ -125,6 +127,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
      *
      *@param  module  The module to add
      */
+    @Override
     public void addModule( TapModule module )
     {
         //check for classname
@@ -268,6 +271,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
     /**
      *  Closes any window previously created by this widget
      */
+    @Override
     public void closeWindows()
     {
         if ( editContent.getChildCount() > 0 )
@@ -294,6 +298,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
     /**
      *  Synchronizes the view with the procedure after a module has been added
      */
+    @Override
     public void syncModuleAddition()
     {
         syncModuleTree();
@@ -304,6 +309,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
      *  Synchronizes the view after minor edition : new link, link suppressed,
      *  module moved, module renamed...
      */
+    @Override
     public void minorSync()
     {
         if ( editContent.getChildCount() == 0 )
@@ -340,6 +346,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
      *
      *@return    Always null
      */
+    @Override
     public BScrollPane newScrollPane()
     {
         return null;
@@ -351,6 +358,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
      *
      *@return    Always false
      */
+    @Override
     public boolean needsScrollPane()
     {
         return false;
@@ -404,6 +412,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
                     Widget editWidget = module.getEditWidget( 0,
                         new Runnable()
                         {
+                            @Override
                             public void run()
                             {
                                 doRunnableUpdate();
@@ -436,6 +445,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
                 Widget editWidget = module.getEditWidget( ( (ModuleTreeChild) userObj ).number,
                     new Runnable()
                     {
+                        @Override
                         public void run()
                         {
                             doRunnableUpdate();
@@ -507,6 +517,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
      *
      *@param  data  The new layoutData value
      */
+    @Override
     public void setLayoutData( ProcPanelLayoutData data )
     {
         if ( ( !( data instanceof ParametersLayoutData ) ) || ( data == null ) )
@@ -571,6 +582,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
      *
      *@return    The layoutData value
      */
+    @Override
     public ProcPanelLayoutData getLayoutData()
     {
         return new ParametersLayoutData( selectedModule, parameterSet );
@@ -634,6 +646,7 @@ public class TapParametersPanel extends BSplitPane implements TapView
          *@param  out              Description of the Parameter
          *@exception  IOException  Description of the Exception
          */
+        @Override
         public void writeToFile( DataOutputStream out )
             throws IOException
         {

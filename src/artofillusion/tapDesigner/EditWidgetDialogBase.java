@@ -43,6 +43,7 @@ public class EditWidgetDialogBase extends BFrame implements EditWidgetDialog
         setContent( ew = (EditWidgetBase) module.getEditWidget( 0,
             new Runnable()
             {
+                @Override
                 public void run()
                 {
                     doRunnableUpdate();
@@ -102,6 +103,7 @@ public class EditWidgetDialogBase extends BFrame implements EditWidgetDialog
      *
      *@param  force  Description of the Parameter
      */
+    @Override
     public void showValues( boolean force )
     {
         ew.showValues( force );

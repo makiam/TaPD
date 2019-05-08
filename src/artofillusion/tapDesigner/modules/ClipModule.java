@@ -3,6 +3,8 @@
  */
 /*
  *  Copyright (C) 2004 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -33,8 +35,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *@author     pims
  *@created    19 avril 2004
  */
-public class ClipModule
-         extends TapModule
+public class ClipModule extends TapModule
 {
     private static TapModule.ModuleTypeInfo typeInfo;
     private double min;
@@ -110,6 +111,7 @@ public class ClipModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -125,6 +127,7 @@ public class ClipModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         ClipModule module = new ClipModule( this.procedure, this.location );
@@ -144,6 +147,7 @@ public class ClipModule
      *@param  seed        Description of the Parameter
      *@return             The value value
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         if ( outputPort == 0 )
@@ -182,6 +186,7 @@ public class ClipModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -193,6 +198,7 @@ public class ClipModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return false;
@@ -204,6 +210,7 @@ public class ClipModule
      *
      *@param  parentFrame   Description of the Parameter
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -225,6 +232,7 @@ public class ClipModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;

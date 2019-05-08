@@ -4,6 +4,8 @@
  */
 /*
  *  Copyright (C) 2003 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -17,7 +19,6 @@ import artofillusion.*;
 import artofillusion.animation.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
-import artofillusion.tapDesigner.*;
 import java.awt.*;
 import java.io.*;
 import java.util.*;
@@ -30,7 +31,7 @@ import buoy.widget.*;
  *  have. Some methods are abstract, some others implement a default behavior.
  *  The subclasses represent specific kinds of modules.
  *
- *@author     Fran�ois Guillet
+ *@author     Francois Guillet
  *@created    19 avril 2004
  */
 public abstract class TapModule
@@ -1221,6 +1222,7 @@ public abstract class TapModule
      *
      *@return    String representation of the module, equivalent to getName()
      */
+    @Override
     public String toString()
     {
         return getName();
@@ -1301,6 +1303,7 @@ public abstract class TapModule
          *
          *@return    Description of the Return Value
          */
+        @Override
         public String toString()
         {
             return name;

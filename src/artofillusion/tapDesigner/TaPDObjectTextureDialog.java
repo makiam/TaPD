@@ -129,6 +129,7 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
     layerPanel.add(moveUpButton = Translate.button("moveUp", this, "doMoveLayerUp"), 0, 2);
     layerPanel.add(moveDownButton = Translate.button("moveDown", this, "doMoveLayerDown"), 0, 3);
     layerList = new BList() {
+      @Override
       public Dimension getPreferredSize()
       {
         return texList.getPreferredSize();
@@ -199,6 +200,7 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
     setVisible(true);
   }
 
+  @Override
   public void dispose()
   {
     sc.removeTextureListener(this);
@@ -595,12 +597,14 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
   
   /* ListChangeListener methods. */
   
+  @Override
   public void itemAdded(int index, Object obj)
   {
     Texture tex = (Texture) obj;
     texList.add(index, tex.getName());
   }
   
+  @Override
   public void itemRemoved(int index, Object obj)
   {
     Texture tex = (Texture) obj;
@@ -627,6 +631,7 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
     }
   }
   
+  @Override
   public void itemChanged(int index, Object obj)
   {
     Texture tex = (Texture) obj;
@@ -641,6 +646,7 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
   {
     renderProcessor.addEvent(new Runnable()
     {
+      @Override
       public void run()
       {
         preview.render();

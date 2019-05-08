@@ -3,6 +3,8 @@
  */
 /*
  *  Copyright (C) 2004 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -29,8 +31,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *@author     Francois Guillet
  *@created    19 avril 2004
  */
-public class RandomValueModule
-         extends TapModule
+public class RandomValueModule extends TapModule
 {
     private static TapModule.ModuleTypeInfo typeInfo;
 
@@ -107,6 +108,7 @@ public class RandomValueModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -123,6 +125,7 @@ public class RandomValueModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -134,6 +137,7 @@ public class RandomValueModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         RandomValueModule module = new RandomValueModule( this.procedure, this.location );
@@ -154,6 +158,7 @@ public class RandomValueModule
      *@param  seed        Description of the Parameter
      *@return             The value value
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         if ( outputPort == 0 )
@@ -179,6 +184,7 @@ public class RandomValueModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -190,6 +196,7 @@ public class RandomValueModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return false;
@@ -201,6 +208,7 @@ public class RandomValueModule
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );

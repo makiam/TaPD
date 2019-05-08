@@ -4,6 +4,8 @@
  */
 /*
  *  Copyright (C) 2003 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -47,8 +49,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *@author     pims
  *@created    19 avril 2004
  */
-public class CoilModule
-         extends TapModule
+public class CoilModule extends TapModule
 {
     private CoilModule module;
     private static TapModule.ModuleTypeInfo typeInfo;
@@ -270,6 +271,7 @@ public class CoilModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -330,6 +332,7 @@ public class CoilModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         CoilModule module = new CoilModule( this.procedure, this.location );
@@ -392,6 +395,7 @@ public class CoilModule
      *@param  inputPort  Description of the Parameter
      *@return            Description of the Return Value
      */
+    @Override
     public int remap( int inputPort )
     {
         return inputPort;
@@ -403,6 +407,7 @@ public class CoilModule
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -424,6 +429,7 @@ public class CoilModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( int outputPort, long seed )
     {
         TapDesignerObjectCollection col = null;
@@ -487,6 +493,7 @@ public class CoilModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( TapDesignerObjectCollection collection, int inputPort, long seed )
     {
         double Ysize;
@@ -892,6 +899,7 @@ public class CoilModule
      *@param  seed        Description of the Parameter
      *@return             The value value
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         if ( outputPort == 1 )
@@ -906,6 +914,7 @@ public class CoilModule
      *
      *@param  modifiers  Description of the Parameter
      */
+    @Override
     public void showPreviewFrame( int modifiers )
     {
         super.showPreviewFrame( modifiers );
@@ -934,6 +943,7 @@ public class CoilModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -945,6 +955,7 @@ public class CoilModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return true;
@@ -956,6 +967,7 @@ public class CoilModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -1706,6 +1718,7 @@ public class CoilModule
             addWindowListener(
                 new java.awt.event.WindowAdapter()
                 {
+                    @Override
                     public void windowClosing( java.awt.event.WindowEvent evt )
                     {
                         exitForm( evt );
@@ -1807,6 +1820,7 @@ public class CoilModule
             editDialog = yLeafDepartureAngleFunction.edit( this, TapBTranslate.text( "leafDepartureAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1823,6 +1837,7 @@ public class CoilModule
             editDialog = yCurveLeafFunction.edit( this, TapBTranslate.text( "leafCurveYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1839,6 +1854,7 @@ public class CoilModule
             editDialog = rShiftFunction.edit( this, TapBTranslate.text( "rShiftYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1855,6 +1871,7 @@ public class CoilModule
             editDialog = yStepFunction.edit( this, TapBTranslate.text( "yStepYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1871,6 +1888,7 @@ public class CoilModule
             editDialog = branchingAngleFunction.edit( this, TapBTranslate.text( "branchingAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1887,6 +1905,7 @@ public class CoilModule
             editDialog = perpAngleFunction.edit( this, TapBTranslate.text( "perpAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1903,6 +1922,7 @@ public class CoilModule
             editDialog = backAngleFunction.edit( this, TapBTranslate.text( "backAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1919,6 +1939,7 @@ public class CoilModule
             editDialog = curveRateFunction.edit( this, TapBTranslate.text( "curveRateYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1935,6 +1956,7 @@ public class CoilModule
             editDialog = curveAngleFunction.edit( this, TapBTranslate.text( "curveAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1951,6 +1973,7 @@ public class CoilModule
             editDialog = vertAngleFunction.edit( this, TapBTranslate.text( "vertAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1967,6 +1990,7 @@ public class CoilModule
             editDialog = probFunction.edit( this, TapBTranslate.text( "probYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -2006,6 +2030,7 @@ public class CoilModule
          *
          *@param  evt  Description of the Parameter
          */
+        @Override
         public void actionPerformed( java.awt.event.ActionEvent evt )
         {
             String command = evt.getActionCommand();
@@ -2061,6 +2086,7 @@ public class CoilModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void stateChanged( ChangeEvent e )
         {
             if ( setupFlag )
@@ -2227,6 +2253,7 @@ public class CoilModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void changedUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -2238,6 +2265,7 @@ public class CoilModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void insertUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -2249,6 +2277,7 @@ public class CoilModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void removeUpdate( DocumentEvent e )
         {
             doLiveCheck( e );

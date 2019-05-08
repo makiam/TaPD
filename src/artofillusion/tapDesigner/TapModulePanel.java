@@ -135,6 +135,7 @@ public class TapModulePanel extends OverlayContainer implements TapView
      *
      *@return    The procPanel value
      */
+    @Override
     public TapProcPanel getProcPanel()
     {
         return procPanel;
@@ -148,6 +149,7 @@ public class TapModulePanel extends OverlayContainer implements TapView
      *  Initialization. Call this method each time the procedure attached to the
      *  proc panel has changed.
      */
+    @Override
     public void initialize()
     {
         procedure = procPanel.getProcedure();
@@ -1483,6 +1485,7 @@ public class TapModulePanel extends OverlayContainer implements TapView
      *
      *@param  newModule  The module to add to the proc panel
      */
+    @Override
     public void addModule( TapModule newModule )
     {
         TapVisualModule mod = new TapVisualModule( this, newModule );
@@ -1543,6 +1546,7 @@ public class TapModulePanel extends OverlayContainer implements TapView
     /**
      *  Description of the Method
      */
+    @Override
     public void closeWindows()
     {
         for ( int i = 0; i < visualModules.size(); ++i )
@@ -1637,6 +1641,7 @@ public class TapModulePanel extends OverlayContainer implements TapView
      *  addSync if modules have been added. Call initialize() for any other
      *  change.
      */
+    @Override
     public void minorSync()
     {
         for ( int i = 0; i < visualModules.size(); ++i )
@@ -1664,6 +1669,7 @@ public class TapModulePanel extends OverlayContainer implements TapView
     /**
      *  Synchronizes module panels when modules have been added in a panel.
      */
+    @Override
     public void syncModuleAddition()
     {
         Vector modules = procedure.getModules();
@@ -1679,6 +1685,7 @@ public class TapModulePanel extends OverlayContainer implements TapView
      *
      *@return    Description of the Return Value
      */
+    @Override
     public BScrollPane newScrollPane()
     {
         return new TapModuleScrollPane( this );
@@ -1690,6 +1697,7 @@ public class TapModulePanel extends OverlayContainer implements TapView
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean needsScrollPane()
     {
         return true;
@@ -1731,6 +1739,7 @@ public class TapModulePanel extends OverlayContainer implements TapView
      *
      *@param  data  The new layoutData value
      */
+    @Override
     public void setLayoutData( ProcPanelLayoutData data )
     {
     }
@@ -1741,6 +1750,7 @@ public class TapModulePanel extends OverlayContainer implements TapView
      *
      *@return    The layoutData value
      */
+    @Override
     public ProcPanelLayoutData getLayoutData()
     {
         return null;

@@ -466,6 +466,7 @@ public class TapFunction
             canvas =
                 new Canvas()
                 {
+                    @Override
                     public void paint( Graphics g )
                     {
                         paintAxes( g );
@@ -473,6 +474,7 @@ public class TapFunction
                     }
 
 
+                    @Override
                     public Dimension getPreferredSize()
                     {
                         return new Dimension( 400, 300 );
@@ -563,6 +565,7 @@ public class TapFunction
             addWindowListener(
                 new java.awt.event.WindowAdapter()
                 {
+                    @Override
                     public void windowClosing( java.awt.event.WindowEvent evt )
                     {
                         exitForm( evt );
@@ -877,6 +880,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void actionPerformed( ActionEvent ev )
         {
             String command = ev.getActionCommand();
@@ -1005,6 +1009,7 @@ public class TapFunction
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void stateChanged( ChangeEvent e )
         {
             modified = true;
@@ -1019,6 +1024,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void keyPressed( KeyEvent ev )
         {
             /*
@@ -1049,6 +1055,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mousePressed( MouseEvent ev )
         {
             fixRange = true;
@@ -1088,6 +1095,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mouseDragged( MouseEvent ev )
         {
             if ( clickPoint == null )
@@ -1154,6 +1162,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mouseReleased( MouseEvent ev )
         {
             clickPoint = null;
@@ -1171,6 +1180,7 @@ public class TapFunction
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void changedUpdate( DocumentEvent e )
         {
             if ( !deactivateTextFields )
@@ -1183,6 +1193,7 @@ public class TapFunction
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void insertUpdate( DocumentEvent e )
         {
             if ( !deactivateTextFields )
@@ -1195,6 +1206,7 @@ public class TapFunction
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void removeUpdate( DocumentEvent e )
         {
             if ( !deactivateTextFields )
@@ -1268,6 +1280,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void itemStateChanged( ItemEvent ev )
         {
             function.repeat = repeatBox.isSelected();
@@ -1285,6 +1298,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void keyReleased( KeyEvent ev )
         {
         }
@@ -1295,6 +1309,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void keyTyped( KeyEvent ev )
         {
         }
@@ -1305,6 +1320,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mouseClicked( MouseEvent ev )
         {
         }
@@ -1315,6 +1331,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mouseEntered( MouseEvent ev )
         {
         }
@@ -1325,6 +1342,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mouseExited( MouseEvent ev )
         {
         }
@@ -1335,6 +1353,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mouseMoved( MouseEvent ev )
         {
         }

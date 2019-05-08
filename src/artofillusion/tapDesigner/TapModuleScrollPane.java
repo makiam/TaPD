@@ -42,6 +42,7 @@ public class TapModuleScrollPane extends BScrollPane
      *  Overrides layoutChildren so that the modulePanel is at least as big as
      *  the viewport size
      */
+    @Override
     public void layoutChildren()
     {
         Rectangle bounds = getBounds();
@@ -60,6 +61,7 @@ public class TapModuleScrollPane extends BScrollPane
      *
      *@return    The preferredSize value
      */
+    @Override
     public Dimension getPreferredSize()
     {
         TapModulePanel childPanel = (TapModulePanel) getContent();
@@ -72,6 +74,7 @@ public class TapModuleScrollPane extends BScrollPane
      *
      *@return    The minimumSize value
      */
+    @Override
     public Dimension getMinimumSize()
     {
         return new Dimension( 0, 0 );

@@ -245,6 +245,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -287,6 +288,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *@param  scene        Description of the Parameter
      *@return              Description of the Return Value
      */
+    @Override
     protected Enumeration enumerateObjects( ObjectInfo info, boolean interactive, Scene scene )
     {
         if ( interactive )
@@ -301,6 +303,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *
      *@return    The poseKeyframe value
      */
+    @Override
     public Keyframe getPoseKeyframe()
     {
         return null;
@@ -312,6 +315,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *
      *@param  k  Description of the Parameter
      */
+    @Override
     public void applyPoseKeyframe( Keyframe k )
     {
     }
@@ -322,6 +326,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *
      *@param  obj  Description of the Parameter
      */
+    @Override
     public void copyObject( Object3D obj )
     {
         copyObject( obj, true );
@@ -359,6 +364,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *
      *@return    Description of the Return Value
      */
+    @Override
     public Object3D duplicate()
     {
         TapDesignerObjectCollection obj = null;
@@ -385,6 +391,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *@param  ysize  The new size value
      *@param  zsize  The new size value
      */
+    @Override
     public void setSize( double xsize, double ysize, double zsize )
     {
         /*
@@ -403,6 +410,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean canSetMaterial()
     {
         return false;
@@ -414,6 +422,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean canSetTexture()
     {
         return false;
@@ -425,6 +434,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean isEditable()
     {
         return true;
@@ -436,6 +446,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *
      *@return    The bounds value
      */
+    @Override
     public BoundingBox getBounds()
     {
         /*
@@ -462,6 +473,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *@param  info    Description of the Parameter
      *@param  cb      Description of the Parameter
      */
+    @Override
     public void edit( final EditingWindow parent, final ObjectInfo info, Runnable cb )
     {
         TapFrame tapFrame = null;

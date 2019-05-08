@@ -61,6 +61,7 @@ public class TapBToolTip extends BToolTip
      *@return    The text value
      */
 
+    @Override
     public String getText()
     {
 
@@ -77,6 +78,7 @@ public class TapBToolTip extends BToolTip
      *@param  text  The new text value
      */
 
+    @Override
     public void setText( String text )
     {
         if ( component instanceof JToolTip )
@@ -91,6 +93,7 @@ public class TapBToolTip extends BToolTip
      *@param  widget  Description of the Parameter
      *@param  where   Description of the Parameter
      */
+    @Override
     public void show( Widget widget, Point where )
     {
         super.show( widget, where );

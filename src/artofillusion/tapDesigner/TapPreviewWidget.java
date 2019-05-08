@@ -105,11 +105,13 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
 
     }
 
+    @Override
     public void setModified()
     {
 
     }
 
+    @Override
     public ToolPalette getToolPalette()
     {
         return tools;
@@ -235,6 +237,7 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
      *
      *@return    The scene value
      */
+    @Override
     public Scene getScene()
     {
         return theScene;
@@ -258,6 +261,7 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
      *@param  tool  The new tool value
      */
 
+    @Override
     public void setTool( EditingTool tool )
     {
         theView.setTool( tool );
@@ -271,6 +275,7 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
      *@param  text  The new helpText value
      */
 
+    @Override
     public void setHelpText( String text )
     {
 
@@ -284,6 +289,7 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
      *@return    The frame value
      */
 
+    @Override
     public BFrame getFrame()
     {
         return TapUtils.getParentBFrame( this );
@@ -294,6 +300,7 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
      *  Update the image displayed in this window.
      */
 
+    @Override
     public void updateImage()
     {
         if ( ! theView.getComponent().isShowing() )
@@ -309,6 +316,7 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
      *  Update which menus are enabled.
      */
 
+    @Override
     public void updateMenus()
     {
 
@@ -321,6 +329,7 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
      *@param  command  The new undoRecord value
      */
 
+    @Override
     public void setUndoRecord( UndoRecord command )
     {
 
@@ -334,6 +343,7 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
      *@return    The view value
      */
 
+    @Override
     public ViewerCanvas getView()
     {
         return null;
@@ -348,6 +358,7 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
      *@return    Description of the Return Value
      */
 
+    @Override
     public boolean confirmClose()
     {
         return true;

@@ -3,6 +3,8 @@
  */
 /*
  *  Copyright (C) 2003 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -28,11 +30,10 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  This class represents an leaf object module
  *
- *@author     Franc�ois Guillet
+ *@author     Francois Guillet
  *@created    19 avril 2004
  */
-public class LeafModule
-         extends ObjectModule
+public class LeafModule extends ObjectModule
 {
     private static TapModule.ModuleTypeInfo typeInfo;
 
@@ -106,6 +107,7 @@ public class LeafModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -120,6 +122,7 @@ public class LeafModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         LeafModule module = new LeafModule( this.procedure, this.location );
@@ -139,6 +142,7 @@ public class LeafModule
      *@param  sizeY  Description of the Parameter
      *@param  info   Description of the Parameter
      */
+    @Override
     protected void resizeObject( Vec3 size, double sizeR, double sizeY, ObjectInfo info )
     {
         info.object.setSize( size.x * sizeR, size.y * sizeY, size.z * sizeR );
@@ -158,6 +162,7 @@ public class LeafModule
      *@param  sizeY  Description of the Parameter
      *@param  info   Description of the Parameter
      */
+    @Override
     protected void sizeObject( Vec3 size, double sizeR, double sizeY, ObjectInfo info )
     {
         resizeObject( size, sizeR, sizeY, info );
@@ -169,6 +174,7 @@ public class LeafModule
      *
      *@param  parentFrame  The parent BFrame
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -193,6 +199,7 @@ public class LeafModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -205,6 +212,7 @@ public class LeafModule
      *
      *@return    The number of edit frames to take into account
      */
+    @Override
     public int getNumEditWidgets()
     {
         return 1;
@@ -219,6 +227,7 @@ public class LeafModule
      *@param  standalone  Whether the widget is in standalone frame or embedded
      *@return             The edit frame widget
      */
+    @Override
     public Widget getEditWidget( int index, Runnable cb, boolean standalone )
     {
         return new LeafEditWidget( cb, standalone, this );
@@ -457,6 +466,7 @@ public class LeafModule
             editDialog = leafFunction.edit( (JFrame) TapUtils.getParentBFrame( this ).getComponent(), TapBTranslate.text( "leafShape", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         if ( dialogCurrentObject.object instanceof TapLeaf )
@@ -512,6 +522,7 @@ public class LeafModule
         /**
          *  Description of the Method
          */
+        @Override
         public void doTest()
         {
             updateLeafObject();
@@ -523,6 +534,7 @@ public class LeafModule
         /**
          *  Description of the Method
          */
+        @Override
         public void doValidate()
         {
             updateLeafObject();
@@ -539,6 +551,7 @@ public class LeafModule
             dialogCurrentObject.object.edit( procedure.getWindow(), dialogCurrentObject,
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         updateObject();
@@ -553,6 +566,7 @@ public class LeafModule
          *
          *@param  force  Description of the Parameter
          */
+        @Override
         public void showValues( boolean force )
         {
             if ( force || changed )
@@ -633,6 +647,7 @@ public class LeafModule
         /**
          *  Gets the undoValues attribute of the LeafEditWidget object
          */
+        @Override
         protected void getUndoValues()
         {
             setCurrentObject( backupObject );
@@ -645,6 +660,7 @@ public class LeafModule
         /**
          *  Gets the valuesof the LeafEditWidget object
          */
+        @Override
         protected void getValues()
         {
             deliverDuplicates = deliverCB.getState();
@@ -671,6 +687,7 @@ public class LeafModule
         /**
          *  Initializes backup values
          */
+        @Override
         protected void initBackValues()
         {
             backupObject = currentObject.duplicate( currentObject.object.duplicate() );
@@ -682,6 +699,7 @@ public class LeafModule
         /**
          *  Description of the Method
          */
+        @Override
         protected void doModified()
         {
             super.doModified();
@@ -692,6 +710,7 @@ public class LeafModule
         /**
          *  Description of the Method
          */
+        @Override
         public void pushValues()
         {
             stackObject = dialogCurrentObject;
@@ -701,6 +720,7 @@ public class LeafModule
         /**
          *  Description of the Method
          */
+        @Override
         public void popValues()
         {
             dialogCurrentObject = stackObject;

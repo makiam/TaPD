@@ -93,6 +93,7 @@ public class TaPDObjectMaterialDialog extends BDialog implements ListChangeListe
     setVisible(true);
   }
 
+  @Override
   public void dispose()
   {
     sc.removeMaterialListener(this);
@@ -187,12 +188,14 @@ public class TaPDObjectMaterialDialog extends BDialog implements ListChangeListe
   
   /* ListChangeListener methods. */
   
+  @Override
   public void itemAdded(int index, Object obj)
   {
     Material mat = (Material) obj;
     matList.add(index+1, mat.getName());
   }
   
+  @Override
   public void itemRemoved(int index, Object obj)
   {
     Material mat = (Material) obj;
@@ -207,6 +210,7 @@ public class TaPDObjectMaterialDialog extends BDialog implements ListChangeListe
     }
   }
   
+  @Override
   public void itemChanged(int index, Object obj)
   {
     Material mat = (Material) obj;

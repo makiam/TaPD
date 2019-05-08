@@ -3,6 +3,8 @@
  */
 /*
  *  Copyright (C) 2003 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -33,8 +35,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *@author     pims
  *@created    19 avril 2004
  */
-public class DistortModule
-         extends TapModule
+public class DistortModule extends TapModule
 {
     private DistortModule module;
     private static TapModule.ModuleTypeInfo typeInfo;
@@ -109,6 +110,7 @@ public class DistortModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -124,6 +126,7 @@ public class DistortModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         DistortModule module = new DistortModule( this.procedure, this.location );
@@ -140,6 +143,7 @@ public class DistortModule
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -161,6 +165,7 @@ public class DistortModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( int outputPort, long seed )
     {
         TapDesignerObjectCollection col = null;
@@ -254,6 +259,7 @@ public class DistortModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( TapDesignerObjectCollection collection, int inputPort, long seed )
     {
         ObjectInfo anInfo;
@@ -308,6 +314,7 @@ public class DistortModule
      *@param  seed        Description of the Parameter
      *@return             The value value
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         return (double) 0.0;
@@ -319,6 +326,7 @@ public class DistortModule
      *
      *@param  modifiers  Description of the Parameter
      */
+    @Override
     public void showPreviewFrame( int modifiers )
     {
         super.showPreviewFrame( modifiers );
@@ -346,6 +354,7 @@ public class DistortModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -357,6 +366,7 @@ public class DistortModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return true;
@@ -368,6 +378,7 @@ public class DistortModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -619,6 +630,7 @@ public class DistortModule
             addWindowListener(
                 new java.awt.event.WindowAdapter()
                 {
+                    @Override
                     public void windowClosing( java.awt.event.WindowEvent evt )
                     {
                         exitForm( evt );
@@ -708,6 +720,7 @@ public class DistortModule
          *
          *@param  evt  Description of the Parameter
          */
+        @Override
         public void actionPerformed( java.awt.event.ActionEvent evt )
         {
             String command = evt.getActionCommand();
@@ -740,6 +753,7 @@ public class DistortModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void stateChanged( ChangeEvent e )
         {
             if ( setupFlag )
@@ -830,6 +844,7 @@ public class DistortModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void changedUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -841,6 +856,7 @@ public class DistortModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void insertUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -852,6 +868,7 @@ public class DistortModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void removeUpdate( DocumentEvent e )
         {
             doLiveCheck( e );

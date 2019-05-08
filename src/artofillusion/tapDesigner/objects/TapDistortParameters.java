@@ -3,6 +3,8 @@
  */
 /*
  *  Copyright (C) 2003 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -145,8 +147,7 @@ public class TapDistortParameters
      *@param  in               Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
-    public TapDistortParameters( DataInputStream in )
-        throws IOException
+    public TapDistortParameters( DataInputStream in ) throws IOException
     {
         short version = in.readShort();
         if ( ( version < 0 ) || ( version > 0 ) )
@@ -271,6 +272,7 @@ public class TapDistortParameters
         /**
          *  Gets the undoValues
          */
+        @Override
         protected void getUndoValues()
         {
         }
@@ -279,6 +281,7 @@ public class TapDistortParameters
         /**
          *  Gets the backValues
          */
+        @Override
         protected void getValues()
         {
         }
@@ -287,6 +290,7 @@ public class TapDistortParameters
         /**
          *  Initializes backup values
          */
+        @Override
         protected void initBackValues()
         {
         }

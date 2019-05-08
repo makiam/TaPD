@@ -33,6 +33,7 @@ public class TapDesignerTool implements ModellingTool
      *
      *@return    The name value
      */
+    @Override
     public String getName()
     {
         TapBTranslate.setLocale( ModellingApp.getPreferences().getLocale() );
@@ -48,6 +49,7 @@ public class TapDesignerTool implements ModellingTool
      *
      *@param  window  Description of the Parameter
      */
+    @Override
     public void commandSelected( LayoutWindow window )
     {
         new TapFrame( window, null );

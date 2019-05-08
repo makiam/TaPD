@@ -3,6 +3,8 @@
  */
 /*
  *  Copyright (C) 2004 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -12,7 +14,7 @@
  */
 package artofillusion.tapDesigner;
 
-//{{{ imports
+
 import artofillusion.*;
 import buoy.event.*;
 import buoy.widget.*;
@@ -21,7 +23,6 @@ import java.io.*;
 import javax.swing.*;
 import artofillusion.tapDesigner.TapModule.*;
 
-//}}}
 
 
 /**
@@ -30,8 +31,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *@author     Francois Guillet
  *@created    19 avril 2004
  */
-public class UnaryOpModule
-         extends TapModule
+public class UnaryOpModule extends TapModule
 {
     //{{{ variables
     private static TapModule.ModuleTypeInfo typeInfo;
@@ -133,6 +133,7 @@ public class UnaryOpModule
      *      is attached
      *@exception  IOException  Write exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -151,6 +152,7 @@ public class UnaryOpModule
      *
      *@return    The module type info
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -165,6 +167,7 @@ public class UnaryOpModule
      *
      *@return    New module
      */
+    @Override
     public TapModule duplicate()
     {
         UnaryOpModule module = new UnaryOpModule( this.procedure, this.location );
@@ -186,6 +189,7 @@ public class UnaryOpModule
      *@param  seed        The random seed
      *@return             The value output
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         if ( outputPort == 0 )
@@ -266,6 +270,7 @@ public class UnaryOpModule
      *
      *@return    Always false
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -278,6 +283,7 @@ public class UnaryOpModule
      *
      *@return    Always false
      */
+    @Override
     public boolean acceptsPreview()
     {
         return false;
@@ -292,6 +298,7 @@ public class UnaryOpModule
      *
      *@param  parentFrame  the parent frame
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -316,6 +323,7 @@ public class UnaryOpModule
      *
      *@return    The number of edit frames to take into account
      */
+    @Override
     public int getNumEditWidgets()
     {
         return 1;
@@ -330,6 +338,7 @@ public class UnaryOpModule
      *@param  standalone  Whether the widget is in standalone frame or embedded
      *@return             The edit frame widget
      */
+    @Override
     public Widget getEditWidget( int index, Runnable cb, boolean standalone )
     {
         //System.out.println( "getEditWidget" );
@@ -343,6 +352,7 @@ public class UnaryOpModule
      *@param  index  The reference to the edit frame
      *@return        The edit frame value
      */
+    @Override
     public String getEditWidgetName( int index )
     {
         return "";
@@ -398,6 +408,7 @@ public class UnaryOpModule
         /**
          *  Fetch the values currently displayed object
          */
+        @Override
         protected void getValues()
         {
             opType = (short) opCombo.getSelectedIndex();
@@ -414,6 +425,7 @@ public class UnaryOpModule
         /**
          *  Initializes backup values
          */
+        @Override
         protected void initBackValues()
         {
             backOpType = opType;
@@ -423,6 +435,7 @@ public class UnaryOpModule
         /**
          *  Gets the undo values
          */
+        @Override
         protected void getUndoValues()
         {
             opType = backOpType;
@@ -435,6 +448,7 @@ public class UnaryOpModule
          *
          *@param  force  Description of the Parameter
          */
+        @Override
         public void showValues( boolean force )
         {
             if ( force || changed )

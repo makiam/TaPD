@@ -64,6 +64,7 @@ public class MultipleEditWidgetDialogBase extends BFrame implements EditWidgetDi
         sp.add( ew = (EditWidgetBase) module.getEditWidget( 0,
             new Runnable()
             {
+                @Override
                 public void run()
                 {
                     doRunnableUpdate();
@@ -116,6 +117,7 @@ public class MultipleEditWidgetDialogBase extends BFrame implements EditWidgetDi
      *
      *@param  force  Description of the Parameter
      */
+    @Override
     public void showValues( boolean force )
     {
         ew.showValues( force );
@@ -140,6 +142,7 @@ public class MultipleEditWidgetDialogBase extends BFrame implements EditWidgetDi
                 ew = (EditWidgetBase) module.getEditWidget( ( (ModuleTreeChild) userObj ).number,
                     new Runnable()
                     {
+                        @Override
                         public void run()
                         {
                             doRunnableUpdate();

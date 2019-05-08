@@ -3,6 +3,8 @@
  */
 /*
  *  Copyright (C) 2004 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -27,8 +29,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *@author     Francois Guillet
  *@created    19 avril 2004
  */
-public class BinaryOpModule
-         extends TapModule
+public class BinaryOpModule extends TapModule
 {
     //{{{ Variables
     private static TapModule.ModuleTypeInfo typeInfo;
@@ -129,6 +130,7 @@ public class BinaryOpModule
      *      is attached
      *@exception  IOException  Write exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -146,6 +148,7 @@ public class BinaryOpModule
      *
      *@return    New module
      */
+    @Override
     public TapModule duplicate()
     {
         BinaryOpModule module = new BinaryOpModule( this.procedure, this.location );
@@ -167,6 +170,7 @@ public class BinaryOpModule
      *@param  seed        The random seed
      *@return             The value output
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         if ( outputPort == 0 )
@@ -279,6 +283,7 @@ public class BinaryOpModule
      *
      *@return    Always false
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -291,6 +296,7 @@ public class BinaryOpModule
      *
      *@return    Always false
      */
+    @Override
     public boolean acceptsPreview()
     {
         return false;
@@ -305,6 +311,7 @@ public class BinaryOpModule
      *
      *@param  parentFrame  the parent frame
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -329,6 +336,7 @@ public class BinaryOpModule
      *
      *@return    The module type info
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -343,6 +351,7 @@ public class BinaryOpModule
      *
      *@return    The number of edit frames to take into account
      */
+    @Override
     public int getNumEditWidgets()
     {
         return 1;
@@ -357,6 +366,7 @@ public class BinaryOpModule
      *@param  standalone  Whether the widget is in standalone frame or embedded
      *@return             The edit frame widget
      */
+    @Override
     public Widget getEditWidget( int index, Runnable cb, boolean standalone )
     {
         //System.out.println( "getEditWidget" );
@@ -370,6 +380,7 @@ public class BinaryOpModule
      *@param  index  The reference to the edit frame
      *@return        The edit frame value
      */
+    @Override
     public String getEditWidgetName( int index )
     {
         return "";
@@ -424,6 +435,7 @@ public class BinaryOpModule
         /**
          *  Fetch the values currently displayed object
          */
+        @Override
         protected void getValues()
         {
             opType = (short) opCombo.getSelectedIndex();
@@ -440,6 +452,7 @@ public class BinaryOpModule
         /**
          *  Initializes backup values
          */
+        @Override
         protected void initBackValues()
         {
             backOpType = opType;
@@ -449,6 +462,7 @@ public class BinaryOpModule
         /**
          *  Gets the backup values
          */
+        @Override
         protected void getBackValues()
         {
             getUndoValues();
@@ -459,6 +473,7 @@ public class BinaryOpModule
         /**
          *  Gets the undo values
          */
+        @Override
         protected void getUndoValues()
         {
             opType = backOpType;
@@ -471,6 +486,7 @@ public class BinaryOpModule
          *
          *@param  force  Description of the Parameter
          */
+        @Override
         public void showValues( boolean force )
         {
             if ( force || changed )

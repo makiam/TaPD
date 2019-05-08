@@ -4,6 +4,8 @@
  */
 /*
  *  Copyright (C) 2000,2002 by Peter Eastman, 2003 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -21,7 +23,6 @@ import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 
-import artofillusion.tapDesigner.TapModule;
 import artofillusion.tapDesigner.TapModule.*;
 
 /**
@@ -98,6 +99,7 @@ public class ValueFunctionModule extends TapModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -112,6 +114,7 @@ public class ValueFunctionModule extends TapModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -123,6 +126,7 @@ public class ValueFunctionModule extends TapModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         ValueFunctionModule module = new ValueFunctionModule( this.procedure, this.location );
@@ -137,6 +141,7 @@ public class ValueFunctionModule extends TapModule
      *
      *@param  parentFrame   Description of the Parameter
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -145,9 +150,10 @@ public class ValueFunctionModule extends TapModule
         else
         {
             previousFunction = function.duplicate();
-            editDialog = function.edit( (JFrame) parentFrame.getComponent(), TapDesignerTranslate.text( "valueFunctionModuleTitle", module.getName() ),
+            editDialog = function.edit((JFrame) parentFrame.getComponent(), TapDesignerTranslate.text( "valueFunctionModuleTitle", module.getName() ),
                 new Runnable()
                 {
+                @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -187,6 +193,7 @@ public class ValueFunctionModule extends TapModule
      *@param  seed        Description of the Parameter
      *@return             The value value
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         if ( outputPort != 0 )
@@ -206,6 +213,7 @@ public class ValueFunctionModule extends TapModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -217,6 +225,7 @@ public class ValueFunctionModule extends TapModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return false;

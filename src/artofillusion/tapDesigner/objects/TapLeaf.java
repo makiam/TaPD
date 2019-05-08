@@ -576,6 +576,7 @@ public class TapLeaf
      *
      *@param  parms  The new shape value
      */
+    @Override
     public void setShape( TapDistortParameters parms )
     {
         if ( parms != null )
@@ -590,6 +591,7 @@ public class TapLeaf
      *
      *@return    Description of the Return Value
      */
+    @Override
     public Object3D duplicate()
     {
         TapLeaf leaf = new TapLeaf();
@@ -604,6 +606,7 @@ public class TapLeaf
      *
      *@param  obj  Description of the Parameter
      */
+    @Override
     public void copyObject( Object3D obj )
     {
         super.copyObject( obj );
@@ -643,6 +646,7 @@ public class TapLeaf
      *@param  tex      The new texture value
      *@param  mapping  The new texture value
      */
+    @Override
     public void setTexture( Texture tex, TextureMapping mapping )
     {
         super.setTexture( tex, mapping );
@@ -659,6 +663,7 @@ public class TapLeaf
      *@return    The texture value
      */
 
+    @Override
     public Texture getTexture()
     {
         return super.getTexture();
@@ -671,6 +676,7 @@ public class TapLeaf
      *@return    The textureMapping value
      */
 
+    @Override
     public TextureMapping getTextureMapping()
     {
         return super.getTextureMapping();
@@ -685,6 +691,7 @@ public class TapLeaf
      *@param  mapping  The new material value
      */
 
+    @Override
     public void setMaterial( Material mat, MaterialMapping mapping )
     {
         super.setMaterial( mat, mapping );
@@ -697,6 +704,7 @@ public class TapLeaf
      *@return    The material value
      */
 
+    @Override
     public Material getMaterial()
     {
         return theMaterial;
@@ -709,6 +717,7 @@ public class TapLeaf
      *@return    The materialMapping value
      */
 
+    @Override
     public MaterialMapping getMaterialMapping()
     {
         return matMapping;
@@ -759,6 +768,7 @@ public class TapLeaf
     /**
      *  Description of the Method
      */
+    @Override
     public void regenerateMesh()
     {
         updateMesh();
@@ -784,6 +794,7 @@ public class TapLeaf
      *@param  rDisplace  Description of the Parameter
      *@return            The position value
      */
+    @Override
     public Mat4 getPosition( double yPos, double angle, boolean rDisplace )
     {
         int i;
@@ -958,6 +969,7 @@ public class TapLeaf
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -996,6 +1008,7 @@ public class TapLeaf
      *@param  ysize  The new size value
      *@param  zsize  The new size value
      */
+    @Override
     public void setSize( double xsize, double ysize, double zsize )
     {
         setSize( xsize, ysize, zsize, null );
@@ -1010,6 +1023,7 @@ public class TapLeaf
      *@param  sizeY  Description of the Parameter
      *@param  parms  Description of the Parameter
      */
+    @Override
     public void resizeAndDistort( Vec3 size, double sizeR, double sizeY, TapDistortParameters parms )
     {
         setSize( size.x * sizeR, size.y * sizeY, size.z * sizeR, parms );
@@ -1044,6 +1058,7 @@ public class TapLeaf
      *@param  parms  The new counterAction value
      *@return        Description of the Return Value
      */
+    @Override
     public Mat4 setCounterAction( double yPos, double angle, TapDistortParameters parms )
     {
         return getPosition( yPos, angle, false );
@@ -1058,6 +1073,7 @@ public class TapLeaf
      *
      *@return    The plainAoIObject value
      */
+    @Override
     public Object3D getPlainAoIObject()
     {
         TriangleMesh mesh = new TriangleMesh( new Vertex[0], new int[0][0] );

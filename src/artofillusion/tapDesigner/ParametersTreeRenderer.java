@@ -44,6 +44,7 @@ public class ParametersTreeRenderer extends DefaultTreeCellRenderer
      *@param  hasFocus  Description of the Parameter
      *@return           The treeCellRendererComponent value
      */
+    @Override
     public Component getTreeCellRendererComponent(
             JTree tree,
             Object value,
