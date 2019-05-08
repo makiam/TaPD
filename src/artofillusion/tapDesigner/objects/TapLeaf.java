@@ -14,15 +14,11 @@
 package artofillusion.tapDesigner;
 
 import artofillusion.*;
-import artofillusion.animation.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
 import artofillusion.texture.*;
 import artofillusion.material.*;
-import artofillusion.ui.*;
-import java.awt.*;
 import java.io.*;
-import java.util.Vector;
 
 
 /**

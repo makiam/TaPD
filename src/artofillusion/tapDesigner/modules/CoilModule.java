@@ -20,7 +20,6 @@ import artofillusion.object.*;
 
 import artofillusion.texture.*;
 
-import buoy.event.*;
 
 import buoy.widget.*;
 
@@ -29,8 +28,6 @@ import java.awt.event.*;
 
 import java.io.*;
 
-import java.lang.Math.*;
-import java.lang.reflect.*;
 
 import java.text.*;
 

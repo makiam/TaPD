@@ -1,6 +1,8 @@
 /*
  *  Copyright (C) 2003 by Francois Guillet
  *  Copyright (C) 2003 by Peter Eastman for original Translate.java code
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -14,12 +16,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.text.*;
 import java.util.*;
-import java.util.zip.*;
 import javax.swing.*;
 import javax.swing.event.*;
-import artofillusion.ui.*;
-import artofillusion.*;
-import java.io.*;
 
 /**
  *  This class extends AoI Translate Class so that i) the tap Designer

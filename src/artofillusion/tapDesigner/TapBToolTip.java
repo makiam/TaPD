@@ -3,6 +3,8 @@
  */
 /*
  *  Copyright 2004 Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -12,24 +14,19 @@
  */
 package artofillusion.tapDesigner;
 
-//{{{ Imports
-import buoy.event.*;
-import buoy.internal.*;
+
 import buoy.widget.*;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
-//}}}
 
 /**
  *  Description of the Class
  *
- *@author     François Guillet
- *@created    9 août 2004
+ *@author     Francois Guillet
+ *@created    9 aoï¿½t 2004
  */
-public class TapBToolTip
-         extends BToolTip
+public class TapBToolTip extends BToolTip
 {
     private Widget w;
 

@@ -17,18 +17,14 @@ import artofillusion.math.*;
 import artofillusion.object.*;
 
 import buoy.widget.*;
-import buoy.event.*;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.lang.Math.*;
-import java.lang.reflect.*;
 import java.text.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.text.*;
 
 import artofillusion.tapDesigner.TapModule.*;
 

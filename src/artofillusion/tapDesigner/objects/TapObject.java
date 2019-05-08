@@ -16,13 +16,11 @@ These methods allow to
 */
 package artofillusion.tapDesigner;
 
-import artofillusion.*;
 
 import artofillusion.math.*;
 
 import artofillusion.object.*;
 
-import buoy.widget.*;
 
 
 public interface TapObject

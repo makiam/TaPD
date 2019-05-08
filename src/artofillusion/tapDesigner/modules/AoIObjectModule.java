@@ -13,24 +13,14 @@
 package artofillusion.tapDesigner;
 
 import artofillusion.*;
-import artofillusion.animation.*;
-import artofillusion.material.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
-import artofillusion.texture.*;
-import artofillusion.ui.*;
 import buoy.event.*;
 import buoy.widget.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
-import java.lang.reflect.*;
-import java.text.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
 import artofillusion.tapDesigner.TapModule.*;
 
 

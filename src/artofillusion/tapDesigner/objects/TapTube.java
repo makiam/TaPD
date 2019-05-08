@@ -14,28 +14,21 @@ package artofillusion.tapDesigner;
 
 import artofillusion.*;
 
-import artofillusion.animation.*;
 
 import artofillusion.math.*;
 
 import artofillusion.object.*;
 
-import artofillusion.texture.*;
-
-import artofillusion.ui.*;
-
-import java.awt.*;
 
 import java.io.*;
 
-import java.util.Vector;
 
 
 /**
  *  Description of the Class
  *
  *@author     pims
- *@created    16 août 2004
+ *@created    16 aoï¿½t 2004
  */
 public class TapTube
          extends Tube

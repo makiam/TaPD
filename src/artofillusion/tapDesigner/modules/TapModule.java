@@ -17,16 +17,11 @@ import artofillusion.*;
 import artofillusion.animation.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
-import artofillusion.texture.*;
 import artofillusion.tapDesigner.*;
-import artofillusion.ui.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
-import java.lang.reflect.*;
 import java.util.*;
 import javax.swing.*;
-import buoy.event.*;
 import buoy.widget.*;
 
 

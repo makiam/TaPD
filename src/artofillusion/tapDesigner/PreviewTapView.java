@@ -2,7 +2,9 @@
  *  This TapView show full or partial previews
  */
 /*
- *  Copyright (C) 2004 by François Guillet
+ *  Copyright (C) 2004 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -12,32 +14,24 @@
  */
 package artofillusion.tapDesigner;
 
-//{{{ imports
 import artofillusion.*;
-import artofillusion.math.*;
-import artofillusion.tapDesigner.*;
 import artofillusion.object.*;
-import artofillusion.ui.*;
 import buoy.event.*;
 import buoy.widget.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
-import java.lang.reflect.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.tree.*;
-import java.beans.*;
 import artofillusion.tapDesigner.TapModule.*;
 
 
-//}}}
 
 /**
  *  This widget container allows visualization of previews.
  *
- *@author     François Guillet
- *@created    14 août 2004
+ *@author     Francois Guillet
+ *@created    14 aoï¿½t 2004
  */
 public class PreviewTapView extends BSplitPane implements TapView
 {
@@ -542,8 +536,8 @@ public class PreviewTapView extends BSplitPane implements TapView
 
 
     /**
-     *@author     François Guillet
-     *@created    15 août 2004
+     *@author     Franï¿½ois Guillet
+     *@created    15 aoï¿½t 2004
      */
     public static class PreviewLayoutData extends ProcPanelLayoutData
     {

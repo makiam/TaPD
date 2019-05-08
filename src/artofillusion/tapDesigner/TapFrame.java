@@ -5,6 +5,8 @@
  */
 /*
  *  Copyright 2003 Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -14,28 +16,15 @@
  */
 package artofillusion.tapDesigner;
 
-//{{{ Imports
 import artofillusion.*;
 import artofillusion.animation.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
-import artofillusion.object.TriangleMesh.*;
-import artofillusion.ui.*;
 import buoy.event.*;
-import buoy.internal.*;
 import buoy.widget.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.lang.*;
-import java.lang.Math;
-import java.lang.reflect.*;
 import java.util.*;
-import java.util.zip.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.plaf.*;
-import javax.swing.plaf.metal.*;
 
 //}}}
 
@@ -46,9 +35,7 @@ import javax.swing.plaf.metal.*;
  *@author     Francois Guillet
  *@created    14 mars 2004
  */
-public class TapFrame
-         extends BFrame
-         implements TapProcPanelHolder
+public class TapFrame extends BFrame implements TapProcPanelHolder
 {
     //{{{ Variables
     private LayoutWindow window;
@@ -85,7 +72,6 @@ public class TapFrame
     private ObjectInfo savedTapdObject;
 
 
-    //}}}
 
     //{{{ TapFrame constructor
     /**

@@ -1,6 +1,8 @@
 /*
- *  Copyright (C) 2004 by François Guillet. Some parts taken from LayoutWindow.jva by
+ *  Copyright (C) 2004 by Francois Guillet. Some parts taken from LayoutWindow.java by
  *  Peter Eastman.
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -10,27 +12,15 @@
  */
 package artofillusion.tapDesigner;
 
-import artofillusion.animation.*;
-import artofillusion.animation.distortion.*;
-import artofillusion.image.*;
-import artofillusion.material.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
-import artofillusion.script.*;
-import artofillusion.texture.*;
 import artofillusion.ui.*;
 import artofillusion.*;
-import bsh.*;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.BorderFactory;
-import java.io.*;
-import java.text.*;
-import java.util.Vector;
 import buoy.event.*;
 import buoy.widget.*;
 
-//import artofillusion.tapDesigner.*;
 
 /**
  *  The LayoutWindow class represents the main window for creating and laying
@@ -40,8 +30,7 @@ import buoy.widget.*;
  *@created    27 mai 2004
  */
 
-public class TapPreviewWidget extends BorderContainer
-         implements EditingWindow
+public class TapPreviewWidget extends BorderContainer implements EditingWindow
 {
     private SceneViewer theView;
     private Scene theScene;

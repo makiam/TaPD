@@ -4,6 +4,8 @@
  */
 /*
  *  Copyright 2003 Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -15,32 +17,20 @@ package artofillusion.tapDesigner;
 
 import artofillusion.*;
 import artofillusion.animation.*;
-import artofillusion.image.*;
-import artofillusion.material.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
-import artofillusion.object.TriangleMesh.*;
-import artofillusion.texture.*;
-import artofillusion.tapDesigner.*;
 import artofillusion.ui.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
-import java.lang.Math;
-import java.lang.reflect.*;
 import java.util.*;
-import java.util.zip.*;
-import javax.swing.*;
 
 
 /**
  *  Description of the Class
  *
- *@author     François Guillet
+ *@author     Francois Guillet
  *@created    9 mai 2004
  */
-public class TapDesignerObjectCollection
-         extends ObjectCollection
+public class TapDesignerObjectCollection extends ObjectCollection
 {
     private Vector objectInfoVector;
     private Vector tapObjectInfoVector;

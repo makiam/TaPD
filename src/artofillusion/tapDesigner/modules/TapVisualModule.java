@@ -13,15 +13,9 @@
  */
 package artofillusion.tapDesigner;
 
-import artofillusion.*;
-import artofillusion.math.*;
 import artofillusion.tapDesigner.*;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import java.io.*;
-import java.util.*;
-import java.lang.reflect.*;
 import buoy.event.*;
 import buoy.widget.*;
 
