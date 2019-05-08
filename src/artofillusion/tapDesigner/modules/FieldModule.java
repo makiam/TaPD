@@ -263,13 +263,12 @@ public class FieldModule extends TapModule
                 col = bl.fromModule.getObject( bl.outputPort, gen.getSeed() );
             if ( col == null )
                 return null;
-            TapDesignerObjectCollection tmpCollection = new TapDesignerObjectCollection( procedure );
             if ( inputPortLink[0] != null )
             {
                 //modules linked to output will decorate object
                 for ( j = 0; j < inputPortLink[0].length; ++j )
                 {
-                    TapModule mod = (TapModule) modules.elementAt( linkToIndex[0][j] );
+                    TapModule mod = modules.get( linkToIndex[0][j] );
                     TapDesignerObjectCollection modCol = mod.getObject( col, inputPortLink[0][j], gen.getSeed() );
                     if ( modCol != null )
                         col.mergeCollection( modCol, 1 );
@@ -370,7 +369,7 @@ public class FieldModule extends TapModule
             {
                 for ( int j = 0; j < inputPortLink[0].length; ++j )
                 {
-                    TapModule mod = (TapModule) modules.elementAt( linkToIndex[0][j] );
+                    TapModule mod = modules.get( linkToIndex[0][j] );
                     TapDesignerObjectCollection modCol = mod.getObject( tmpCollection, inputPortLink[0][j], gen.getSeed() );
 
                     if ( modCol != null )

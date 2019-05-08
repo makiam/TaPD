@@ -207,7 +207,6 @@ public class DistortModule extends TapModule
             else if ( mainObject.object instanceof SplineMesh )
                 TapUtils.distortSplineMesh( (SplineMesh) mainObject.object, smParms );
 
-            TapDesignerObjectCollection tmpCollection = new TapDesignerObjectCollection( procedure );
 
             if ( inputPortLink[0] != null )
             {
@@ -215,7 +214,7 @@ public class DistortModule extends TapModule
 
                 for ( j = 0; j < inputPortLink[0].length; ++j )
                 {
-                    TapModule mod = (TapModule) modules.elementAt( linkToIndex[0][j] );
+                    TapModule mod = modules.get( linkToIndex[0][j] );
                     TapDesignerObjectCollection modCol = mod.getObject( col, inputPortLink[0][j], gen.getSeed() );
 
                     if ( modCol != null )
@@ -286,7 +285,7 @@ public class DistortModule extends TapModule
 
                 for ( j = 0; j < inputPortLink[0].length; ++j )
                 {
-                    TapModule mod = (TapModule) modules.elementAt( linkToIndex[0][j] );
+                    TapModule mod = modules.get( linkToIndex[0][j] );
                     TapDesignerObjectCollection modCol = mod.getObject( collection, inputPortLink[0][j], gen.getSeed() );
 
                     if ( modCol != null )

@@ -21,13 +21,17 @@ import artofillusion.tapDesigner.BackModuleLink.BackLink;
 import buoy.event.*;
 import buoy.widget.*;
 
-import java.awt.*;
+
 import java.io.*;
 import java.text.*;
 import java.util.*;
 import javax.swing.*;
 
 import artofillusion.tapDesigner.TapModule.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.Point;
 
 
 /**
@@ -382,13 +386,11 @@ public class RandomObjectModule extends TapModule
                     }
                 }
 
-                col = ( (TapModule) ( modules.elementAt( inputProbsTable[index] ) ) ).getObject( outputPortTable[index], gen.getSeed() );
+                col =  modules.get( inputProbsTable[index] ).getObject( outputPortTable[index], gen.getSeed() );
             }
 
             if ( col == null )
                 return null;
-
-            ObjectInfo mainObject = col.elementAt( 0 ).objectInfo;
 
             return col;
         }
@@ -438,7 +440,7 @@ public class RandomObjectModule extends TapModule
                     }
                 }
 
-                TapModule mod = (TapModule) modules.elementAt( linkToIndex[0][index] );
+                TapModule mod = modules.get( linkToIndex[0][index] );
                 TapDesignerObjectCollection modCol = mod.getObject( collection, inputPortLink[0][index], gen.getSeed() );
 
                 if ( modCol != null )
@@ -491,7 +493,7 @@ public class RandomObjectModule extends TapModule
     private void checkConsistency()
     {
         BackModuleLink bl = new BackModuleLink( modules, 0 );
-        Vector back = bl.findAllModules( module, 0 );
+        List<BackLink> back = bl.findAllModules( module, 0 );
         int i;
         double dum;
 
@@ -511,7 +513,7 @@ public class RandomObjectModule extends TapModule
                 for ( i = 0; i < numInputProbs; ++i )
                 {
                     inputProbs[i] = 1.0 / numInputProbs;
-                    inputProbsTable[i] = modules.indexOf( ( (BackModuleLink.BackLink) back.elementAt( i ) ).fromModule );
+                    inputProbsTable[i] = modules.indexOf(  back.get( i ).fromModule );
                 }
             }
             else
@@ -524,9 +526,9 @@ public class RandomObjectModule extends TapModule
 
                 for ( i = 0; i < numInputProbs; ++i )
                 {
-                    newInputProbsTable[i] = modules.indexOf( ( (BackLink) back.elementAt( i ) ).fromModule );
+                    newInputProbsTable[i] = modules.indexOf(back.get( i ).fromModule );
                     newInputProbs[i] = 0;
-                    outputPortTable[i] = ( (BackLink) back.elementAt( i ) ).outputPort;
+                    outputPortTable[i] = ( (BackLink) back.get( i ) ).outputPort;
                 }
 
                 for ( i = 0; i < inputProbs.length; ++i )
@@ -868,7 +870,7 @@ public class RandomObjectModule extends TapModule
             String[] names = new String[numInputProbs];
 
             for ( int i = 0; i < numInputProbs; ++i )
-                names[i] = ( (TapModule) ( modules.elementAt( inputProbsTable[i] ) ) ).getName();
+                names[i] = modules.get( inputProbsTable[i] ).getName();
 
             return names;
         }
@@ -888,7 +890,7 @@ public class RandomObjectModule extends TapModule
             String[] names = new String[numOutputProbs];
 
             for ( int i = 0; i < numOutputProbs; ++i )
-                names[i] = ( (TapModule) ( modules.elementAt( outputProbsTable[i] ) ) ).getName();
+                names[i] = modules.get( outputProbsTable[i] ).getName();
 
             return names;
         }

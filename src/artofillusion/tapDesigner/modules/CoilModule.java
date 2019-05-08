@@ -469,7 +469,7 @@ public class CoilModule extends TapModule
 
                 for ( j = 0; j < inputPortLink[0].length; ++j )
                 {
-                    TapModule mod = (TapModule) modules.elementAt( linkToIndex[0][j] );
+                    TapModule mod = modules.get( linkToIndex[0][j] );
                     TapDesignerObjectCollection modCol = mod.getObject( col, inputPortLink[0][j], gen.getSeed() );
 
                     if ( modCol != null )
@@ -765,7 +765,7 @@ public class CoilModule extends TapModule
 
                                 for ( j = 0; j < inputPortLink[0].length; ++j )
                                 {
-                                    TapModule mod = (TapModule) modules.elementAt( linkToIndex[0][j] );
+                                    TapModule mod = modules.get( linkToIndex[0][j] );
                                     TapDesignerObjectCollection modCol = mod.getObject( tmpCollection, inputPortLink[0][j], gen.getSeed() );
 
                                     if ( modCol != null )

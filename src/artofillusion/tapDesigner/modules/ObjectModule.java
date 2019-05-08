@@ -143,8 +143,7 @@ public abstract class ObjectModule extends TapModule
      *@exception  IOException  Description of the Exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene )throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -411,7 +410,7 @@ public abstract class ObjectModule extends TapModule
             {
                 for ( int i = 0; i < inputPortLink[0].length; ++i )
                 {
-                    TapModule mod = (TapModule) modules.elementAt( linkToIndex[0][i] );
+                    TapModule mod = modules.get( linkToIndex[0][i] );
                     TapDesignerObjectCollection collection = mod.getObject( newCollection, inputPortLink[0][i], gen.getSeed() );
 
                     if ( collection != null )
