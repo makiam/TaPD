@@ -1,5 +1,6 @@
 /* Copyright (C) 1999-2004 by Peter Eastman
-
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
    This program is free software; you can redistribute it and/or modify it under the
    terms of the GNU General Public License as published by the Free Software
    Foundation; either version 2 of the License, or (at your option) any later version.
@@ -86,7 +87,7 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
     // Add the title and combo box at the top.
     
     content = new BorderContainer();
-    setContent(BOutline.createEmptyBorder(content, ModellingApp.standardDialogInsets));
+    setContent(BOutline.createEmptyBorder(content, UIUtilities.getStandardDialogInsets()));
     FormContainer northPanel = new FormContainer(1, 2);
     String title;
     if (obj.length == 1)

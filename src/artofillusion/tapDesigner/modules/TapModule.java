@@ -953,7 +953,7 @@ public abstract class TapModule
     {
         // set up a new temporary scene
         Scene previewScene = new Scene();
-        CoordinateSystem coords = new CoordinateSystem( new Vec3( 0.0, 0.0, ModellingApp.DIST_TO_SCREEN ), new Vec3( 0.0, 0.0, -1.0 ), Vec3.vy() );
+        CoordinateSystem coords = new CoordinateSystem( new Vec3( 0.0, 0.0, (Camera.DEFAULT_DISTANCE_TO_SCREEN)), new Vec3( 0.0, 0.0, -1.0 ), Vec3.vy() );
         ObjectInfo info;
 
         info = new ObjectInfo( new SceneCamera(), coords, "Camera 1" );
@@ -1191,7 +1191,7 @@ public abstract class TapModule
         {
             // set up a new temporary scene
             Scene previewScene = new Scene();
-            CoordinateSystem coords = new CoordinateSystem( new Vec3( 0.0, 0.0, ModellingApp.DIST_TO_SCREEN ), new Vec3( 0.0, 0.0, -1.0 ), Vec3.vy() );
+            CoordinateSystem coords = new CoordinateSystem( new Vec3( 0.0, 0.0, (Camera.DEFAULT_DISTANCE_TO_SCREEN)), new Vec3( 0.0, 0.0, -1.0 ), Vec3.vy() );
             ObjectInfo info;
 
             info = new ObjectInfo( new SceneCamera(), coords, "Camera 1" );

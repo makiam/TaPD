@@ -43,31 +43,6 @@ public class TapBTranslate
     public static void setLocale( Locale l )
     {
         locale = l;
-        /*
-         *  File dir = new File(ModellingApp.PLUGIN_DIRECTORY);
-         *  if (dir.exists())
-         *  {	String[] files = dir.list();
-         *  for (int i = 0; i < files.length; i++)
-         *  if (files[i].startsWith("TaPD"))
-         *  {	ZipFile zf = null;
-         *  try
-         *  {
-         *  zf = new ZipFile(new File(ModellingApp.PLUGIN_DIRECTORY, files[i]));
-         *  }
-         *  catch (IOException ex)
-         *  {
-         *  continue;  // Not a zip file.
-         *  }
-         *  if (zf!=null)
-         *  {	JarClassLoader jcl = new JarClassLoader(zf);
-         *  resources = ResourceBundle.getBundle("tapdesigner", locale, jcl);
-         *  }
-         *  }
-         *  }
-         *  else
-         *  {	System.out.println("Dir does not exist");
-         *  }
-         */
         resources = ResourceBundle.getBundle( "tapdesigner", locale );
     }
 

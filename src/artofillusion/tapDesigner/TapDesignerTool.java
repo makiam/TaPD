@@ -36,8 +36,8 @@ public class TapDesignerTool implements ModellingTool
     @Override
     public String getName()
     {
-        TapBTranslate.setLocale( ModellingApp.getPreferences().getLocale() );
-        TapDesignerTranslate.setLocale( ModellingApp.getPreferences().getLocale() );
+        TapBTranslate.setLocale(ArtOfIllusion.getPreferences().getLocale() );
+        TapDesignerTranslate.setLocale(ArtOfIllusion.getPreferences().getLocale() );
         return TapBTranslate.text( "tapDesignerTitle" );
         //return "Tree and Plant Designer";
     }

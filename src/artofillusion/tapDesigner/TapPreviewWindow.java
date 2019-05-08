@@ -33,8 +33,7 @@ public class TapPreviewWindow extends BFrame
 
     /**
      *  Create a new LayoutWindow for editing a Scene. Usually, you will not use
-     *  this constructor directly. Instead, call ModellingApp.newWindow(Scene
-     *  s).
+     *  this constructor directly. Instead, call ArtOfIllusion.newWindow(Scene s)
      *
      *@param  s       Description of the Parameter
      *@param  module  Description of the Parameter

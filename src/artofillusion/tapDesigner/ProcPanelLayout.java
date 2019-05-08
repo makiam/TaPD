@@ -240,7 +240,7 @@ public class ProcPanelLayout
 
                 try
                 {
-                    Class cls = ModellingApp.getClass( classname );
+                    Class cls = ArtOfIllusion.getClass( classname );
                     if ( cls == null )
                         throw new IOException( "Unknown class: " + classname );
 

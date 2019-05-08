@@ -838,7 +838,7 @@ public class TapProcedure
         if ( ( version < 0 ) || ( version > 3 ) )
             throw new InvalidObjectException( "" );
 
-        TapBTranslate.setLocale( ModellingApp.getPreferences().getLocale() );
+        TapBTranslate.setLocale(ArtOfIllusion.getPreferences().getLocale() );
         seed = in.readLong();
         renderingLevel = in.readInt();
         viewLevel = in.readInt();
@@ -855,7 +855,7 @@ public class TapProcedure
             byte[] bytes = new byte[len];
             in.readFully( bytes );
 
-            Class cls = ModellingApp.getClass( classname );
+            Class cls = ArtOfIllusion.getClass( classname );
 
             try
             {

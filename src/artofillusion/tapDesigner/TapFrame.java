@@ -482,7 +482,7 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         TapProcedure procedure = procPanel.getProcedure();
         TapDesignerObjectCollection collection = procedure.getObject();
         ObjectInfo[] objects = collection.getAoIObjects();
-        ModellingApp.copyToClipboard( objects, procedure.getScene() );
+        ArtOfIllusion.copyToClipboard( objects, procedure.getScene() );
         window.updateMenus();
     }
 
