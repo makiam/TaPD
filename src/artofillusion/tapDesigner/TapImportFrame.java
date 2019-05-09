@@ -30,8 +30,7 @@ import java.util.*;
 import javax.swing.*;
 
 
-public class TapImportFrame
-    extends BDialog
+public class TapImportFrame extends BDialog
 {
     BList[]   lists;
     Scene[]   scenes;
@@ -84,9 +83,8 @@ public class TapImportFrame
         fc.add(scrollPanes[0], 0, 1, listsLayout);
         fc.add(buttonsFc, 1, 1, layout);
         fc.add(scrollPanes[1], 2, 1, listsLayout);
-
-        BButton quitButton = TapBTranslate.bButton("quit", this, "doQuit");
-        fc.add(quitButton, 1, 2, layout);
+        
+        fc.add(TapBTranslate.bButton("quit", this, "doQuit"), 1, 2, layout);
         border.add(fc, BorderContainer.CENTER);
 
         pack();
@@ -169,8 +167,7 @@ public class TapImportFrame
 
             for (i = 0; i < imagesArray.length; i++)
             {
-                for (j = 0; j < scenes[to].getNumImages() && imagesArray[i].getID() != scenes[to]
-                          .getImage(j).getID(); j++)
+                for (j = 0; j < scenes[to].getNumImages() && imagesArray[i].getID() != scenes[to].getImage(j).getID(); j++)
                     ;
 
                 if (j == scenes[to].getNumImages())
@@ -179,12 +176,10 @@ public class TapImportFrame
 
             for (i = 0; i < textureArray.length; i++)
             {
-                for (j = 0; j < scenes[to].getNumTextures() && textureArray[i].getID() != scenes[to]
-                          .getTexture(j).getID(); j++)
+                for (j = 0; j < scenes[to].getNumTextures() && textureArray[i].getID() != scenes[to].getTexture(j).getID(); j++)
                     ;
 
-                if (j == scenes[to].getNumTextures() && !textureArray[i].getName()
-                               .equals(scenes[to].getTexture(0).getName()))
+                if (j == scenes[to].getNumTextures() && !textureArray[i].getName().equals(scenes[to].getTexture(0).getName()))
                 {
                     tex = textureArray[i];
                     tex.setID(textureArray[i].getID());
