@@ -21,6 +21,12 @@ import artofillusion.*;
 
 public class TapDesignerTool implements ModellingTool
 {
+
+    public TapDesignerTool()
+    {
+        TapBTranslate.setLocale(ArtOfIllusion.getPreferences().getLocale() );
+        TapDesignerTranslate.setLocale(ArtOfIllusion.getPreferences().getLocale() );
+    }
     /**
      *  Get the text that appear as the menu item.
      *
@@ -29,20 +35,18 @@ public class TapDesignerTool implements ModellingTool
     @Override
     public String getName()
     {
-        TapBTranslate.setLocale(ArtOfIllusion.getPreferences().getLocale() );
-        TapDesignerTranslate.setLocale(ArtOfIllusion.getPreferences().getLocale() );
         return TapBTranslate.text( "tapDesignerTitle" );
-        //return "Tree and Plant Designer";
     }
 
 
     /**
      *  See whether an appropriate object is selected and either display an
-     *  error message, or bring up the array tool window.
+     *  error message, or bring up the Tap tool window.
      *
      *@param  window  Description of the Parameter
      */
     @Override
+    @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void commandSelected( LayoutWindow window )
     {
         new TapFrame( window, null );
