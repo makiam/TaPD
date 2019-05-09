@@ -40,7 +40,7 @@ import javax.swing.*;
  */
 public class TapModulePanel extends OverlayContainer implements TapView
 {
-    //{{{ variables
+
     private ModuleContainer moduleContainer;
     private CustomWidget linkContainer;
     private boolean draggingBoxState;
@@ -69,14 +69,10 @@ public class TapModulePanel extends OverlayContainer implements TapView
     private Vector clipboardModules;
     private boolean popupOn = false;
     private int popupClicked = -1;
-    private TapProcPanel procPanel;
+    private final TapProcPanel procPanel;
     private TapProcedure procedure;
 
 
-
-//}}}
-
-    //{{{  constructor
     /**
      *  Constructor for the TapProcPanel object
      *
@@ -117,22 +113,10 @@ public class TapModulePanel extends OverlayContainer implements TapView
         moduleContainer.addEventLink( WidgetMouseEvent.class, this, "doShowViewPopup" );
 
         this.procedure = procedure;
-        //initialize();
+
 
     }
 
-
-    /**
-     *  Gets the minimumSize attribute of the TapModulePanel object
-     *
-     *@return    The minimumSize value
-     */
-    /*
-     *  public Dimension getMinimumSize()
-     *  {
-     *  return new Dimension( 0, 0 );
-     *  }
-     */
     /**
      *  Gets the procPanel attribute of the TapModulePanel object
      *
@@ -144,10 +128,6 @@ public class TapModulePanel extends OverlayContainer implements TapView
         return procPanel;
     }
 
-
-    //}}}
-
-    //{{{ initialization
     /**
      *  Initialization. Call this method each time the procedure attached to the
      *  proc panel has changed.
@@ -183,10 +163,6 @@ public class TapModulePanel extends OverlayContainer implements TapView
         repaint();
     }
 
-
-    //}}}
-
-    //{{{ Events
     /**
      *  Description of the Method
      *
