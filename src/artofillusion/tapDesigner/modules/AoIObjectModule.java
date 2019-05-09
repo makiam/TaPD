@@ -297,6 +297,7 @@ public class AoIObjectModule extends ObjectModule
         /**
          *  Sets the texture of the object
          */
+        @SuppressWarnings("ResultOfObjectAllocationIgnored")
         private void doTexture()
         {
             ObjectInfo[] obj = new ObjectInfo[1];
@@ -309,6 +310,7 @@ public class AoIObjectModule extends ObjectModule
         /**
          *  Sets the object material
          */
+        @SuppressWarnings("ResultOfObjectAllocationIgnored")
         private void doMaterial()
         {
             ObjectInfo[] obj = new ObjectInfo[1];
