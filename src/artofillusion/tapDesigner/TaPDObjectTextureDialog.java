@@ -32,7 +32,7 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
   private ObjectInfo obj[], editObj;
   private BList texList, layerList;
   private BButton mapButton, addLayerButton, deleteLayerButton, moveUpButton, moveDownButton;
-  private BButton newTextureButton, editTexturesButton;
+
   private BorderContainer content;
   private FormContainer listPanel, layerPanel, paramsPanel;
   private MaterialPreviewer preview;
@@ -40,7 +40,6 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
   private Widget paramValueWidget[];
   private int fieldParamIndex[];
   private BScrollPane paramsScroller;
-  private BLabel paramsLabel;
   private Runnable callback;
   private Texture oldTexture;
   private TextureMapping oldMapping;
@@ -117,8 +116,8 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
     listPanel = new FormContainer(new double [] {1.0}, new double [] {1.0, 0.0});
     listPanel.add(UIUtilities.createScrollingList(texList), 0, 0, new LayoutInfo(LayoutInfo.CENTER, LayoutInfo.BOTH, null, null));
     RowContainer texButtonRow = new RowContainer();
-    texButtonRow.add(newTextureButton = Translate.button("newTexture", this, "doNewTexture"));
-    texButtonRow.add(editTexturesButton = Translate.button("textures", this, "doEditTextures"));
+    texButtonRow.add(Translate.button("newTexture", this, "doNewTexture"));
+    texButtonRow.add(Translate.button("textures", this, "doEditTextures"));
     listPanel.add(texButtonRow, 0, 1);
     
     // Create the section of the window for layered textures.
@@ -350,6 +349,7 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
     }
   }
   
+  @SuppressWarnings("ResultOfObjectAllocationIgnored")
   private void doEditMapping()
   {
     int index = layerList.getSelectedIndex();
