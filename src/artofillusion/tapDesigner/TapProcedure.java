@@ -643,8 +643,8 @@ public class TapProcedure
     {
         int numObjects = theScene.getNumObjects();
 
-        for ( int i = 0; i < modules.size(); ++i )
-            if ( modules.get( i ) instanceof ObjectModule )
+        for (TapModule module: modules)
+            if ( module instanceof ObjectModule )
                 --numObjects;
 
         return numObjects;
@@ -1017,9 +1017,10 @@ public class TapProcedure
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void importTextures( BFrame parentFrame )
     {
-        TapImportFrame importFrame = new TapImportFrame( parentFrame, theScene, window.getScene(), false );
+        new TapImportFrame( parentFrame, theScene, window.getScene(), false );
         setModified( true );
     }
 
