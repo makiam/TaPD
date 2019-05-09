@@ -88,27 +88,6 @@ public class PreviewTapView extends BSplitPane implements TapView
     @Override
     public void initialize()
     {
-        /*
-         *  Vector modules = procPanel.getProcedure().getModules();
-         *  if ( modules == null )
-         *  return;
-         *  int count = tree.getChildNodeCount( tree.getRootNode() );
-         *  if ( count > 0 )
-         *  {
-         *  for ( int j = count - 1; j >= 0; --j )
-         *  {
-         *  tree.removeNode( tree.getChildNode( tree.getRootNode(), j ) );
-         *  }
-         *  }
-         *  TapModule mod = null;
-         *  for ( int i = 0; i < modules.size(); ++i )
-         *  {
-         *  TapModule module = (TapModule) modules.elementAt( i );
-         *  if ( module.acceptsPreview() )
-         *  addModule( module );
-         *  }
-         *  resetToPreferredSizes();
-         */
         syncModuleTree();
     }
 
