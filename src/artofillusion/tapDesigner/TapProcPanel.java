@@ -33,7 +33,7 @@ import javax.swing.*;
  */
 public class TapProcPanel extends BTabbedPane
 {
-    private Vector views;
+    private final List<TapView> views;
     private TapProcPanelHolder holder;
     private TapProcedure procedure;
     private TapUndoRecord undoRecord;
@@ -94,20 +94,17 @@ public class TapProcPanel extends BTabbedPane
         init = false;
         addEventLink( SelectionChangedEvent.class, this, "doSelectedTabChanged" );
         setSelectedTab( 0 );
-        activeModulePanel = (TapModulePanel) views.elementAt( 0 );
+        activeModulePanel = (TapModulePanel)views.get(0);
         addEventLink( KeyPressedEvent.class, this, "doKeyPressed" );
         addEventLink( KeyReleasedEvent.class, this, "doKeyReleased" );
 
     }
 
-    /**
-     *  Initialization
-     */
     private void initialize()
     {
-        for ( int i = 0; i < views.size(); ++i )
+        for (TapView panel: views)
         {
-            ( (TapView) views.elementAt( i ) ).initialize();
+            panel.initialize();
         }
     }
 
@@ -117,11 +114,7 @@ public class TapProcPanel extends BTabbedPane
      */
     public void closeWindows()
     {
-        for ( int i = 0; i < views.size(); ++i )
-        {
-            ( (TapView) views.elementAt( i ) ).closeWindows();
-
-        }
+        for(TapView panel: views) panel.closeWindows();
     }
 
 
@@ -238,19 +231,16 @@ public class TapProcPanel extends BTabbedPane
      */
     public void setNewProcedure( TapProcedure newProcedure )
     {
-        if ( newProcedure != null )
-        {
-            procedure = newProcedure;
-            for ( int i = 0; i < views.size(); ++i )
-            {
-                ( (TapView) views.elementAt( i ) ).closeWindows();
+        if(null == newProcedure) return;
+        
+        procedure = newProcedure;
+        for(TapView panel: views)
+            panel.closeWindows();
 
-            }
-            initialize();
-            layoutChildren();
-            repaint();
-            //holder.requestFocus();
-        }
+        initialize();
+        layoutChildren();
+        repaint();
+
     }
     
     /**
@@ -589,9 +579,9 @@ public class TapProcPanel extends BTabbedPane
 
         procedure.addModule( newModule );
         procedure.setModified( true );
-        for ( int i = 0; i < views.size(); ++i )
+        for (TapView panel: views)
         {
-            ( (TapView) views.elementAt( i ) ).addModule( newModule );
+            panel.addModule( newModule );
         }
     }
 
@@ -913,10 +903,10 @@ public class TapProcPanel extends BTabbedPane
      */
     public void minorViewSync( TapView view )
     {
-        for ( int i = 0; i < views.size(); ++i )
+        for(TapView panel: views)
         {
-            if ( view != views.elementAt( i ) )
-                ( (TapView) views.elementAt( i ) ).minorSync();
+            if(view == panel) continue;
+            panel.minorSync();
         }
         clearModulesState();
     }
@@ -943,13 +933,11 @@ public class TapProcPanel extends BTabbedPane
      */
     public void majorViewSync( TapView view )
     {
-        for ( int i = 0; i < views.size(); ++i )
+        for(TapView panel: views)
         {
-            if ( view != views.elementAt( i ) )
-            {
-                ( (TapView) views.elementAt( i ) ).closeWindows();
-                ( (TapView) views.elementAt( i ) ).initialize();
-            }
+            if(panel == view) continue;
+            panel.closeWindows();
+            panel.initialize();
         }
         layoutChildren();
     }
@@ -963,12 +951,10 @@ public class TapProcPanel extends BTabbedPane
      */
     protected void syncModuleAddition( TapView view )
     {
-        for ( int i = 0; i < views.size(); ++i )
+        for (TapView panel: views)
         {
-            if ( view != views.elementAt( i ) )
-            {
-                ( (TapView) views.elementAt( i ) ).syncModuleAddition();
-            }
+            if(panel == view) continue;
+            panel.syncModuleAddition();
         }
     }
 
