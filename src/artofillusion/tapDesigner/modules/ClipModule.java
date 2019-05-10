@@ -244,15 +244,11 @@ public class ClipModule extends TapModule
      *@author     Francois Guillet
      *@created    19 avril 2004
      */
-    private class ClipModuleDialog
-             extends BFrame
+    private class ClipModuleDialog extends BFrame
     {
-        private BButton okButton;
-        private BButton applyButton;
-        private BButton cancelButton;
+
         private BTextField minTF;
         private BTextField maxTF;
-        private JFrame parentFrame;
         private double backMin;
         private double backMax;
         private boolean modified;
@@ -268,7 +264,7 @@ public class ClipModule extends TapModule
         {
             super( TapBTranslate.text( "clipModuleTitle", name ) );
 
-            int i;
+
             modified = false;
             backMin = min;
             backMax = max;
@@ -292,15 +288,11 @@ public class ClipModule extends TapModule
             rc.add( maxTF, layoutTF );
             cc.add( rc, layoutTF );
 
-            okButton = TapBTranslate.bButton( "ok", this, "doOK" );
-            cancelButton = TapBTranslate.bButton( "cancel", this, "doCancel" );
-            applyButton = TapBTranslate.bButton( "apply", this, "doApplyButton" );
-
             LayoutInfo buttonLayout = new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.BOTH, new Insets( 6, 10, 6, 6 ), new Dimension( 0, 0 ) );
             GridContainer gc = new GridContainer( 3, 1 );
-            gc.add( okButton, 0, 0, buttonLayout );
-            gc.add( applyButton, 1, 0, buttonLayout );
-            gc.add( cancelButton, 2, 0, buttonLayout );
+            gc.add(TapBTranslate.bButton( "ok", this, "doOK" ), 0, 0, buttonLayout );
+            gc.add(TapBTranslate.bButton( "apply", this, "doApplyButton" ), 1, 0, buttonLayout );
+            gc.add(TapBTranslate.bButton( "cancel", this, "doCancel" ), 2, 0, buttonLayout );
             cc.add( gc, layout );
             setContent( cc );
             ( (JFrame) getComponent() ).setLocationRelativeTo( parentFrame );
@@ -321,12 +313,11 @@ public class ClipModule extends TapModule
         private void doValueChanged( ValueChangedEvent evt )
         {
             BTextField tf = (BTextField) evt.getWidget();
-            double dum;
             modified = true;
 
             try
             {
-                dum = Double.parseDouble( tf.getText().trim().replace( ',', '.' ) );
+                Double.parseDouble( tf.getText().trim().replace( ',', '.' ) );
                 ( (JTextField) tf.getComponent() ).setForeground( Color.black );
             }
             catch ( NumberFormatException ex )
@@ -344,16 +335,13 @@ public class ClipModule extends TapModule
          */
         private boolean getValues()
         {
-            double dum;
 
             try
             {
                 min = Double.parseDouble( minTF.getText().trim().replace( ',', '.' ) );
                 max = Double.parseDouble( maxTF.getText().trim().replace( ',', '.' ) );
 
-                if ( min <= max )
-                    return true;
-                return false;
+                return min <= max;
             }
             catch ( NumberFormatException ex )
             {
