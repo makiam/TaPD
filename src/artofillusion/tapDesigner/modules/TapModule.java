@@ -470,7 +470,7 @@ public abstract class TapModule
      *
      *@param  numOutput  The new numOutput value
      */
-    protected void setNumOutput( int numOutput )
+    protected final void setNumOutput( int numOutput )
     {
         this.numOutput = numOutput;
         linkToIndex = new int[numOutput][];
@@ -502,7 +502,7 @@ public abstract class TapModule
      *
      *@param  numInput  The new numInput value
      */
-    protected void setNumInput( int numInput )
+    protected final void setNumInput( int numInput )
     {
         this.numInput = numInput;
 
