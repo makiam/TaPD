@@ -196,8 +196,7 @@ public abstract class TapModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public TapModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public TapModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         short version;
         int tmp;
@@ -260,8 +259,7 @@ public abstract class TapModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         out.writeShort( 0 );
         out.writeUTF( name );
@@ -277,46 +275,27 @@ public abstract class TapModule
 
         for ( int i = 0; i < numOutput; ++i )
         {
-            if ( linkToIndex[i] != null )
-            {
+            if ( linkToIndex[i] == null )
+                out.writeInt(0);
+            else {
                 out.writeInt( linkToIndex[i].length );
 
                 for ( int j = 0; j < linkToIndex[i].length; ++j )
                     out.writeInt( linkToIndex[i][j] );
             }
-            else
-                out.writeInt( 0 );
 
-            if ( inputPortLink[i] != null )
-            {
+            if ( inputPortLink[i] == null )
+                out.writeInt(0);
+            else {
                 out.writeInt( inputPortLink[i].length );
 
                 for ( int j = 0; j < inputPortLink[i].length; ++j )
                     out.writeInt( inputPortLink[i][j] );
             }
-            else
-                out.writeInt( 0 );
 
         }
 
     }
-
-
-    /*
-     *  used to debug
-     */
-    /**
-     *  Description of the Method
-     */
-    public void printSelf()
-    {
-        System.out.println( this );
-
-        if ( inputPortLink[0] != null )
-            for ( int i = 0; i < inputPortLink[0].length; ++i )
-                System.out.println( "To : " + linkToIndex[0][i] + " Port: " + inputPortLink[0][i] );
-    }
-
 
     /**
      *  Sets the modules attribute of the TapModule object
@@ -1161,11 +1140,9 @@ public abstract class TapModule
      */
     public void updateModuleWindow()
     {
-        if ( editBDialog != null )
-            if ( editBDialog instanceof EditWidgetDialog )
-            {
-                ( (EditWidgetDialog) editBDialog ).showValues( true );
-            }
+        if ( editBDialog != null && editBDialog instanceof EditWidgetDialog ) {
+            ( (EditWidgetDialog) editBDialog ).showValues( true );
+        }
     }
 
 
