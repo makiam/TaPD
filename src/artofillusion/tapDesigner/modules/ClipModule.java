@@ -212,7 +212,6 @@ public class ClipModule extends TapModule
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         editDialog = null;
 

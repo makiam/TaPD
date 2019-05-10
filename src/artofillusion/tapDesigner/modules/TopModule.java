@@ -101,8 +101,7 @@ public class TopModule extends TapModule implements Cloneable
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public TopModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public TopModule( DataInputStream in, Scene theScene )throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -130,8 +129,7 @@ public class TopModule extends TapModule implements Cloneable
      *@exception  IOException  Description of the Exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene )throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -187,7 +185,6 @@ public class TopModule extends TapModule implements Cloneable
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         if ( isEditDialogOn )
             editDialog.toFront();
@@ -535,11 +532,7 @@ public class TopModule extends TapModule implements Cloneable
      *@author     pims
      *@created    19 avril 2004
      */
-    private class TopModuleDialog
-             extends JFrame
-             implements ActionListener,
-            DocumentListener,
-            ChangeListener
+    private class TopModuleDialog extends JFrame implements ActionListener, DocumentListener, ChangeListener
     {
         private JButton okButton;
         private JButton applyButton;
@@ -590,8 +583,7 @@ public class TopModule extends TapModule implements Cloneable
             JPanel p = new JPanel();
             p.setLayout( new FlowLayout( FlowLayout.LEFT ) );
 
-            JLabel tmpLabel = TapDesignerTranslate.jlabel( "enterProbability" );
-            p.add( tmpLabel );
+            p.add(TapDesignerTranslate.jlabel( "enterProbability" ));
             textField = new JTextField( String.valueOf( backProbability ) );
             textField.setColumns( 8 );
             p.add( textField );
@@ -600,8 +592,8 @@ public class TopModule extends TapModule implements Cloneable
 
             p = new JPanel();
             p.setLayout( new FlowLayout( FlowLayout.LEFT ) );
-            tmpLabel = TapDesignerTranslate.jlabel( "enterInward" );
-            p.add( tmpLabel );
+            
+            p.add(TapDesignerTranslate.jlabel( "enterInward" ));
             inwardTF = new JTextField( String.valueOf( backInward ) );
             inwardTF.setColumns( 8 );
             p.add( inwardTF );
@@ -656,13 +648,13 @@ public class TopModule extends TapModule implements Cloneable
             rSizeFactorSL.setMinorTickSpacing( 10 );
             rSizeFactorSL.setPaintTicks( true );
 
-            Hashtable labelTable = new Hashtable();
+            Hashtable<Integer, JLabel> labelTable = new Hashtable();
 
             //Dimension dim = rSizeFactorSL.getPreferredSize();
-            labelTable.put( new Integer( 0 ), tmpLabel = TapDesignerTranslate.jlabel( "none" ) );
+            labelTable.put(0, TapDesignerTranslate.jlabel( "none" ) );
 
             //dim.width += tmpLabel.getPreferredSize().width/2;
-            labelTable.put( new Integer( 100 ), tmpLabel = TapDesignerTranslate.jlabel( "full" ) );
+            labelTable.put(100, TapDesignerTranslate.jlabel( "full" ) );
 
             //dim.width += tmpLabel.getPreferredSize().width/2;
             rSizeFactorSL.setLabelTable( labelTable );
@@ -806,7 +798,7 @@ public class TopModule extends TapModule implements Cloneable
 
             try
             {
-                double dum = Double.parseDouble( textField.getText().trim().replace( ',', '.' ) );
+                Double.parseDouble( textField.getText().trim().replace( ',', '.' ) );
                 textField.setForeground( Color.black );
             }
             catch ( NumberFormatException e )
@@ -816,7 +808,7 @@ public class TopModule extends TapModule implements Cloneable
 
             try
             {
-                double dum = Double.parseDouble( inwardTF.getText().trim().replace( ',', '.' ) );
+                Double.parseDouble( inwardTF.getText().trim().replace( ',', '.' ) );
                 textField.setForeground( Color.black );
             }
             catch ( NumberFormatException e )

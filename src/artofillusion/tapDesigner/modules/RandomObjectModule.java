@@ -15,7 +15,6 @@
 package artofillusion.tapDesigner;
 
 import artofillusion.*;
-import artofillusion.object.*;
 import artofillusion.tapDesigner.BackModuleLink.BackLink;
 
 import buoy.event.*;
@@ -104,8 +103,7 @@ public class RandomObjectModule extends TapModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public RandomObjectModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public RandomObjectModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -164,8 +162,7 @@ public class RandomObjectModule extends TapModule
      *@exception  IOException  Description of the Exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
 
@@ -333,7 +330,6 @@ public class RandomObjectModule extends TapModule
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         editDialog = null;
 
@@ -413,15 +409,12 @@ public class RandomObjectModule extends TapModule
     @Override
     public TapDesignerObjectCollection getObject( TapDesignerObjectCollection collection, int inputPort, long seed )
     {
-        ObjectInfo anInfo;
-        ObjectInfo mainObject;
         TapRandomGenerator gen = new TapRandomGenerator( seed );
         double rand;
         int index;
 
         if ( inputPort == 0 )
         {
-            mainObject = collection.elementAt( 0 ).objectInfo;
 
             if ( inputPortLink[0] != null )
             {
@@ -497,7 +490,7 @@ public class RandomObjectModule extends TapModule
         int i;
         double dum;
 
-        if ( back.size() == 0 )
+        if ( back.isEmpty() )
         {
             numInputProbs = 0;
             inputProbs = null;
@@ -689,13 +682,11 @@ public class RandomObjectModule extends TapModule
      *@author     pims
      *@created    19 avril 2004
      */
-    private class RandomObjectModuleDialog
-             extends BFrame
+    private class RandomObjectModuleDialog extends BFrame
     {
         private BButton okButton;
         private BButton applyButton;
         private BButton cancelButton;
-        private JFrame parentFrame;
         private NumberFormat format;
         private BTable inputTable;
         private BTable outputTable;
@@ -842,11 +833,11 @@ public class RandomObjectModule extends TapModule
             int row = evt.getRow();
 
             String val = (String) ( table.getCellValue( row, col ) );
-            double dum;
+
             modified = true;
             try
             {
-                dum = Double.parseDouble( val.trim().replace( ',', '.' ) );
+                Double.parseDouble( val.trim().replace( ',', '.' ) );
                 ( (JTable) table.getComponent() ).setGridColor( Color.black );
             }
             catch ( NumberFormatException ex )

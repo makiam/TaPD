@@ -150,7 +150,6 @@ public class AoIObjectModule extends ObjectModule
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         int numObjects = procedure.getNumObjects();
         if ( numObjects == 0 )
@@ -213,8 +212,7 @@ public class AoIObjectModule extends ObjectModule
      *@author     Francois Guillet
      *@created    19 avril 2004
      */
-    private class AoIObjectEditWidget
-             extends EditWidgetBase
+    private class AoIObjectEditWidget extends EditWidgetBase
     {
         private BComboBox objectChoice;
         private ObjectInfo dialogCurrentObject;
@@ -266,7 +264,6 @@ public class AoIObjectModule extends ObjectModule
             deliverCB = TapBTranslate.bCheckBox( "deliverDuplicates", deliverDuplicates );
             hiddenCB = TapBTranslate.bCheckBox( "hidden", !currentObject.visible );
 
-            BorderContainer content = new BorderContainer();
             ColumnContainer cc = new ColumnContainer();
             LayoutInfo layout = new LayoutInfo( LayoutInfo.WEST, LayoutInfo.NONE, new Insets( 3, 3, 3, 3 ), new Dimension( 0, 0 ) );
             LayoutInfo buttonLayout = new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.HORIZONTAL, new Insets( 3, 3, 3, 3 ), new Dimension( 0, 0 ) );

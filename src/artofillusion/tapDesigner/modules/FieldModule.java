@@ -114,8 +114,7 @@ public class FieldModule extends TapModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public FieldModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public FieldModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -148,8 +147,7 @@ public class FieldModule extends TapModule
      *@exception  IOException  Description of the Exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -219,7 +217,6 @@ public class FieldModule extends TapModule
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         if ( isEditDialogOn )
             editBDialog.toFront();
@@ -302,7 +299,6 @@ public class FieldModule extends TapModule
         double sizeR;
         double sizeY;
         double dum;
-        TapDistortParameters tmpParms;
         Vec3 size;
         String objName;
 
@@ -394,7 +390,6 @@ public class FieldModule extends TapModule
     public TapDesignerObjectCollection getObject( TapDesignerObjectCollection collection, int inputPort, long seed )
     {
 
-        double Ysize;
         Mat4 m;
         Mat4 mrot = null;
         ObjectInfo anInfo;
@@ -410,11 +405,9 @@ public class FieldModule extends TapModule
 
         CoordinateSystem dummyCS = new CoordinateSystem();
         CoordinateSystem coords = null;
-        TapDesignerObjectCollection col = null;
         TapDesignerObjectCollection tmpCollection = null;
         level = collection.elementAt( 0 ).getDecorationLevel();
         TapRandomGenerator gen = new TapRandomGenerator( seed );
-        BackModuleLink.BackLink bl;
         double dum;
         double dumr;
         Vec3 tr = null;
@@ -436,11 +429,10 @@ public class FieldModule extends TapModule
             TriangleMesh triMesh = (TriangleMesh) mainObject.object;
             mainObject.coords = new CoordinateSystem();
             TapDesignerObjectCollection newCollection = new TapDesignerObjectCollection( procedure );
-            BackModuleLink backLinks = procedure.getBackLink();
             size = mainObject.object.getBounds().getSize();
             sizeR = collection.elementAt( 0 ).sizeR;
             sizeY = collection.elementAt( 0 ).sizeY;
-            Ysize = size.y;
+
             if ( coverType == UNIFORM )
             {
                 //find out maximum size
@@ -837,20 +829,6 @@ public class FieldModule extends TapModule
         return 1;
     }
 
-
-    /*
-     *  public String getEditWidgetName( int index )
-     *  {
-     *  switch ( index )
-     *  {
-     *  default:
-     *  case 0:
-     *  return TapBTranslate.text( "fieldMainParameters" );
-     *  case 1:
-     *  return TapBTranslate.text( "distortFirstParameters" );
-     *  }
-     *  }
-     */
     /**
      *  Gets the edit frame referenced by index
      *
@@ -863,16 +841,6 @@ public class FieldModule extends TapModule
     public Widget getEditWidget( int index, Runnable cb, boolean standalone )
     {
         return new FieldModuleEditWidget( cb, standalone, this );
-        /*
-         *  switch ( index )
-         *  {
-         *  default:
-         *  case 0:
-         *  return new FieldModuleEditWidget( cb, standalone, this );
-         *  case 1:
-         *  return parms.getFirstEditWidget( cb, standalone, "fieldModuleTitle", this );
-         *  }
-         */
     }
 
 
@@ -882,8 +850,7 @@ public class FieldModule extends TapModule
      *@author     Francois Guillet
      *@created    19 avril 2004
      */
-    private class FieldModuleEditWidget
-             extends EditWidgetBase
+    private class FieldModuleEditWidget extends EditWidgetBase
     {
         private BComboBox coverChoice;
         private BCheckBox followOrientCB;
@@ -1123,7 +1090,7 @@ public class FieldModule extends TapModule
          */
         private void updateValues()
         {
-            estimateSpinner.setValue( new Integer( estimate ) );
+            estimateSpinner.setValue(estimate);
             followOrientCB.setState( followMeshOrientation );
             sizeChildrenCB.setState( sizeChildren );
             TapUtils.setDistRadioButton( sizeDistType, sizeDistURB, sizeDistGRB );
@@ -1166,7 +1133,7 @@ public class FieldModule extends TapModule
         @Override
         protected void getValues()
         {
-            estimate = ( (Integer) estimateSpinner.getValue() ).intValue();
+            estimate = ( (Integer) estimateSpinner.getValue() );
             followMeshOrientation = followOrientCB.getState();
             sizeChildren = sizeChildrenCB.getState();
             coverType = (short) coverChoice.getSelectedIndex();

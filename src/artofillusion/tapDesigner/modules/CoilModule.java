@@ -410,7 +410,6 @@ public class CoilModule extends TapModule
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         if ( isEditDialogOn )
             editDialog.toFront();

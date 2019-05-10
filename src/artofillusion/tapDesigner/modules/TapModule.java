@@ -459,7 +459,7 @@ public abstract class TapModule
      *
      *@param  name  The new name value
      */
-    public void setName( String name )
+    public final void setName( String name )
     {
         this.name = name;
     }
@@ -907,10 +907,7 @@ public abstract class TapModule
      *
      *@param  parentFrame  Description of the Parameter
      */
-    public void edit( BFrame parentFrame )
-    {
-
-    }
+    public abstract void edit( BFrame parentFrame );
 
 
     /**

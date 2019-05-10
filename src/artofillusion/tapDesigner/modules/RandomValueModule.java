@@ -82,8 +82,7 @@ public class RandomValueModule extends TapModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public RandomValueModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public RandomValueModule( DataInputStream in, Scene theScene )throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -107,8 +106,7 @@ public class RandomValueModule extends TapModule
      *@exception  IOException  Description of the Exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -209,7 +207,6 @@ public class RandomValueModule extends TapModule
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         editDialog = null;
 
@@ -232,16 +229,11 @@ public class RandomValueModule extends TapModule
      *@author     pims
      *@created    19 avril 2004
      */
-    private class RandomValueModuleDialog
-             extends BFrame
+    private class RandomValueModuleDialog extends BFrame
     {
-        private BButton okButton;
-        private BButton applyButton;
-        private BButton cancelButton;
         private BTextField meanTF;
         private BTextField stdDevTF;
         private BRadioButton uniformRB;
-        private JFrame parentFrame;
         private double backMean;
         private double backStdDev;
         private short backDistType;
@@ -296,15 +288,11 @@ public class RandomValueModule extends TapModule
 
             cc.add( ccc, layoutTF );
 
-            okButton = TapBTranslate.bButton( "ok", this, "doOK" );
-            cancelButton = TapBTranslate.bButton( "cancel", this, "doCancel" );
-            applyButton = TapBTranslate.bButton( "apply", this, "doApplyButton" );
-
             LayoutInfo buttonLayout = new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.BOTH, new Insets( 6, 10, 6, 6 ), new Dimension( 0, 0 ) );
             GridContainer gc = new GridContainer( 3, 1 );
-            gc.add( okButton, 0, 0, buttonLayout );
-            gc.add( applyButton, 1, 0, buttonLayout );
-            gc.add( cancelButton, 2, 0, buttonLayout );
+            gc.add(TapBTranslate.bButton( "ok", this, "doOK" ), 0, 0, buttonLayout );
+            gc.add(TapBTranslate.bButton( "apply", this, "doApplyButton" ), 1, 0, buttonLayout );
+            gc.add(TapBTranslate.bButton( "cancel", this, "doCancel" ), 2, 0, buttonLayout );
             cc.add( gc, layout );
             setContent( cc );
             ( (JFrame) getComponent() ).setLocationRelativeTo( parentFrame );
@@ -335,12 +323,11 @@ public class RandomValueModule extends TapModule
         private void doValueChanged( ValueChangedEvent evt )
         {
             BTextField tf = (BTextField) evt.getWidget();
-            double dum;
             modified = true;
 
             try
             {
-                dum = Double.parseDouble( tf.getText().trim().replace( ',', '.' ) );
+                Double.parseDouble( tf.getText().trim().replace( ',', '.' ) );
                 ( (JTextField) tf.getComponent() ).setForeground( Color.black );
             }
             catch ( NumberFormatException ex )
@@ -358,7 +345,6 @@ public class RandomValueModule extends TapModule
          */
         private boolean getValues()
         {
-            double dum;
 
             try
             {

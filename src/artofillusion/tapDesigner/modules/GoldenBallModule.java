@@ -152,8 +152,7 @@ public class GoldenBallModule extends TapModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public GoldenBallModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public GoldenBallModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -200,8 +199,7 @@ public class GoldenBallModule extends TapModule
      *@exception  IOException  Description of the Exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -296,7 +294,6 @@ public class GoldenBallModule extends TapModule
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         if ( isEditDialogOn )
             editDialog.toFront();
@@ -393,7 +390,6 @@ public class GoldenBallModule extends TapModule
         double sizeR;
         double sizeY;
         double dum;
-        TapDistortParameters tmpParms;
         Vec3 size;
         String objName;
         double[] yValArray = new double[1];
@@ -548,7 +544,6 @@ public class GoldenBallModule extends TapModule
 
         CoordinateSystem dummyCS = new CoordinateSystem();
         CoordinateSystem coords = null;
-        TapDesignerObjectCollection col = null;
         TapDesignerObjectCollection tmpCollection = null;
         level = collection.elementAt( 0 ).getDecorationLevel();
 
@@ -559,7 +554,6 @@ public class GoldenBallModule extends TapModule
         double thetaOrigin;
         double normalize;
         double densityInput;
-        BoundingBox bounds;
         TapDistortParameters tmpParms;
         Vec3 tr = null;
         boolean go_on;
@@ -897,11 +891,7 @@ public class GoldenBallModule extends TapModule
      *@author     Francois Guillet
      *@created    19 avril 2004
      */
-    private class GoldenBallModuleDialog
-             extends JFrame
-             implements ActionListener,
-            DocumentListener,
-            ChangeListener
+    private class GoldenBallModuleDialog extends JFrame implements ActionListener, DocumentListener, ChangeListener
     {
         private JButton okButton;
         private JButton applyButton;
@@ -1153,13 +1143,12 @@ public class GoldenBallModule extends TapModule
             rSizeFactorSL.setMinorTickSpacing( 10 );
             rSizeFactorSL.setPaintTicks( true );
 
-            Hashtable labelTable = new Hashtable();
-            JLabel tmpLabel;
-            Dimension dim = rSizeFactorSL.getPreferredSize();
-            labelTable.put( new Integer( 0 ), tmpLabel = TapDesignerTranslate.jlabel( "none" ) );
+            Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
+
+            labelTable.put(0, TapDesignerTranslate.jlabel( "none" ) );
 
             //dim.width += tmpLabel.getPreferredSize().width/2;
-            labelTable.put( new Integer( 100 ), tmpLabel = TapDesignerTranslate.jlabel( "full" ) );
+            labelTable.put(100, TapDesignerTranslate.jlabel( "full" ) );
 
             //dim.width += tmpLabel.getPreferredSize().width/2;
             rSizeFactorSL.setLabelTable( labelTable );
@@ -1366,8 +1355,8 @@ public class GoldenBallModule extends TapModule
             leafRRatioSL.setMinorTickSpacing( 10 );
             leafRRatioSL.setPaintTicks( true );
             labelTable = new Hashtable();
-            labelTable.put( new Integer( 0 ), tmpLabel = TapDesignerTranslate.jlabel( "constant" ) );
-            labelTable.put( new Integer( 100 ), tmpLabel = TapDesignerTranslate.jlabel( "normalized" ) );
+            labelTable.put(0, TapDesignerTranslate.jlabel( "constant" ) );
+            labelTable.put(100, TapDesignerTranslate.jlabel( "normalized" ) );
             leafRRatioSL.setLabelTable( labelTable );
             leafRRatioSL.setPaintLabels( true );
             pp.add( p );
@@ -1760,7 +1749,7 @@ public class GoldenBallModule extends TapModule
             {
                 try
                 {
-                    int dum = ( Integer.valueOf( source.getText().trim() ) ).intValue();
+                    Integer.valueOf( source.getText().trim() );
                     source.setForeground( Color.black );
                 }
                 catch ( NumberFormatException ex )
@@ -1772,7 +1761,7 @@ public class GoldenBallModule extends TapModule
             {
                 try
                 {
-                    double dum = Double.parseDouble( source.getText().trim().replace( ',', '.' ) );
+                    Double.parseDouble( source.getText().trim().replace( ',', '.' ) );
                     source.setForeground( Color.black );
                 }
                 catch ( NumberFormatException ex )
@@ -1835,7 +1824,7 @@ public class GoldenBallModule extends TapModule
                 sizeChildren = sizeChildrenCB.isSelected();
                 rSizeFactor = (double) rSizeFactorSL.getValue() / 100.0;
                 ySizeFactor = (double) ySizeFactorSL.getValue() / 100.0;
-                estimate = ( Integer.valueOf( estimateTF.getText().trim() ) ).intValue();
+                estimate = ( Integer.valueOf( estimateTF.getText().trim() ) );
                 inward = Double.parseDouble( inwardTF.getText().trim().replace( ',', '.' ) );
 
                 if ( estimate < 1 )
@@ -1853,8 +1842,7 @@ public class GoldenBallModule extends TapModule
                 smParms.curveAngleDistType = getRadioType( curveDistURB, curveDistGRB );
                 smParms.perpCurveAngleDistType = getRadioType( perpCurveDistURB, perpCurveDistGRB );
                 smParms.randomTilt = Double.parseDouble( randomTiltTF.getText().trim().replace( ',', '.' ) );
-                smParms.randomTiltDiv = ( Integer.valueOf( randomTiltDivTF.getText().trim() ) )
-                        .intValue();
+                smParms.randomTiltDiv = ( Integer.valueOf( randomTiltDivTF.getText().trim() ) );
                 smParms.twistTurns = Double.parseDouble( twistTurnsTF.getText().trim().replace( ',', '.' ) );
                 smParms.twistTurnsDist = Double.parseDouble( twistTurnsDistTF.getText().trim().replace( ',', '.' ) );
                 smParms.twistDistType = getRadioType( twistDistURB, twistDistGRB );

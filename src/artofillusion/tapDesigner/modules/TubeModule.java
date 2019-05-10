@@ -140,7 +140,6 @@ public class TubeModule extends ObjectModule
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         if ( isEditDialogOn )
             editBDialog.toFront();

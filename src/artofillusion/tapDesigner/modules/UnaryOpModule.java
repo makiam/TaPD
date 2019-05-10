@@ -301,7 +301,6 @@ public class UnaryOpModule extends TapModule
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         editDialog = null;
 
@@ -314,10 +313,6 @@ public class UnaryOpModule extends TapModule
         }
     }
 
-
-    //}}}
-
-    //{{{ edit frame methods and class
     /**
      *  Gets the number of edit frames used by the unary operation module
      *
@@ -365,8 +360,7 @@ public class UnaryOpModule extends TapModule
      *@author     Francois Guillet
      *@created    14 mai 2004
      */
-    public class UnaryOpEditWidget
-             extends EditWidgetBase
+    public class UnaryOpEditWidget extends EditWidgetBase
     {
         private BComboBox opCombo;
 

@@ -49,10 +49,6 @@ public class BinaryOpModule extends TapModule
             "+", "-", "*", "/", ">", "<", "Min", "Max", "Power"
             };
 
-
-//}}}
-
-    //{{{ Constructor
     /**
      *  Constructor for the BinaryOpModule object
      *
@@ -70,10 +66,6 @@ public class BinaryOpModule extends TapModule
         setup();
     }
 
-
-    //}}}
-
-    //{{{ Module setup
     /**
      *  Module setup
      */
@@ -94,9 +86,6 @@ public class BinaryOpModule extends TapModule
     }
 
 
-    //}}}
-
-    //{{{ read/write method
     /**
      *  Reads a BinaryOpModule object from file
      *
@@ -106,8 +95,7 @@ public class BinaryOpModule extends TapModule
      *@exception  IOException             Read exception
      *@exception  InvalidObjectException  Object version Exception
      */
-    public BinaryOpModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public BinaryOpModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -139,9 +127,6 @@ public class BinaryOpModule extends TapModule
     }
 
 
-    //}}}
-
-    //{{{ duplicate
     /**
      *  Returns a duplicate of this module
      *
@@ -158,9 +143,6 @@ public class BinaryOpModule extends TapModule
     }
 
 
-    //}}}
-
-    //{{{ get value
     /**
      *  Gets the value output of the BinaryOpModule object
      *
@@ -210,11 +192,6 @@ public class BinaryOpModule extends TapModule
             //should never happen !!!
         }
     }
-
-
-    //}}}
-
-    //{{{ value calculus
 
     /**
      *  Actual calculation of the value
@@ -301,10 +278,6 @@ public class BinaryOpModule extends TapModule
         return false;
     }
 
-
-    //}}}
-
-    //{{{ edit
     /**
      *  This method creates and displays an edit window.
      *
@@ -313,7 +286,6 @@ public class BinaryOpModule extends TapModule
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         editDialog = null;
 
@@ -327,9 +299,6 @@ public class BinaryOpModule extends TapModule
     }
 
 
-    //}}}
-
-    //{{{ get module type info
     /**
      *  Gets the moduleTypeInfo associated to the BinaryOpModule object
      *
@@ -341,10 +310,6 @@ public class BinaryOpModule extends TapModule
         return typeInfo;
     }
 
-
-    //}}}
-
-    //{{{ edit frame methods and class
     /**
      *  Gets the number of edit frames used by the unary operation module
      *
@@ -368,7 +333,6 @@ public class BinaryOpModule extends TapModule
     @Override
     public Widget getEditWidget( int index, Runnable cb, boolean standalone )
     {
-        //System.out.println( "getEditWidget" );
         return new BinaryOpEditWidget( cb, standalone, this );
     }
 
@@ -392,8 +356,7 @@ public class BinaryOpModule extends TapModule
      *@author     Francois Guillet
      *@created    14 mai 2004
      */
-    public class BinaryOpEditWidget
-             extends EditWidgetBase
+    public class BinaryOpEditWidget extends EditWidgetBase
     {
         private BComboBox opCombo;
 

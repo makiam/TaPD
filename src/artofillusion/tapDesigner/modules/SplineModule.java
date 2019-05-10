@@ -124,8 +124,7 @@ public class SplineModule extends ObjectModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public SplineModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public SplineModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -147,8 +146,7 @@ public class SplineModule extends ObjectModule
      *@exception  IOException  Description of the Exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -190,7 +188,6 @@ public class SplineModule extends ObjectModule
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         if ( isEditDialogOn )
             editBDialog.toFront();

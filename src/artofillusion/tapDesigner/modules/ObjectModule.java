@@ -329,10 +329,8 @@ public abstract class ObjectModule extends TapModule
     public ObjectInfo getSizedObject( TapRandomGenerator gen )
     {
         ObjectInfo info;
-        BoundingBox bounds;
         double dum;
         Vec3 size;
-        CoordinateSystem coords;
 
         double sizeR = 1.0;
         double sizeY = 1.0;

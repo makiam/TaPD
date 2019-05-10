@@ -87,8 +87,7 @@ public class DistortModule extends TapModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public DistortModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public DistortModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -111,8 +110,7 @@ public class DistortModule extends TapModule
      *@exception  IOException  Description of the Exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -146,7 +144,6 @@ public class DistortModule extends TapModule
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         if ( isEditDialogOn )
             editDialog.toFront();
@@ -390,11 +387,7 @@ public class DistortModule extends TapModule
      *@author     Francois Guillet
      *@created    19 avril 2004
      */
-    private class DistortModuleDialog
-             extends JFrame
-             implements ActionListener,
-            DocumentListener,
-            ChangeListener
+    private class DistortModuleDialog extends JFrame implements ActionListener, DocumentListener, ChangeListener
     {
         private JButton okButton;
         private JButton applyButton;
@@ -434,7 +427,6 @@ public class DistortModule extends TapModule
         private ButtonGroup leafCurveDistBG;
         private JRadioButton leafCurveDistGRB;
         private JRadioButton leafCurveDistURB;
-        private Container contentPane;
 
 
         /**
@@ -607,10 +599,10 @@ public class DistortModule extends TapModule
             leafRRatioSL.setMinorTickSpacing( 10 );
             leafRRatioSL.setPaintTicks( true );
 
-            Hashtable labelTable = new Hashtable();
-            JLabel tmpLabel;
-            labelTable.put( new Integer( 0 ), tmpLabel = TapDesignerTranslate.jlabel( "constant" ) );
-            labelTable.put( new Integer( 100 ), tmpLabel = TapDesignerTranslate.jlabel( "normalized" ) );
+            Hashtable<Integer, JLabel> labelTable = new Hashtable<>();
+            
+            labelTable.put(0, TapDesignerTranslate.jlabel( "constant" ) );
+            labelTable.put(100, TapDesignerTranslate.jlabel( "normalized" ) );
             leafRRatioSL.setLabelTable( labelTable );
             leafRRatioSL.setPaintLabels( true );
             pp.add( p );

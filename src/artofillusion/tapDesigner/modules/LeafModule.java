@@ -107,8 +107,7 @@ public class LeafModule extends ObjectModule
      *@exception  IOException  Description of the Exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -176,7 +175,6 @@ public class LeafModule extends ObjectModule
     @Override
     public void edit( BFrame parentFrame )
     {
-        super.edit( parentFrame );
 
         int numObjects = procedure.getNumObjects();
         if ( numObjects == 0 )
@@ -239,8 +237,7 @@ public class LeafModule extends ObjectModule
      *@author     Francois Guillet
      *@created    19 avril 2004
      */
-    private class LeafEditWidget
-             extends EditWidgetBase
+    private class LeafEditWidget extends EditWidgetBase
     {
         private BComboBox objectChoice;
         private ObjectInfo dialogCurrentObject;
@@ -332,17 +329,6 @@ public class LeafModule extends ObjectModule
                 objectChoice.setEnabled( false );
             }
 
-            /*
-             *  GridContainer subgc = new GridContainer( 2, 2 );
-             *  subgc.setDefaultLayout( new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 2, 2, 2, 2 ), null ) );
-             *  subgc.add( TapBTranslate.bLabel( "section" ), 0, 0 );
-             *  subgc.add( uSmoothnessVF = new ValueField( ( (TapSplineMesh) currentObject.object ).getSplineMeshUSmoothness(), ValueField.NONNEGATIVE ), 0, 1 );
-             *  subgc.add( TapBTranslate.bLabel( "y" ), 1, 0 );
-             *  subgc.add( vSmoothnessVF = new ValueField( ( (TapSplineMesh) currentObject.object ).getSplineMeshVSmoothness(), ValueField.NONNEGATIVE ), 1, 1 );
-             *  cc.add( bo = new BOutline( subgc ), new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 1, 1, 1, 1 ), null ) );
-             *  bo.setBorder( BorderFactory.createTitledBorder( BorderFactory.createRaisedBevelBorder(), TapBTranslate.text( "smoothness" ) ) );
-             */
-            BorderContainer content = new BorderContainer();
             ColumnContainer cc = new ColumnContainer();
             LayoutInfo layout = new LayoutInfo( LayoutInfo.WEST, LayoutInfo.NONE, new Insets( 3, 3, 3, 3 ), null );
             LayoutInfo buttonLayout = new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.HORIZONTAL, new Insets( 3, 3, 3, 3 ), null );
@@ -367,8 +353,7 @@ public class LeafModule extends ObjectModule
             subgc.add( centerEdgesVF = new ValueField( edgeSmoothness, ValueField.NONNEGATIVE ), 0, 1 );
             subgc.add( TapBTranslate.bLabel( "vertices" ), 1, 0 );
             subgc.add( centerVerticesVF = new ValueField( vertSmoothness, ValueField.NONNEGATIVE ), 1, 1 );
-            BOutline bo;
-            cc.add( bo = new BOutline( subgc, BorderFactory.createTitledBorder( BorderFactory.createRaisedBevelBorder(), TapBTranslate.text( "leafCenter" ) ) ), new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 1, 1, 1, 1 ), null ) );
+            cc.add( new BOutline( subgc, BorderFactory.createTitledBorder( BorderFactory.createRaisedBevelBorder(), TapBTranslate.text( "leafCenter" ) ) ), new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 1, 1, 1, 1 ), null ) );
 
             subgc = new GridContainer( 2, 2 );
             subgc.setDefaultLayout( new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 2, 2, 2, 2 ), null ) );
@@ -376,7 +361,7 @@ public class LeafModule extends ObjectModule
             subgc.add( edgesEdgesVF = new ValueField( bondaryEdgeSmoothness, ValueField.NONNEGATIVE ), 0, 1 );
             subgc.add( TapBTranslate.bLabel( "vertices" ), 1, 0 );
             subgc.add( edgesVerticesVF = new ValueField( bondaryVertSmoothness, ValueField.NONNEGATIVE ), 1, 1 );
-            cc.add( bo = new BOutline( subgc, BorderFactory.createTitledBorder( BorderFactory.createRaisedBevelBorder(), TapBTranslate.text( "leafEdges" ) ) ), new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 1, 1, 1, 1 ), null ) );
+            cc.add(new BOutline( subgc, BorderFactory.createTitledBorder( BorderFactory.createRaisedBevelBorder(), TapBTranslate.text( "leafEdges" ) ) ), new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 1, 1, 1, 1 ), null ) );
 
             cc.add( textureButton, buttonLayout );
             cc.add( materialButton, buttonLayout );
@@ -413,6 +398,7 @@ public class LeafModule extends ObjectModule
         /**
          *  Sets the texture of the object
          */
+        @SuppressWarnings("ResultOfObjectAllocationIgnored")
         private void doTexture()
         {
             ObjectInfo[] obj = new ObjectInfo[1];
@@ -425,6 +411,7 @@ public class LeafModule extends ObjectModule
         /**
          *  Sets the object material
          */
+        @SuppressWarnings("ResultOfObjectAllocationIgnored")
         private void doMaterial()
         {
             ObjectInfo[] obj = new ObjectInfo[1];
@@ -676,10 +663,10 @@ public class LeafModule extends ObjectModule
         {
             leafTol = leafTolVF.getValue();
             thickness = thicknessVF.getValue();
-            edgeSmoothness = new Float( centerEdgesVF.getValue() ).floatValue();
-            vertSmoothness = new Float( centerVerticesVF.getValue() ).floatValue();
-            bondaryEdgeSmoothness = new Float( edgesEdgesVF.getValue() ).floatValue();
-            bondaryVertSmoothness = new Float( edgesVerticesVF.getValue() ).floatValue();
+            edgeSmoothness = new Float( centerEdgesVF.getValue() );
+            vertSmoothness = new Float( centerVerticesVF.getValue() );
+            bondaryEdgeSmoothness = new Float( edgesEdgesVF.getValue() );
+            bondaryVertSmoothness = new Float( edgesVerticesVF.getValue() );
         }
 
 
