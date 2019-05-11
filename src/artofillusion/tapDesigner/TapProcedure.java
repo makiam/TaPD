@@ -272,9 +272,6 @@ public class TapProcedure
         return nobj;
     }
 
-
-    //}}}
-
     //{{{ Adds an aoi object to the procedure
     /**
      *  Adds a feature to the Object attribute of the TapProcedure object
@@ -416,18 +413,15 @@ public class TapProcedure
     }
 
 
-    //}}}
-
-
-    //{{{ Adit levels
     /**
      *  Description of the Method
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void editRenderingLevel( BFrame parentFrame )
     {
-        EditDecorationLevel fr = new EditDecorationLevel( parentFrame, true );
+        new EditDecorationLevel( parentFrame, true );
     }
 
 
@@ -436,15 +430,13 @@ public class TapProcedure
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void editViewLevel( BFrame parentFrame )
     {
-        EditDecorationLevel fr = new EditDecorationLevel( parentFrame, false );
+        new EditDecorationLevel( parentFrame, false );
     }
 
 
-    //}}}
-
-    //{{{ duplicate procedure
     /**
      *  Description of the Method
      *
@@ -502,11 +494,6 @@ public class TapProcedure
         }
     }
 
-
-    //}}}
-
-    //{{{ Set procedure links
-
     /*
      *  set a link from a module to another one
      */
@@ -532,12 +519,6 @@ public class TapProcedure
         modified = true;
     }
 
-
-
-
-    /*
-     *  adds a module to the procedure
-     */
     /**
      *  Adds a feature to the Module attribute of the TapProcedure object
      *
@@ -553,9 +534,6 @@ public class TapProcedure
     }
 
 
-    //}}}
-
-    //{{{ add modules
     /**
      *  Adds a feature to the Modules attribute of the TapProcedure object
      *
@@ -633,10 +611,6 @@ public class TapProcedure
         return numObjects;
     }
 
-
-    //}}}
-
-    //{{{ changes the modified state if the TaPD object hold by the procedure
     /**
      *  Sets the modified attribute of the TapProcedure object
      *
@@ -669,8 +643,6 @@ public class TapProcedure
     }
 
 
-    //}}}
-
     //{{{ a minor change means that a the procedure is modified in a way that doesn't affect the generated object (e.g. renaming a module, changig its location, etc.)
     /**
      *  Description of the Method
@@ -679,9 +651,6 @@ public class TapProcedure
     {
         modified = true;
     }
-
-
-    //}}}
 
 
     //{{{ if the preview of the full TaPD object is asked for, or when the procedure has been duplicated, setting the current object avoids another full calculation of the object
@@ -697,10 +666,6 @@ public class TapProcedure
         currentObject = obj;
     }
 
-
-    //}}}
-
-    //{{{ returns the full TaPD object
     /**
      *  returns the full TaPD object
      *
@@ -761,10 +726,6 @@ public class TapProcedure
         return null;
     }
 
-
-    //}}}
-
-    //{{{ stream read/write
     //reads a procedure from a stream
     /**
      *  Constructor for the TapProcedure object
@@ -941,23 +902,16 @@ public class TapProcedure
         }
     }
 
-
-    //}}}
-
-
-    //{{{ Edit procedure random seed
     /**
      *  Description of the Method
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void editSeed( BFrame parentFrame )
     {
-        EditSeedDialog editSeedDialog = new EditSeedDialog( parentFrame );
+       new EditSeedDialog( parentFrame );
     }
-
-
-    //}}}
 
     //{{{ Back links management
 
@@ -990,9 +944,6 @@ public class TapProcedure
     {
         return backLinks;
     }
-
-
-    //}}}
 
     //{{{ Image, texture and material management
     /**
@@ -1050,6 +1001,7 @@ public class TapProcedure
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void manageImages( BFrame parentFrame )
     {
         new ImagesDialog( parentFrame, theScene, null );
@@ -1057,14 +1009,12 @@ public class TapProcedure
     }
 
 
-    //}}}
-
-    //{{{ Imported objects management
     /**
      *  Description of the Method
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void manageObjects( BFrame parentFrame )
     {
         new TapObjectsFrame( parentFrame, this );
@@ -1093,9 +1043,6 @@ public class TapProcedure
     }
 
 
-    //}}}
-
-    //{{{ Undo record buffer management
     /**
      *  Gets the undoRecordSize attribute of the TapProcedure object
      *
@@ -1161,18 +1108,13 @@ public class TapProcedure
         undoRecord.addRecord( anotherProcedure );
     }
 
-
-    //}}}
-
-    //{{{ Edit seed dialog
     /**
      *  Description of the Class
      *
      *@author     pims
      *@created    4 avril 2004
      */
-    private class EditSeedDialog
-             extends BDialog
+    private class EditSeedDialog extends BDialog
     {
         private BButton okButton;
         private BButton applyButton;
@@ -1329,8 +1271,6 @@ public class TapProcedure
     }
 
 
-    //}}}
-
     //{{{ Bounds (edit window size
     /**
      *  Gets the bounds attribute of the TapProcedure object
@@ -1353,8 +1293,6 @@ public class TapProcedure
         this.bounds = bounds;
     }
 
-
-    //}}}
 
 //{{{ proc panel and procPanelLayouts
 
@@ -1401,27 +1339,20 @@ public class TapProcedure
         return procPanel;
     }
 
-
-//}}}
-
-    //{{{ decoration edit dialog
     /**
      *  Description of the Class
      *
      *@author     pims
      *@created    4 avril 2004
      */
-    private class EditDecorationLevel
-             extends BDialog
+    private class EditDecorationLevel extends BDialog
     {
         private boolean rendering;
         private BRadioButton displayAll;
         private BRadioButton displayUpTo;
         private RadioButtonGroup group;
-        private BButton okButton;
-        private BButton cancelButton;
+
         private int level;
-        private BSpinner spinner;
         private BTextField value;
 
 
@@ -1462,8 +1393,6 @@ public class TapProcedure
             }
 
             value.addEventLink( ValueChangedEvent.class, this, "doValueChanged" );
-            okButton = TapBTranslate.bButton( "ok", this, "doOK" );
-            cancelButton = TapBTranslate.bButton( "cancel", this, "doCancel" );
 
             GridContainer gc = new GridContainer( 2, 3 );
             LayoutInfo layout = new LayoutInfo( LayoutInfo.WEST, LayoutInfo.NONE, new Insets( 0, 0, 0, 0 ), new Dimension( 0, 0 ) );
@@ -1472,8 +1401,8 @@ public class TapProcedure
             gc.add( displayUpTo, 0, 1, layout );
             gc.add( value, 1, 1 );
             layout = new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 2, 0, 4, 0 ), new Dimension( 0, 0 ) );
-            gc.add( okButton, 0, 2, layout );
-            gc.add( cancelButton, 1, 2, layout );
+            gc.add(TapBTranslate.bButton( "ok", this, "doOK" ), 0, 2, layout );
+            gc.add(TapBTranslate.bButton( "cancel", this, "doCancel" ), 1, 2, layout );
             setContent( gc );
             pack();
             ( (JDialog) getComponent() ).setLocationRelativeTo( parentFrame.getComponent() );
@@ -1568,23 +1497,15 @@ public class TapProcedure
         }
     }
 
-
-    //}}}
-
-    //{{{ Undo record size edit dialog
     /**
      *  Description of the Class
      *
      *@author     pims
      *@created    4 avril 2004
      */
-    private class EditUndoRecordSize
-             extends BDialog
+    private class EditUndoRecordSize extends BDialog
     {
-        private BButton okButton;
-        private BButton cancelButton;
-        private int level;
-        private BSpinner spinner;
+
         private BTextField value;
 
 
@@ -1600,9 +1521,6 @@ public class TapProcedure
             value = new BTextField( String.valueOf( undoRecordSize - 1 ), 5 );
             value.addEventLink( ValueChangedEvent.class, this, "doValueChanged" );
 
-            okButton = TapBTranslate.bButton( "ok", this, "doOK" );
-            cancelButton = TapBTranslate.bButton( "cancel", this, "doCancel" );
-
             ColumnContainer cc = new ColumnContainer();
             RowContainer rc = new RowContainer();
             LayoutInfo layout = new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 7, 4, 0, 4 ), new Dimension( 0, 0 ) );
@@ -1611,8 +1529,8 @@ public class TapProcedure
             cc.add( rc, layout );
             rc = new RowContainer();
             layout = new LayoutInfo( LayoutInfo.CENTER, LayoutInfo.NONE, new Insets( 0, 4, 7, 4 ), new Dimension( 0, 0 ) );
-            rc.add( okButton, layout );
-            rc.add( cancelButton, layout );
+            rc.add(TapBTranslate.bButton( "ok", this, "doOK" ), layout );
+            rc.add(TapBTranslate.bButton( "cancel", this, "doCancel" ), layout );
             cc.add( rc, layout );
             setContent( cc );
             pack();
@@ -1678,6 +1596,6 @@ public class TapProcedure
             }
         }
     }
-    //}}}
+
 }
 
