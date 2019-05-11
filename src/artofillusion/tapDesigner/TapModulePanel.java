@@ -33,7 +33,7 @@ import javax.swing.*;
  *  This panel shows a graphical representation of the procedure (modules and
  *  links).
  *
- *@author     Fançois Guillet
+ *@author     FanÃ§ois Guillet
  *@created    14 mars 2004
  */
 public class TapModulePanel

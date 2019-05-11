@@ -15,8 +15,8 @@ import java.util.*;
 /**
  *  Abstract class for storing TapViews parameters.
  *
- *@author     François Guillet
- *@created    15 août 2004
+ *@author     FranÃ§ois Guillet
+ *@created    15 aoÃ»t 2004
  */
 public abstract class ProcPanelLayoutData
 {

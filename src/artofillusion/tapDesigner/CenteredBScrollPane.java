@@ -18,7 +18,7 @@ import javax.swing.event.*;
  *  layoutChildren(). See BScrollPane documentation for more info. The layout
  *  functionality might be integrated in Buoy 1.1
  *
- *@author     François Guillet
+ *@author     FranÃ§ois Guillet
  *@created    10 mai 2004
  */
 

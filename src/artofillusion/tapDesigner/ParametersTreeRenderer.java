@@ -24,7 +24,7 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  The tree renderer for the modules tree
  *
- *@author     François Guillet
+ *@author     FranÃ§ois Guillet
  *@created    8 mai 2004
  */
 public class ParametersTreeRenderer extends DefaultTreeCellRenderer

@@ -33,7 +33,7 @@ import javax.swing.*;
 /**
  *  This tabbed pane holds all the panels necessary for procedure editing
  *
- *@author     François Guillet
+ *@author     FranÃ§ois Guillet
  *@created    14 mars 2004
  */
 public class TapProcPanel

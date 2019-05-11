@@ -19,7 +19,7 @@ import java.util.*;
  *  Description of the Class
  *
  *@author     pims
- *@created    12 août 2004
+ *@created    12 aoÃ»t 2004
  */
 public class TapDistortParameters
 {
@@ -240,7 +240,7 @@ public class TapDistortParameters
      *  Description of the Class
      *
      *@author     pims
-     *@created    12 août 2004
+     *@created    12 aoÃ»t 2004
      */
     public class FirstEditWidget
              extends EditWidgetBase

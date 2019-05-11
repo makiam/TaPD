@@ -35,7 +35,7 @@ import java.util.Vector;
  *  Description of the Class
  *
  *@author     pims
- *@created    16 août 2004
+ *@created    16 aoÃ»t 2004
  */
 public class TapTube
          extends Tube

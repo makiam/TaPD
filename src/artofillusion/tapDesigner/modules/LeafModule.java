@@ -37,7 +37,7 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  This class represents an leaf object module
  *
- *@author     Francçois Guillet
+ *@author     FrancÃ§ois Guillet
  *@created    19 avril 2004
  */
 public class LeafModule
