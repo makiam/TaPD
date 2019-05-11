@@ -4,7 +4,7 @@
  *  is addressed here
  */
 /*
- *  Copyright 2003 Francois Guillet
+ *  Copyright 2003 François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -20,6 +20,9 @@ import artofillusion.*;
 import artofillusion.animation.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
+import artofillusion.ui.EditingTool;
+import artofillusion.ui.EditingWindow;
+import artofillusion.ui.ToolPalette;
 import buoy.event.*;
 import buoy.widget.*;
 import java.awt.*;
@@ -31,10 +34,10 @@ import javax.swing.*;
  *  This frame allows the user to design a Tree or a Plant object. Its function
  *  is to edit a TaPD procedure.
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    14 mars 2004
  */
-public class TapFrame extends BFrame implements TapProcPanelHolder
+public class TapFrame extends BFrame implements EditingWindow, TapProcPanelHolder
 {
     private LayoutWindow window;
     private BMenuBar theMenuBar;
@@ -141,9 +144,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         }
     }
 
-
-    //}}}
-
     //{{{ Components initialization
     /**
      *  Initialization of the frame widgets
@@ -152,7 +152,7 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
      */
     private void initComponents( TapProcedure procedure )
     {
-        procPanel = new TapProcPanel( procedure, (TapProcPanelHolder) this );
+        procPanel = new TapProcPanel( procedure, this );
 
         theMenuBar = new BMenuBar();
         editMenu = TapBTranslate.bMenu( "edit" );
@@ -368,9 +368,9 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         sceneMenu.add( TapBTranslate.bMenuItem( "editViewLevel", this, "editViewLevel" ) );
         sceneMenu.add( TapBTranslate.bMenuItem( "editRenderingLevel", this, "editRenderingLevel" ) );
         sceneMenu.addSeparator();
-        sceneMenu.add( TapBTranslate.bMenuItem( "textures", procPanel, "manageTextures" ) );
+        sceneMenu.add( TapBTranslate.bMenuItem( "textures", procPanel, "manageTexturesAndMaterials" ) );
         sceneMenu.add( TapBTranslate.bMenuItem( "importTextures", procPanel, "importTextures" ) );
-        sceneMenu.add( TapBTranslate.bMenuItem( "materials", procPanel, "manageMaterials" ) );
+        
         sceneMenu.add( TapBTranslate.bMenuItem( "importMaterials", procPanel, "importMaterials" ) );
         sceneMenu.add( TapBTranslate.bMenuItem( "images", procPanel, "manageImages" ) );
         sceneMenu.add( manageObjectsItem = TapBTranslate.bMenuItem( "importedObjects", this, "manageObjects" ) );
@@ -420,8 +420,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
     }
 
 
-    //}}}
-
     //{{{ Ok button clicked
     /**
      *  Description of the Method
@@ -450,9 +448,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         exitDesigner();
     }
 
-
-    //}}}
-
     //{{{ Cancel button clicked
     /**
      *  Description of the Method
@@ -462,8 +457,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         exitDesigner();
     }
 
-
-    //}}}
 
     //{{{ Paste as objects
     /**
@@ -478,8 +471,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         window.updateMenus();
     }
 
-
-    //}}}
 
     //{{{ Paste as plant
     /**
@@ -556,10 +547,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         }
     }
 
-
-    //}}}
-
-    //{{{ Resized Event
     /**
      *  Description of the Method
      */
@@ -568,7 +555,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         procPanel.getProcedure().notifyMinorChange();
     }
 
-    //}}}
 
     //{{{ Import TaPD procedure
     /**
@@ -607,8 +593,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         }
     }
 
-
-    //}}}
     //{{{ Import from scene
     /**
      *  Description of the Method
@@ -674,9 +658,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         return procedure;
     }
 
-
-    //}}}
-
     //{{{ AoI object management
     /**
      *  Description of the Method
@@ -707,9 +688,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
 
     }
 
-
-    //}}}
-
     //{{{ Edit view levels
     /**
      *  Description of the Method
@@ -729,9 +707,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
     }
 
 
-    //}}}
-
-    //{{{ Getters
     /**
      *  Gets the procedure attribute of the TapFrame object
      *
@@ -748,21 +723,10 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
      *
      *@return    The scene value
      */
+    @Override
     public Scene getScene()
     {
         return theScene;
-    }
-
-
-    /**
-     *  Gets the bFrame attribute of the TapFrame object
-     *
-     *@return    The bFrame value
-     */
-    @Override
-    public BFrame getBFrame()
-    {
-        return (BFrame) this;
     }
 
 
@@ -782,8 +746,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         }
     }
 
-
-    //}}}
 
     //{{{ Called each time the selection in the proc panel changes
     /**
@@ -843,8 +805,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
     }
 
 
-    //}}}
-
     //{{{ Is the procedure a valid TaPD object ?
     /**
      *  Description of the Method
@@ -868,10 +828,6 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         }
     }
 
-
-    //}}}
-
-    //{{{ Quits the designer
     /**
      *  Quits the designer
      */
@@ -881,29 +837,54 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         dispose();
     }
 
-    //}}}
+    @Override
+    public BFrame getFrame()
+    {
+        return this;
+    }
 
-    //{{{ Themes selection
+    @Override
+    public ToolPalette getToolPalette() {
+        return null;
+    }
 
-    // private void doPlafItem( CommandEvent evt )
-    // {
-    // for ( int i = 0; i < plafItems.length; ++i )
-    // {
-    // if ( plafItems[i] == evt.getWidget() )
-    // {
-    // try
-    // {
-    // UIManager.setLookAndFeel( plafInfo[i].getClassName() );
-    // SwingUtilities.updateComponentTreeUI( this.getComponent() );
-    // TaPDPreferences.getPreferences().setDefaultTheme( plafInfo[i].getName() );
-    // }
-    // catch ( Exception e )
-    // {
-    // e.printStackTrace();
-    // }
-    // }
-    // }
-    // }
-    //}}}
+    @Override
+    public void setTool(EditingTool tool) {
+    }
+
+    @Override
+    public void setHelpText(String text) {
+    }
+
+    @Override
+    public void updateImage() {
+    }
+
+    @Override
+    public void updateMenus() {
+    }
+
+    @Override
+    public void setUndoRecord(UndoRecord command) {
+    }
+
+    @Override
+    public void setModified() {
+    }
+
+    @Override
+    public ViewerCanvas getView() {
+        return null;
+    }
+
+    @Override
+    public ViewerCanvas[] getAllViews() {
+        return null;
+    }
+
+    @Override
+    public boolean confirmClose() {
+        return true;
+    }
 }
 
