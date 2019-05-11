@@ -70,24 +70,12 @@ public class TapProcedure
     /**
      *  Constructor for the TapProcedure object
      *
-     *@param  objVec  Description of the Parameter
+     *@param  source  Description of the Parameter
      */
-    public TapProcedure( Vector objVec )
+    public TapProcedure( List<ObjectInfo> source )
     {
         theScene = new Scene();
         modules = new ArrayList<>();
-
-        if ( objVec != null )
-        {
-            //add objects to the default scene
-
-            ObjectInfo[] obj = new ObjectInfo[objVec.size()];
-
-            for ( int i = 0; i < objVec.size(); ++i )
-                obj[i] = (ObjectInfo) objVec.elementAt( i );
-
-            addObjectToScene( obj );
-        }
 
         seed = 123456789;
         currentObject = null;
@@ -95,31 +83,33 @@ public class TapProcedure
         renderingLevel = -1;
         viewLevel = -1;
         undoRecordSize = MAX_UNDO;
+
+        if(null == source) return;
+
+        addObjectToScene(source.toArray(new ObjectInfo[0]));
     }
 
-
-    //}}}
 
     //{{{ Adds an aoi object to the procedure scene
     /**
      *  Adds a feature to the ObjectToScene attribute of the TapProcedure object
      *
-     *@param  obj  The feature to be added to the ObjectToScene attribute
+     *@param  source  The feature to be added to the ObjectToScene attribute
      *@return      Description of the Return Value
      */
-    private ObjectInfo[] addObjectToScene( ObjectInfo[] obj )
+    private ObjectInfo[] addObjectToScene( ObjectInfo[] source )
     {
         //to paste objects into the TaPD procedure scene
 
-        Vector textures = new Vector();
+        List<Texture> textures = new ArrayList<>();
 
-        for ( int i = 0; i < obj.length; i++ )
+        for (ObjectInfo info: source)
         {
-            Texture tex = obj[i].object.getTexture();
+            Texture tex = info.object.getTexture();
 
             if ( tex instanceof LayeredTexture )
             {
-                LayeredMapping map = (LayeredMapping) obj[i].object.getTextureMapping();
+                LayeredMapping map = (LayeredMapping) info.object.getTextureMapping();
                 Texture[] layer = map.getLayers();
 
                 for ( int j = 0; j < layer.length; j++ )
@@ -127,41 +117,39 @@ public class TapProcedure
                     Texture dup = layer[j].duplicate();
                     dup.setID( layer[j].getID() );
 
-                    TextureMapping dupMap = map.getLayerMapping( j );
-                    textures.addElement( dup );
+                    textures.add( dup );
                     map.setLayer( j, dup );
-                    map.setLayerMapping( j, map.getLayerMapping( j ).duplicate(obj[i].object, dup ) );
+                    map.setLayerMapping( j, map.getLayerMapping( j ).duplicate(info.object, dup ) );
                 }
             }
             else if ( tex != null )
             {
                 Texture dup = tex.duplicate();
                 dup.setID( tex.getID() );
-                textures.addElement( dup );
-                obj[i].object.setTexture( dup, obj[i].object.getTextureMapping().duplicate(obj[i].object, dup ) );
+                textures.add( dup );
+                info.object.setTexture( dup, info.object.getTextureMapping().duplicate(info.object, dup ) );
             }
 
             setModified( true );
         }
 
         // Next make a list of all materials used by the objects.
-        Vector materials = new Vector();
+        List<Material> materials = new ArrayList<>();
 
-        for ( int i = 0; i < obj.length; i++ )
+        for (ObjectInfo info: source)
         {
-            Material mat = obj[i].object.getMaterial();
+            Material mat = info.object.getMaterial();
+            if(null == mat) continue;
 
-            if ( mat != null )
-            {
-                Material dup = mat.duplicate();
-                dup.setID( mat.getID() );
-                materials.addElement( dup );
-                obj[i].object.setMaterial( dup, obj[i].object.getMaterialMapping().duplicate( obj[i].object, dup ) );
-            }
+            Material dup = mat.duplicate();
+            dup.setID( mat.getID() );
+            materials.add( dup );
+            info.object.setMaterial( dup, info.object.getMaterialMapping().duplicate( info.object, dup ) );
+
         }
 
         // Now make a list of all ImageMaps used by any of them.
-        Vector images = new Vector();
+        List<ImageMap> images = new ArrayList<>();
 
         for ( int i = 0; i < theScene.getNumImages(); i++ )
         {
@@ -169,25 +157,23 @@ public class TapProcedure
             boolean used = false;
 
             for ( int j = 0; j < textures.size() && !used; j++ )
-                used = ( (Texture) textures.elementAt( j ) ).usesImage( map );
+                used = textures.get( j ).usesImage( map );
 
             for ( int j = 0; j < materials.size() && !used; j++ )
-                used = ( (Material) materials.elementAt( j ) ).usesImage( map );
+                used = materials.get( j ).usesImage( map );
 
             if ( used )
-                images.addElement( map );
+                images.add( map );
         }
 
         // Save all of them to the appropriate arrays.
-        ObjectInfo[] clipboardObject = obj;
-        Texture[] clipboardTexture = new Texture[textures.size()];
-        textures.copyInto( clipboardTexture );
+        ObjectInfo[] clipboardObject = source;
+        Texture[] clipboardTexture = textures.toArray(new Texture[0]);
+        
 
-        Material[] clipboardMaterial = new Material[materials.size()];
-        materials.copyInto( clipboardMaterial );
+        Material[] clipboardMaterial = materials.toArray(new Material[0]);
 
-        ImageMap[] clipboardImage = new ImageMap[images.size()];
-        images.copyInto( clipboardImage );
+        ImageMap[] clipboardImage = images.toArray(new ImageMap[0]);
 
         // First add any new image maps to the scene.
         for ( int i = 0; i < clipboardImage.length; i++ )
@@ -210,8 +196,7 @@ public class TapProcedure
             for ( j = 0; j < theScene.getNumTextures() && clipboardTexture[i].getID() != theScene.getTexture( j ).getID(); j++ )
                 ;
 
-            if ( j == theScene.getNumTextures() && !clipboardTexture[i].getName()
-                    .equals( theScene.getTexture( 0 ).getName() ) )
+            if ( j == theScene.getNumTextures() && !clipboardTexture[i].getName().equals( theScene.getTexture( 0 ).getName() ) )
             {
                 newtex = clipboardTexture[i].duplicate();
                 newtex.setID( clipboardTexture[i].getID() );
@@ -250,18 +235,18 @@ public class TapProcedure
         }
 
         // Add any new materials.
-        for ( int i = 0; i < clipboardMaterial.length; i++ )
+        for (Material material: clipboardMaterial)
         {
             Material newmat;
             int j;
 
-            for ( j = 0; j < theScene.getNumMaterials() && clipboardMaterial[i].getID() != theScene.getMaterial( j ).getID(); j++ )
+            for ( j = 0; j < theScene.getNumMaterials() && material.getID() != theScene.getMaterial( j ).getID(); j++ )
                 ;
 
             if ( j == theScene.getNumMaterials() )
             {
-                newmat = clipboardMaterial[i].duplicate();
-                newmat.setID( clipboardMaterial[i].getID() );
+                newmat = material.duplicate();
+                newmat.setID( material.getID() );
                 theScene.addMaterial( newmat );
             }
             else
@@ -271,7 +256,7 @@ public class TapProcedure
             {
                 Material current = clipboardObject[j].object.getMaterial();
 
-                if ( current == clipboardMaterial[i] )
+                if ( current == material )
                 	clipboardObject[j].setMaterial(newmat, clipboardObject[j].object.getMaterialMapping().duplicate(clipboardObject[j].object, newmat));
             }
         }
@@ -327,7 +312,6 @@ public class TapProcedure
         return ( addObjectToScene( obj ) )[0];
     }
 
-    //{{{ getters and setters
     /**
      *  Gets the scene attribute of the TapProcedure object
      *
@@ -367,12 +351,11 @@ public class TapProcedure
      *
      *@param  modules  The new modules value
      */
-    public void setModules( Vector modules )
+    public void setModules( List<TapModule> modules )
     {
         this.modules = modules;
-
-        for ( int i = 0; i < modules.size(); ++i )
-            ( (TapModule) modules.elementAt( i ) ).setModules( modules );
+        for (TapModule module: modules)
+            module.setModules( modules );
     }
 
 
@@ -839,8 +822,8 @@ public class TapProcedure
                     AoIObjectModule obj = (AoIObjectModule) modules.get( n - 1 );
                     if ( obj.currentObject.object instanceof TapLeaf )
                     {
-                        LeafModule leaf;
-                        modules.setElementAt( leaf = new LeafModule( this, obj.getLocation(), obj.currentObject ), n - 1 );
+                        LeafModule leaf = new LeafModule( this, obj.getLocation(), obj.currentObject );
+                        modules.set( n - 1, leaf );
                         leaf.setName( obj.getName() );
                         leaf.portDecoration = obj.portDecoration;
                         leaf.linkToIndex = obj.linkToIndex;
@@ -1042,9 +1025,10 @@ public class TapProcedure
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void importMaterials( BFrame parentFrame )
     {
-        TapImportFrame importFrame = new TapImportFrame( parentFrame, theScene, window.getScene(), true );
+        new TapImportFrame( parentFrame, theScene, window.getScene(), true );
         setModified( true );
     }
 
