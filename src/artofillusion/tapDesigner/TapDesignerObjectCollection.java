@@ -32,9 +32,9 @@ import java.util.*;
  */
 public class TapDesignerObjectCollection extends ObjectCollection
 {
-    private Vector objectInfoVector;
-    private Vector tapObjectInfoVector;
-    private Vector renderInfoVector;
+    private List<ObjectInfo> objectInfoList;
+    private List<TapObjectInfo> tapObjectInfoList;
+    private List<ObjectInfo> renderInfoVector;
     private TapProcedure procedure;
     private int decorationLevel;
     private int renderingLevel;
@@ -48,9 +48,9 @@ public class TapDesignerObjectCollection extends ObjectCollection
     public TapDesignerObjectCollection( TapProcedure procedure )
     {
         super();
-        objectInfoVector = new Vector();
-        renderInfoVector = new Vector();
-        tapObjectInfoVector = new Vector();
+        objectInfoList = new ArrayList<>();
+        renderInfoVector = new ArrayList<>();
+        tapObjectInfoList = new ArrayList();
         this.procedure = procedure;
         decorationLevel = -1;
         //Show everything
@@ -66,13 +66,13 @@ public class TapDesignerObjectCollection extends ObjectCollection
      */
     public void addObject( TapObjectInfo anObject )
     {
-        tapObjectInfoVector.addElement( anObject );
+        tapObjectInfoList.add( anObject );
 
         if ( ( anObject.getDecorationLevel() < decorationLevel ) || ( decorationLevel <= 0 ) )
-            objectInfoVector.addElement( anObject.objectInfo );
+            objectInfoList.add( anObject.objectInfo );
 
         if ( ( anObject.getDecorationLevel() < renderingLevel ) || ( renderingLevel <= 0 ) )
-            renderInfoVector.addElement( anObject.objectInfo );
+            renderInfoVector.add( anObject.objectInfo );
     }
 
 
@@ -104,13 +104,13 @@ public class TapDesignerObjectCollection extends ObjectCollection
     {
         TapObjectInfo newObject = new TapObjectInfo( anObject );
         newObject.setDecorationLevel( level );
-        tapObjectInfoVector.addElement( newObject );
+        tapObjectInfoList.add( newObject );
 
         if ( ( newObject.getDecorationLevel() < decorationLevel ) || ( decorationLevel <= 0 ) )
-            objectInfoVector.addElement( newObject.objectInfo );
+            objectInfoList.add( newObject.objectInfo );
 
         if ( ( newObject.getDecorationLevel() < renderingLevel ) || ( renderingLevel <= 0 ) )
-            renderInfoVector.addElement( newObject.objectInfo );
+            renderInfoVector.add( newObject.objectInfo );
 
         newObject.sizeR = sizeR;
         newObject.sizeY = sizeY;
@@ -127,12 +127,12 @@ public class TapDesignerObjectCollection extends ObjectCollection
     {
         decorationLevel = level;
 
-        objectInfoVector.clear();
+        objectInfoList.clear();
 
-        for ( int i = 0; i < tapObjectInfoVector.size(); ++i )
+        for (TapObjectInfo info: tapObjectInfoList)
         {
-            if ( ( ( (TapObjectInfo) tapObjectInfoVector.elementAt( i ) ).getDecorationLevel() < level ) || ( level <= 0 ) )
-                objectInfoVector.addElement( ( (TapObjectInfo) tapObjectInfoVector.elementAt( i ) ).objectInfo );
+            if (info.getDecorationLevel() < level  || ( level <= 0 ) )
+                objectInfoList.add(info.objectInfo );
         }
     }
 
@@ -149,9 +149,9 @@ public class TapDesignerObjectCollection extends ObjectCollection
 
         renderInfoVector.clear();
 
-        for ( int i = 0; i < tapObjectInfoVector.size(); ++i )
-            if ( ( ( (TapObjectInfo) tapObjectInfoVector.elementAt( i ) ).getDecorationLevel() < level ) || ( level <= 0 ) )
-                renderInfoVector.addElement( ( (TapObjectInfo) tapObjectInfoVector.elementAt( i ) ).objectInfo );
+        for (TapObjectInfo info: tapObjectInfoList)
+            if ( info.getDecorationLevel() < level || ( level <= 0 ) )
+                renderInfoVector.add( info.objectInfo );
     }
 
 
@@ -163,7 +163,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      */
     public void mergeCollection( TapDesignerObjectCollection collection, int levelDiff )
     {
-        mergeCollection( collection, 0, collection.tapObjectInfoVector.size() - 1, levelDiff );
+        mergeCollection( collection, 0, collection.tapObjectInfoList.size() - 1, levelDiff );
     }
 
 
@@ -177,19 +177,19 @@ public class TapDesignerObjectCollection extends ObjectCollection
      */
     public void mergeCollection( TapDesignerObjectCollection collection, int from, int to, int levelDiff )
     {
-        if ( collection.tapObjectInfoVector.size() == 0 )
+        if ( collection.tapObjectInfoList.isEmpty() )
             return;
 
-        if ( to > collection.tapObjectInfoVector.size() - 1 )
-            to = collection.tapObjectInfoVector.size() - 1;
+        if ( to > collection.tapObjectInfoList.size() - 1 )
+            to = collection.tapObjectInfoList.size() - 1;
 
         if ( from < 0 )
             from = 0;
 
         for ( int i = from; i <= to; ++i )
         {
-            TapObjectInfo anObject = (TapObjectInfo) collection.tapObjectInfoVector.elementAt( i );
-            tapObjectInfoVector.addElement( anObject );
+            TapObjectInfo anObject = collection.tapObjectInfoList.get( i );
+            tapObjectInfoList.add( anObject );
 
             if ( anObject.decorationLevel >= 0 )
                 anObject.decorationLevel += levelDiff;
@@ -197,10 +197,10 @@ public class TapDesignerObjectCollection extends ObjectCollection
                 anObject.decorationLevel -= levelDiff;
 
             if ( ( anObject.getDecorationLevel() < decorationLevel ) || ( decorationLevel <= 0 ) )
-                objectInfoVector.addElement( anObject.objectInfo );
+                objectInfoList.add( anObject.objectInfo );
 
             if ( ( anObject.getDecorationLevel() < renderingLevel ) || ( renderingLevel <= 0 ) )
-                renderInfoVector.addElement( anObject.objectInfo );
+                renderInfoVector.add( anObject.objectInfo );
         }
     }
 
@@ -214,8 +214,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *@exception  InvalidObjectException  Description of the Exception
      *@exception  ClassNotFoundException  Description of the Exception
      */
-    public TapDesignerObjectCollection( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException, ClassNotFoundException
+    public TapDesignerObjectCollection( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException, ClassNotFoundException
     {
         super( in, theScene );
 
@@ -232,8 +231,8 @@ public class TapDesignerObjectCollection extends ObjectCollection
         renderingLevel = in.readInt();
 
         TapDesignerObjectCollection obj = procedure.getObject();
-        tapObjectInfoVector = obj.tapObjectInfoVector;
-        objectInfoVector = obj.objectInfoVector;
+        tapObjectInfoList = obj.tapObjectInfoList;
+        objectInfoList = obj.objectInfoList;
         renderInfoVector = obj.renderInfoVector;
     }
 
@@ -246,8 +245,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *@exception  IOException  Description of the Exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -264,7 +262,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      */
     public int size()
     {
-        return tapObjectInfoVector.size();
+        return tapObjectInfoList.size();
     }
 
 
@@ -276,7 +274,7 @@ public class TapDesignerObjectCollection extends ObjectCollection
      */
     public TapObjectInfo elementAt( int index )
     {
-        return (TapObjectInfo) tapObjectInfoVector.elementAt( index );
+        return tapObjectInfoList.get( index );
     }
 
 
@@ -292,9 +290,9 @@ public class TapDesignerObjectCollection extends ObjectCollection
     protected Enumeration enumerateObjects( ObjectInfo info, boolean interactive, Scene scene )
     {
         if ( interactive )
-            return objectInfoVector.elements();
+            return Collections.enumeration(objectInfoList);
         else
-            return renderInfoVector.elements();
+            return Collections.enumeration(renderInfoVector);
     }
 
 
@@ -350,9 +348,9 @@ public class TapDesignerObjectCollection extends ObjectCollection
         procedure = tmpObject.procedure;
         decorationLevel = tmpObject.decorationLevel;
         renderingLevel = tmpObject.renderingLevel;
-        objectInfoVector = tmpObject.objectInfoVector;
+        objectInfoList = tmpObject.objectInfoList;
         renderInfoVector = tmpObject.renderInfoVector;
-        tapObjectInfoVector = tmpObject.tapObjectInfoVector;
+        tapObjectInfoList = tmpObject.tapObjectInfoList;
         setTexture( obj.getTexture(), obj.getTextureMapping() );
         setMaterial( obj.getMaterial(), obj.getMaterialMapping() );
         cachedBounds = null;
@@ -376,8 +374,8 @@ public class TapDesignerObjectCollection extends ObjectCollection
         obj.setMaterial( this.getMaterial(), this.getMaterialMapping() );
 
         //TapDesignerObjectCollection dum = obj.procedure.getObject();
-        obj.tapObjectInfoVector = this.tapObjectInfoVector;
-        obj.objectInfoVector = this.objectInfoVector;
+        obj.tapObjectInfoList = this.tapObjectInfoList;
+        obj.objectInfoList = this.objectInfoList;
         obj.renderInfoVector = this.renderInfoVector;
 
         return (Object3D) obj;
@@ -394,14 +392,6 @@ public class TapDesignerObjectCollection extends ObjectCollection
     @Override
     public void setSize( double xsize, double ysize, double zsize )
     {
-        /*
-         *  rx = xsize/2.0;
-         *  ry = zsize/2.0;
-         *  height = ysize;
-         *  bounds = new BoundingBox(-rx, rx, -height/2.0, height/2.0, -ry, ry);
-         */
-        //cachedMesh = null;
-        //cachedWire = null;
     }
 
 
@@ -449,19 +439,6 @@ public class TapDesignerObjectCollection extends ObjectCollection
     @Override
     public BoundingBox getBounds()
     {
-        /*
-         *  BoundingBox bounds = null;
-         *  ObjectInfo info;
-         *  for (int i = 0; i < objectInfoVector.size(); i++)
-         *  {
-         *  info = ((ObjectInfo)objectInfoVector.elementAt(i));
-         *  if (bounds == null)
-         *  bounds = info.getBounds();
-         *  else
-         *  bounds = bounds.merge(info.getBounds());
-         *  }
-         *  return bounds;
-         */
         return cachedBounds;
     }
 
@@ -474,12 +451,10 @@ public class TapDesignerObjectCollection extends ObjectCollection
      *@param  cb      Description of the Parameter
      */
     @Override
+    @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void edit( final EditingWindow parent, final ObjectInfo info, Runnable cb )
     {
-        TapFrame tapFrame = null;
-
-        if ( parent instanceof LayoutWindow )
-            tapFrame = new TapFrame( (LayoutWindow) parent, info );
+        if ( parent instanceof LayoutWindow ) new TapFrame( (LayoutWindow) parent, info );
 
     }
 
@@ -516,16 +491,16 @@ public class TapDesignerObjectCollection extends ObjectCollection
      */
     ObjectInfo[] getAoIObjects()
     {
-        ObjectInfo[] objects = new ObjectInfo[tapObjectInfoVector.size()];
+        ObjectInfo[] objects = new ObjectInfo[tapObjectInfoList.size()];
         Vector parents = new Vector();
         int currentLevel = 0;
         int level;
         ObjectInfo currentParent = null;
         int[] levelCount = new int[15];
 
-        for ( int i = 0; i < tapObjectInfoVector.size(); ++i )
+        for ( int i = 0; i < tapObjectInfoList.size(); ++i )
         {
-            TapObjectInfo tInfo = (TapObjectInfo) tapObjectInfoVector.elementAt( i );
+            TapObjectInfo tInfo = tapObjectInfoList.get( i );
             ObjectInfo info = tInfo.objectInfo.duplicate();
 
             if ( info.object instanceof TapObject )
