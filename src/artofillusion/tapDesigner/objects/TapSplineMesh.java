@@ -38,8 +38,8 @@ public class TapSplineMesh extends Object3D implements TapObject
     float uSmoothness;
     float vSmoothness;
     Vec3[] curvePositions;
-    Vector crossSections;
-    Vector currentCrossSections;
+    Vector<Curve> crossSections;
+    Vector<Curve> currentCrossSections;
     TapFunction rShape;
     Curve yCurve;
     Vec3[] yVert;
@@ -168,13 +168,13 @@ public class TapSplineMesh extends Object3D implements TapObject
     @Override
     public void setShape( TapDistortParameters parms )
     {
-        if ( parms != null )
+        if ( parms == null )
+            setShape( crossSections, yCurve, rShape, dparms, uSmoothness, vSmoothness );
+        else
         {
             dparms = parms;
             setShape( crossSections, yCurve, rShape, parms, uSmoothness, vSmoothness );
         }
-        else
-            setShape( crossSections, yCurve, rShape, dparms, uSmoothness, vSmoothness );
 
     }
 
@@ -211,15 +211,14 @@ public class TapSplineMesh extends Object3D implements TapObject
     {
         TapSplineMesh mesh = new TapSplineMesh();
         int i;
-        int j;
 
-        for ( i = 0; i < crossSections.size(); ++i )
-            mesh.crossSections.add( ( (Curve) crossSections.elementAt( i ) ).duplicate() );
+        for (Curve curve: crossSections)
+            mesh.crossSections.add( (Curve) curve.duplicate() );
 
-        mesh.currentCrossSections = new Vector();
+        mesh.currentCrossSections = new Vector<>();
 
-        for ( i = 0; i < currentCrossSections.size(); ++i )
-            mesh.currentCrossSections.add( ( (Curve) currentCrossSections.elementAt( i ) ).duplicate() );
+        for (Curve curve: currentCrossSections)
+            mesh.currentCrossSections.add( (Curve) curve.duplicate() );
 
         mesh.yCurve = (Curve) yCurve.duplicate();
         mesh.rShape = rShape.duplicate();
@@ -257,15 +256,14 @@ public class TapSplineMesh extends Object3D implements TapObject
     {
         TapSplineMesh mesh = (TapSplineMesh) obj;
         int i;
-        int j;
 
-        crossSections = new Vector();
+        crossSections = new Vector<>();
 
-        for ( i = 0; i < mesh.crossSections.size(); ++i )
-            crossSections.add( ( (Curve) mesh.crossSections.elementAt( i ) ).duplicate() );
+        for (Curve curve: mesh.crossSections)
+            crossSections.add((Curve) curve.duplicate() );
 
-        for ( i = 0; i < mesh.currentCrossSections.size(); ++i )
-            currentCrossSections.add( ( (Curve) mesh.currentCrossSections.elementAt( i ) ).duplicate() );
+        for (Curve curve:mesh.currentCrossSections)
+            currentCrossSections.add((Curve) curve.duplicate() );
 
         rShape = mesh.rShape.duplicate();
         yCurve = (Curve) mesh.yCurve.duplicate();
@@ -301,13 +299,12 @@ public class TapSplineMesh extends Object3D implements TapObject
      */
     public void updateMesh( TapDistortParameters parms )
     {
-        if ( parms != null )
-        {
+        if ( parms == null )
+            setShape( crossSections, yCurve, rShape, dparms, uSmoothness, vSmoothness );
+        else {
             dparms = parms;
             setShape( crossSections, yCurve, rShape, parms, uSmoothness, vSmoothness );
         }
-        else
-            setShape( crossSections, yCurve, rShape, dparms, uSmoothness, vSmoothness );
     }
 
 
@@ -324,7 +321,7 @@ public class TapSplineMesh extends Object3D implements TapObject
      *@param  uSmooth        The new shape value
      *@param  vSmooth        The new shape value
      */
-    public void setShape( Vector crossSections, Curve yCurve, TapFunction rShape, TapDistortParameters parms, float uSmooth, float vSmooth )
+    public void setShape( Vector<Curve> crossSections, Curve yCurve, TapFunction rShape, TapDistortParameters parms, float uSmooth, float vSmooth )
     {
         int i;
         int j;
@@ -334,19 +331,18 @@ public class TapSplineMesh extends Object3D implements TapObject
         if ( parms != null )
             gen = new TapRandomGenerator( parms.seed );
 
-        currentCrossSections = new Vector();
+        currentCrossSections = new Vector<>();
 
         int vLength = yCurve.getVertices().length;
         curvePositions = new Vec3[vLength];
 
-        int uLength = ( (Curve) crossSections.elementAt( 0 ) ).getVertices().length;
+        int uLength = crossSections.get( 0 ).getVertices().length;
         float[] usmoothness = new float[uLength];
         float[] vsmoothness = new float[vLength];
         Vec3[][] vert = new Vec3[uLength][vLength];
         yVert = ( (Curve) yCurve.duplicate() ).getVertexPositions();
         yPositions = new double[vLength];
 
-        double curYDist = 0;
         maxY = 0;
         yPositions[0] = 0;
         yVert[0].set( yVert[0].x * xscale, yVert[0].y * yscale, yVert[0].z * zscale );
@@ -539,7 +535,7 @@ public class TapSplineMesh extends Object3D implements TapObject
             vsmoothness[i] = vSmooth;
             yPositions[i] = yPositions[i] / maxY;
 
-            Curve tmpCurve = (Curve) ( (Curve) crossSections.elementAt( i ) ).duplicate();
+            Curve tmpCurve = (Curve) ( (Curve) crossSections.get( i ) ).duplicate();
             Vec3 size = tmpCurve.getBounds().getSize();
             double sizeR = rShape.calcValue( yPositions[i] );
             tmpCurve.setSize( size.x * sizeR * xscale, size.y * yscale, size.z * sizeR * zscale );
@@ -564,7 +560,7 @@ public class TapSplineMesh extends Object3D implements TapObject
                 }
             }
 
-            currentCrossSections.add( tmpCurve.duplicate() );
+            currentCrossSections.add( (Curve)tmpCurve.duplicate() );
         }
 
         if ( parms != null )
@@ -666,7 +662,6 @@ public class TapSplineMesh extends Object3D implements TapObject
             vsmoothness[i] = vSmoothness;
 
             Curve tmpCurve = (Curve) ( (Curve) currentCrossSections.elementAt( i ) ).duplicate();
-            Vec3 size = tmpCurve.getBounds().getSize();
 
             Vec3 y1 = null;
             Vec3 y2 = null;
@@ -732,14 +727,12 @@ public class TapSplineMesh extends Object3D implements TapObject
     {
         int i;
         int j;
-        int k;
         int i1;
         int i2;
         Vec3 axis;
         Mat4 m;
 
         int vLength = yPositions.length;
-        float[] usmoothness = splineMesh.getUSmoothness();
         float[] vsmoothness = splineMesh.getVSmoothness();
         i1 = 0;
         i2 = 1;
@@ -1036,8 +1029,7 @@ public class TapSplineMesh extends Object3D implements TapObject
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public TapSplineMesh( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public TapSplineMesh( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -1053,7 +1045,7 @@ public class TapSplineMesh extends Object3D implements TapObject
         zscale = in.readDouble();
 
         int count = in.readInt();
-        crossSections = new Vector( count );
+        crossSections = new Vector<>( count );
 
         for ( i = 0; i < count; ++i )
             crossSections.add( new Curve( in, theScene ) );
@@ -1075,13 +1067,11 @@ public class TapSplineMesh extends Object3D implements TapObject
      *@exception  IOException  Description of the Exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
 
         int i;
-        int j;
 
         out.writeShort( 0 );
         out.writeDouble( xscale );
@@ -1089,8 +1079,8 @@ public class TapSplineMesh extends Object3D implements TapObject
         out.writeDouble( zscale );
         out.writeInt( crossSections.size() );
 
-        for ( i = 0; i < crossSections.size(); i++ )
-            ( (Curve) crossSections.elementAt( i ) ).writeToFile( out, theScene );
+        for (Curve curve: crossSections)
+            curve.writeToFile( out, theScene );
 
         rShape.writeToFile( out );
         yCurve.writeToFile( out, theScene );
@@ -1327,60 +1317,5 @@ public class TapSplineMesh extends Object3D implements TapObject
     {
     }
 
-    /*
-     *  public MeshVertex[] getVertices()
-     *  {
-     *  return splineMesh.getVertices();
-     *  }
-     */
-    /*
-     *  public void setVertices( Vec3 v[] )
-     *  {
-     *  splineMesh.setVertices( v );
-     *  /won't last till next spline mesh generation
-     *  /provided in doubt for compatibility
-     *  }
-     */
-    /*
-     *  public Vec3[] getNormals()
-     *  {
-     *  return splineMesh.getNormals();
-     *  }
-     */
-    /*
-     *  public Skeleton getSkeleton()
-     *  {
-     *  return null;
-     *  }
-     */
-    /*
-     *  public void setSkeleton( Skeleton s )
-     *  {
-     *  }
-     */
-    /*
-     *  public void setParameterValue( TextureParameter param, ParameterValue val )
-     *  {
-     *  super.setParameterValue( param, val );
-     *  if ( splineMesh != null )
-     *  splineMesh.setParameterValue( param, val );
-     *  }
-     */
-    /*
-     *  public void setParameterValues( ParameterValue val[] )
-     *  {
-     *  super.setParameterValues( val );
-     *  if ( splineMesh != null )
-     *  splineMesh.setParameterValues( val );
-     *  }
-     */
-    /*
-     *  public void setParameters( TextureParameter param[] )
-     *  {
-     *  super.setParameters( param );
-     *  if ( splineMesh != null )
-     *  splineMesh.setParameters( param );
-     *  }
-     */
 }
 

@@ -1031,12 +1031,11 @@ public class SplineModule extends ObjectModule
             }
             else if ( command.equals( curveEditButton.getActionCommand() ) )
             {
-                int dum = ( Integer.valueOf( curveNumTF.getText().trim() ) ).intValue();
+                int dum = ( Integer.valueOf( curveNumTF.getText().trim() ) );
 
                 if ( ( dum > 0 ) && ( dum <= ( (Curve) ( (TapSplineMesh) currentObject.object ).getYCurve() ).getVertices().length ) )
                 {
-                    Curve csCurve = (Curve) ( (TapSplineMesh) currentObject.object ).getCrossSections()
-                            .elementAt( dum - 1 );
+                    Curve csCurve = (Curve) ( (TapSplineMesh) currentObject.object ).getCrossSections().get( dum - 1 );
                     ObjectInfo csc = currentObject.duplicate();
                     csc.object = csCurve;
                     csc.name = module.getName() + ": " + TapBTranslate.text( "crossSectionCurve" ) + dum;
@@ -1053,16 +1052,15 @@ public class SplineModule extends ObjectModule
             }
             else if ( command.equals( curveDuplicateButton.getActionCommand() ) )
             {
-                int dum = ( Integer.valueOf( curveNumTF.getText().trim() ) ).intValue();
+                int dum = ( Integer.valueOf( curveNumTF.getText().trim() ) );
                 int yCurveLength = ( (Curve) ( (TapSplineMesh) currentObject.object ).getYCurve() ).getVertices().length;
                 if ( ( dum > 0 ) && ( dum <= yCurveLength ) )
                 {
-                    Curve csCurve = (Curve) ( (TapSplineMesh) currentObject.object ).getCrossSections()
-                            .elementAt( dum - 1 );
+                    Curve csCurve = (Curve) ( (TapSplineMesh) currentObject.object ).getCrossSections().get( dum - 1 );
                     for ( int i = 0; i < yCurveLength; ++i )
                     {
                         if ( i != dum - 1 )
-                            ( (TapSplineMesh) currentObject.object ).getCrossSections().setElementAt( csCurve.duplicate(), i );
+                            ( (TapSplineMesh) currentObject.object ).getCrossSections().set(i, (Curve)csCurve.duplicate() );
 
                     }
                     doRunnableUpdate();
@@ -1070,7 +1068,7 @@ public class SplineModule extends ObjectModule
             }
             else if ( command.equals( curveNumPointsButton.getActionCommand() ) )
             {
-                int dum = ( Integer.valueOf( curveNumPointsTF.getText().trim() ) ).intValue();
+                int dum = ( Integer.valueOf( curveNumPointsTF.getText().trim() ) );
 
                 if ( dum > 2 )
                 {
