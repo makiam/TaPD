@@ -1,7 +1,7 @@
 /* This interface specifies methods which should be implemented so that a component may use a TapProcPanel
 (namely what a TapFrame should provide in the TaPD editor window case.*/
 
-/* Copyright 2003 Francois Guillet
+ /* Copyright 2003 François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
    This program is free software; you can redistribute it and/or modify it under the
@@ -10,21 +10,18 @@
 
    This program is distributed in the hope that it will be useful, but WITHOUT ANY 
    WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
-   PARTICULAR PURPOSE.  See the GNU General Public License for more details. 
-*/
-
+   PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ */
 package artofillusion.tapDesigner;
-import buoy.widget.*;
 
 public interface TapProcPanelHolder
-{	
-	public void selectionChanged(short numSelected);
-	
-	public void validObject(boolean isValid);
-    
+{
+
+    public void selectionChanged(short numSelected);
+
+    public void validObject(boolean isValid);
+
     public void setUndoRedoFlags(boolean canUndo, boolean canRedo);
-	
-	public BFrame getBFrame();
-    
-    public void requestFocus();
+
+
 }

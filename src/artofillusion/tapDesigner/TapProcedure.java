@@ -3,7 +3,7 @@
  *  It mainly stores modules and objects imported from AoI.
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -20,6 +20,7 @@ import artofillusion.image.*;
 import artofillusion.material.*;
 import artofillusion.object.*;
 import artofillusion.texture.*;
+import artofillusion.ui.EditingWindow;
 import buoy.event.*;
 import buoy.widget.*;
 import java.awt.Color;
@@ -526,8 +527,7 @@ public class TapProcedure
      */
     public void addModule( TapModule additionalModule )
     {
-        modules.setSize( modules.size() + 1 );
-        modules.setElementAt( additionalModule, modules.size() - 1 );
+        modules.add(additionalModule);
         additionalModule.setModules( modules );
         additionalModule.setProcedure( this );
         modified = true;
@@ -964,18 +964,6 @@ public class TapProcedure
      *
      *@param  parentFrame  Description of the Parameter
      */
-    public void manageTextures( BFrame parentFrame )
-    {
-        theScene.showTexturesDialog( parentFrame );
-        setModified( true );
-    }
-
-
-    /**
-     *  Description of the Method
-     *
-     *@param  parentFrame  Description of the Parameter
-     */
     @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void importMaterials( BFrame parentFrame )
     {
@@ -983,15 +971,10 @@ public class TapProcedure
         setModified( true );
     }
 
-
-    /**
-     *  Description of the Method
-     *
-     *@param  parentFrame  Description of the Parameter
-     */
-    public void manageMaterials( BFrame parentFrame )
+    @SuppressWarnings("ResultOfObjectAllocationIgnored")
+    public void manageTexturesAndMaterials(EditingWindow owner)
     {
-        theScene.showMaterialsDialog( parentFrame );
+        new TexturesAndMaterialsDialog(owner, theScene);
         setModified( true );
     }
 

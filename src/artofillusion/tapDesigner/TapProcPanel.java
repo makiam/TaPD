@@ -5,7 +5,7 @@
  *  The container of a procpanel should implement the TapProcPanelHolder interface.
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -28,15 +28,15 @@ import javax.swing.*;
 /**
  *  This tabbed pane holds all the panels necessary for procedure editing
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    14 mars 2004
  */
 public class TapProcPanel extends BTabbedPane
 {
     private final List<TapView> views;
-    private TapProcPanelHolder holder;
+    private final TapFrame holder;
     private TapProcedure procedure;
-    private TapUndoRecord undoRecord;
+    private final TapUndoRecord undoRecord;
     private TapModulePanel activeModulePanel;
     private boolean init;
 
@@ -54,16 +54,13 @@ public class TapProcPanel extends BTabbedPane
     public final static short MULTIPLE_SELECTION = 2;
 
 
-//}}}
-
-    //{{{  constructor
     /**
      *  Constructor for the TapProcPanel object
      *
      *@param  procedure  TaPD procedure attached to the procPanel
      *@param  holder     procPanel holder
      */
-    public TapProcPanel( TapProcedure procedure, TapProcPanelHolder holder )
+    public TapProcPanel( TapProcedure procedure, TapFrame holder )
     {
         super();
         init = true;
@@ -177,7 +174,7 @@ public class TapProcPanel extends BTabbedPane
      */
     public void doEditUndoLevel()
     {
-        procedure.editUndoLevel( holder.getBFrame() );
+        procedure.editUndoLevel( holder.getFrame() );
         undoRecord.setRecordSize( procedure.getUndoRecordSize() );
     }
 
@@ -197,9 +194,9 @@ public class TapProcPanel extends BTabbedPane
      *
      *@return    The BFrame value
      */
-    public BFrame getBFrame()
+    public BFrame getFrame()
     {
-        return holder.getBFrame();
+        return holder.getFrame();
     }
 
 
@@ -221,7 +218,7 @@ public class TapProcPanel extends BTabbedPane
      */
     public TapProcPanelHolder getHolder()
     {
-        return holder;
+        return (TapProcPanelHolder)holder;
     }
 
     /**
@@ -248,7 +245,7 @@ public class TapProcPanel extends BTabbedPane
      */
     public void doChooseSeed()
     {
-        procedure.editSeed( holder.getBFrame() );
+        procedure.editSeed( holder.getFrame() );
     }
 
 
@@ -258,19 +255,8 @@ public class TapProcPanel extends BTabbedPane
     public void importTextures()
     {
         undoRecord.addRecord( procedure.duplicate() );
-        procedure.importTextures( holder.getBFrame() );
+        procedure.importTextures( holder.getFrame() );
     }
-
-
-    /**
-     *  Textures management
-     */
-    public void manageTextures()
-    {
-        undoRecord.addRecord( procedure.duplicate() );
-        procedure.manageTextures( holder.getBFrame() );
-    }
-
 
     /**
      *  Imports/exports materials from/to the AoI Scene
@@ -278,19 +264,18 @@ public class TapProcPanel extends BTabbedPane
     public void importMaterials()
     {
         undoRecord.addRecord( procedure.duplicate() );
-        procedure.importMaterials( holder.getBFrame() );
+        procedure.importMaterials( holder.getFrame() );
     }
 
 
     /**
-     *  Materials management
+     *  Textures And Materials management
      */
-    public void manageMaterials()
+    public void manageTexturesAndMaterials()
     {
         undoRecord.addRecord( procedure.duplicate() );
-        procedure.manageMaterials( holder.getBFrame() );
+        procedure.manageTexturesAndMaterials(holder);
     }
-
 
     /**
      *  Images management
@@ -298,7 +283,7 @@ public class TapProcPanel extends BTabbedPane
     public void manageImages()
     {
         undoRecord.addRecord( procedure.duplicate() );
-        procedure.manageImages( holder.getBFrame() );
+        procedure.manageImages( holder.getFrame() );
     }
 
 
@@ -308,7 +293,7 @@ public class TapProcPanel extends BTabbedPane
     public void manageObjects()
     {
         undoRecord.addRecord( procedure.duplicate() );
-        procedure.manageObjects( holder.getBFrame() );
+        procedure.manageObjects( holder.getFrame() );
     }
 
 
