@@ -19,11 +19,14 @@ import artofillusion.math.*;
 import artofillusion.object.*;
 import buoy.event.*;
 import buoy.widget.*;
-import java.awt.*;
+
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
 import artofillusion.tapDesigner.TapModule.*;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.Point;
 
 
 /**
@@ -216,7 +219,7 @@ public class AoIObjectModule extends ObjectModule
     {
         private BComboBox objectChoice;
         private ObjectInfo dialogCurrentObject;
-        private Vector object3DVector;
+        private List<ObjectInfo> object3DVector;
         private BCheckBox deliverCB;
         private BCheckBox hiddenCB;
         private BButton textureButton;
@@ -246,19 +249,19 @@ public class AoIObjectModule extends ObjectModule
             editButton = TapBTranslate.bButton( "edit", this, "doEdit" );
 
             int numObjects = procedure.getNumObjects();
-            object3DVector = new Vector();
+            object3DVector = new ArrayList<>();
             for ( int i = 0; i < numObjects; ++i )
                 object3DVector.add( procedure.getScene().getObject( i ) );
 
             String[] comboStrings = new String[object3DVector.size()];
 
             for ( int i = 0; i < object3DVector.size(); ++i )
-                comboStrings[i] = ( (ObjectInfo) object3DVector.elementAt( i ) ).name;
+                comboStrings[i] = object3DVector.get( i ).getName();
 
             objectChoice = new BComboBox( comboStrings );
 
             for ( int i = 0; i < object3DVector.size(); ++i )
-                if ( ( (ObjectInfo) object3DVector.elementAt( i ) ).name.equals( currentObject.name ) )
+                if (object3DVector.get( i ).getName().equals( currentObject.name ) )
                     objectChoice.setSelectedIndex( i );
 
             deliverCB = TapBTranslate.bCheckBox( "deliverDuplicates", deliverDuplicates );
@@ -322,12 +325,10 @@ public class AoIObjectModule extends ObjectModule
          */
         private void doObjectChoice()
         {
-            for ( int i = 0; i < object3DVector.size(); ++i )
-                if ( ( (ObjectInfo) object3DVector.elementAt( i ) ).name.equals( (String) objectChoice.getSelectedValue() ) )
+            for(ObjectInfo info: object3DVector)
+                if(info.getName().equals((String)objectChoice.getSelectedValue()))
                 {
-                    dialogCurrentObject = ( (ObjectInfo) object3DVector.elementAt( i ) ).duplicate( ( (ObjectInfo) object3DVector.elementAt( i ) ).object.duplicate() );
-                    updateObject();
-                    doModified();
+                    dialogCurrentObject = info.duplicate(info.getObject().duplicate());
                 }
         }
 
@@ -363,7 +364,7 @@ public class AoIObjectModule extends ObjectModule
                 dialogCurrentObject = currentObject.duplicate( currentObject.object.duplicate() );
                 objectChoice.removeEventLink( ValueChangedEvent.class, this );
                 for ( int i = 0; i < object3DVector.size(); ++i )
-                    if ( ( (ObjectInfo) object3DVector.elementAt( i ) ).name.equals( currentObject.name ) )
+                    if (object3DVector.get( i ).getName().equals( currentObject.name ) )
                         objectChoice.setSelectedIndex( i );
                 objectChoice.addEventLink( ValueChangedEvent.class, this, "doObjectChoice" );
                 updateObject();
