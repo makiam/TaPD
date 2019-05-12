@@ -2,7 +2,7 @@
  *  This class represents an AoI object Module
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -30,7 +30,7 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  This class represents an leaf object module
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    19 avril 2004
  */
 public class LeafModule extends ObjectModule

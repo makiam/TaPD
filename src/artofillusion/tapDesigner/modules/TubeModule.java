@@ -2,7 +2,7 @@
  *  This class represents a tube module
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -28,7 +28,7 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  Description of the Class
  *
- *@author     Fran�ois Guillet
+ *@author     François Guillet
  *@created    19 avril 2004
  */
 public class TubeModule extends ObjectModule
@@ -215,11 +215,10 @@ public class TubeModule extends ObjectModule
     /**
      *  Tube editor window
      *
-     *@author     Francois Guillet
+     *@author     François Guillet
      *@created    06 june 2004
      */
-    private class TubeEditWidget
-             extends EditWidgetBase
+    private class TubeEditWidget extends EditWidgetBase
     {
         private BCheckBox deliverCB;
         private BCheckBox hiddenCB;
@@ -279,6 +278,7 @@ public class TubeModule extends ObjectModule
         /**
          *  Sets the texture of the object
          */
+        @SuppressWarnings("ResultOfObjectAllocationIgnored")
         private void doTexture()
         {
             ObjectInfo[] obj = new ObjectInfo[1];
@@ -291,6 +291,7 @@ public class TubeModule extends ObjectModule
         /**
          *  Sets the object material
          */
+        @SuppressWarnings("ResultOfObjectAllocationIgnored")
         private void doMaterial()
         {
             ObjectInfo[] obj = new ObjectInfo[1];
