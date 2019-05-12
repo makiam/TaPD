@@ -17,6 +17,7 @@ import artofillusion.*;
 import buoy.event.*;
 import buoy.widget.*;
 import java.awt.*;
+import javax.swing.JOptionPane;
 
 /** This class implements the dialog box which is used to choose materials for objects. 
     It presents a list of all available materials from which the user can select one.
@@ -26,7 +27,7 @@ import java.awt.*;
 
 public class TaPDObjectMaterialDialog extends BDialog implements ListChangeListener
 {
-  BFrame fr;
+  private final BFrame fr;
   Scene sc;
   ObjectInfo obj[];
   Object3D firstObj;
@@ -147,16 +148,19 @@ public class TaPDObjectMaterialDialog extends BDialog implements ListChangeListe
   
   private void doNewMaterial()
   {
-    MaterialsDialog.showNewMaterialWindow(this, sc);
+      JOptionPane.showMessageDialog(null, "Not implemented new matreial");
+    //MaterialsDialog.showNewMaterialWindow(this, sc);
   }
   
   private void doEditMaterials()
   {
-    sc.showMaterialsDialog(fr);
+      JOptionPane.showMessageDialog(null, "Not implemented edit materials");
+    //sc.showMaterialsDialog(fr);
     buildList();
     preview.render();
   }
   
+  @SuppressWarnings("ResultOfObjectAllocationIgnored")
   private void doEditMapping()
   {
     new MaterialMappingDialog(fr, firstObj);

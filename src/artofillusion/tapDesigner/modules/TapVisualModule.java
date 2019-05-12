@@ -162,7 +162,7 @@ public class TapVisualModule extends OverlayContainer
      */
     private void doEdit()
     {
-        module.edit( modulePanel.getProcPanel().getBFrame() );
+        module.edit( modulePanel.getProcPanel().getFrame() );
     }
 
 

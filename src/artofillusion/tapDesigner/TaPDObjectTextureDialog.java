@@ -19,6 +19,7 @@ import buoy.event.*;
 import buoy.widget.*;
 
 import java.awt.*;
+import javax.swing.JOptionPane;
 
 /** This class implements the dialog box which is used to choose textures for objects. 
     It presents a list of all available textures from which the user can select one.
@@ -361,12 +362,13 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
   
   private void doNewTexture()
   {
-    TexturesDialog.showNewTextureWindow(this, sc);
+    //TexturesDialog.showNewTextureWindow(this, sc);
   }
   
   private void doEditTextures()
   {
-    sc.showTexturesDialog(fr);
+      JOptionPane.showMessageDialog(null, "Not implemented edit textures");
+    //sc.showTexturesDialog(fr);
     buildList();
     renderPreview();
   }
