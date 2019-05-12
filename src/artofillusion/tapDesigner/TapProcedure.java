@@ -974,7 +974,7 @@ public class TapProcedure
     @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void manageTexturesAndMaterials(EditingWindow owner)
     {
-        new TexturesAndMaterialsDialog(owner, theScene);
+        new TexturesAndMaterialsDialog(owner, theScene).setVisible(true);
         setModified( true );
     }
 
