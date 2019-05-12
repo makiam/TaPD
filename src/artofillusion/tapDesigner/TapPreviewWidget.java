@@ -365,7 +365,7 @@ public class TapPreviewWidget extends BorderContainer implements EditingWindow
 
     @Override
     public ViewerCanvas[] getAllViews() {
-        return null;
+        return new ViewerCanvas[0];
     }
 
 }
