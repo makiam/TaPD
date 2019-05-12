@@ -13,6 +13,7 @@
 package artofillusion.tapDesigner;
 
 import artofillusion.*;
+import java.util.Locale;
 
 /**
  *@author     pims
@@ -21,12 +22,6 @@ import artofillusion.*;
 
 public class TapDesignerTool implements ModellingTool
 {
-
-    public TapDesignerTool()
-    {
-        TapBTranslate.setLocale(ArtOfIllusion.getPreferences().getLocale() );
-        TapDesignerTranslate.setLocale(ArtOfIllusion.getPreferences().getLocale() );
-    }
     /**
      *  Get the text that appear as the menu item.
      *
@@ -35,6 +30,10 @@ public class TapDesignerTool implements ModellingTool
     @Override
     public String getName()
     {
+        ApplicationPreferences apf = ArtOfIllusion.getPreferences();
+        Locale locale = apf.getLocale();
+        TapBTranslate.setLocale(locale);
+        TapDesignerTranslate.setLocale(locale);
         return TapBTranslate.text( "tapDesignerTitle" );
     }
 
