@@ -32,7 +32,7 @@ import java.awt.Point;
 /**
  *  This class represents an AoI object module
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    19 avril 2004
  */
 public class AoIObjectModule extends ObjectModule
@@ -63,8 +63,7 @@ public class AoIObjectModule extends ObjectModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public AoIObjectModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public AoIObjectModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -302,7 +301,7 @@ public class AoIObjectModule extends ObjectModule
         {
             ObjectInfo[] obj = new ObjectInfo[1];
             obj[0] = dialogCurrentObject;
-            new TaPDObjectTextureDialog( TapUtils.getParentBFrame( this ), procedure.getScene(), obj );
+            new TaPDObjectTextureDialog( procedure.getWindow(), procedure.getScene(), obj );
             doModified();
         }
 
@@ -315,7 +314,7 @@ public class AoIObjectModule extends ObjectModule
         {
             ObjectInfo[] obj = new ObjectInfo[1];
             obj[0] = dialogCurrentObject;
-            new TaPDObjectMaterialDialog( TapUtils.getParentBFrame( this ), procedure.getScene(), obj );
+            new TaPDObjectMaterialDialog( procedure.getWindow(), procedure.getScene(), obj );
             doModified();
         }
 

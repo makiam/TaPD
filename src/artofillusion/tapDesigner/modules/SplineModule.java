@@ -364,11 +364,12 @@ public class SplineModule extends ObjectModule
         /**
          *  Sets the texture of the object
          */
+        @SuppressWarnings("ResultOfObjectAllocationIgnored")
         private void doTexture()
         {
             ObjectInfo[] obj = new ObjectInfo[1];
             obj[0] = currentObject;
-            new TaPDObjectTextureDialog( TapUtils.getParentBFrame( this ), procedure.getScene(), obj );
+            new TaPDObjectTextureDialog( procedure.getWindow(), procedure.getScene(), obj );
             doModified();
         }
 
@@ -376,11 +377,12 @@ public class SplineModule extends ObjectModule
         /**
          *  Sets the object material
          */
+        @SuppressWarnings("ResultOfObjectAllocationIgnored")
         private void doMaterial()
         {
             ObjectInfo[] obj = new ObjectInfo[1];
             obj[0] = currentObject;
-            new TaPDObjectMaterialDialog( TapUtils.getParentBFrame( this ), procedure.getScene(), obj );
+            new TaPDObjectMaterialDialog( procedure.getWindow(), procedure.getScene(), obj );
             doModified();
         }
 

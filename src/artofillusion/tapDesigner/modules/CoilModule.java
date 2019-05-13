@@ -203,8 +203,7 @@ public class CoilModule extends TapModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public CoilModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public CoilModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -272,8 +271,7 @@ public class CoilModule extends TapModule
      *@exception  IOException  Description of the Exception
      */
     @Override
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -410,7 +408,7 @@ public class CoilModule extends TapModule
     @Override
     public void edit( BFrame parentFrame )
     {
-
+        System.out.println("edit Dialog state: "  + isEditDialogOn);
         if ( isEditDialogOn )
             editDialog.toFront();
         else
@@ -529,7 +527,6 @@ public class CoilModule extends TapModule
         double ysizestep;
         double objectYSize;
         int curDamp;
-        BoundingBox bounds;
         TapDistortParameters tmpParms;
         String objName;
 

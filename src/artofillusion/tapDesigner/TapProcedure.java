@@ -386,7 +386,7 @@ public class TapProcedure
      *
      *@return    The window value
      */
-    public LayoutWindow getWindow()
+    public EditingWindow getWindow()
     {
         return window;
     }

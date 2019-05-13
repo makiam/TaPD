@@ -283,7 +283,7 @@ public class TubeModule extends ObjectModule
         {
             ObjectInfo[] obj = new ObjectInfo[1];
             obj[0] = currentObject;
-            new TaPDObjectTextureDialog( TapUtils.getParentBFrame( this ), procedure.getScene(), obj );
+            new TaPDObjectTextureDialog( procedure.getWindow(), procedure.getScene(), obj );
             doModified();
         }
 
@@ -296,7 +296,7 @@ public class TubeModule extends ObjectModule
         {
             ObjectInfo[] obj = new ObjectInfo[1];
             obj[0] = currentObject;
-            new TaPDObjectMaterialDialog( TapUtils.getParentBFrame( this ), procedure.getScene(), obj );
+            new TaPDObjectMaterialDialog( procedure.getWindow(), procedure.getScene(), obj );
             doModified();
         }
 

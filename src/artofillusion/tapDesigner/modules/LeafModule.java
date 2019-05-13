@@ -403,7 +403,7 @@ public class LeafModule extends ObjectModule
         {
             ObjectInfo[] obj = new ObjectInfo[1];
             obj[0] = dialogCurrentObject;
-            new TaPDObjectTextureDialog( TapUtils.getParentBFrame( this ), procedure.getScene(), obj );
+            new TaPDObjectTextureDialog( procedure.getWindow(), procedure.getScene(), obj );
             doModified();
         }
 
@@ -416,7 +416,7 @@ public class LeafModule extends ObjectModule
         {
             ObjectInfo[] obj = new ObjectInfo[1];
             obj[0] = dialogCurrentObject;
-            new TaPDObjectMaterialDialog( TapUtils.getParentBFrame( this ), procedure.getScene(), obj );
+            new TaPDObjectMaterialDialog( procedure.getWindow(), procedure.getScene(), obj );
             doModified();
         }
 

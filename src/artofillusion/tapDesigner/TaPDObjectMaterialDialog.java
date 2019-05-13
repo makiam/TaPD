@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
 
 public class TaPDObjectMaterialDialog extends BDialog implements ListChangeListener
 {
-  private final BFrame fr;
+  private final EditingWindow frame;
   Scene sc;
   ObjectInfo obj[];
   Object3D firstObj;
@@ -37,11 +37,11 @@ public class TaPDObjectMaterialDialog extends BDialog implements ListChangeListe
   Material oldMaterial;
   MaterialMapping oldMapping;
 
-  public TaPDObjectMaterialDialog(BFrame parent, Scene theScene, ObjectInfo objects[])
+  public TaPDObjectMaterialDialog(EditingWindow parent, Scene theScene, ObjectInfo objects[])
   {
-    super(parent, Translate.text("objectMaterialTitle"), false);
+    super(parent.getFrame(), Translate.text("objectMaterialTitle"), false);
     
-    fr = parent;
+    frame = parent;
     sc = theScene;
     obj = objects;
     firstObj = obj[0].object;
@@ -69,7 +69,7 @@ public class TaPDObjectMaterialDialog extends BDialog implements ListChangeListe
     content.add(UIUtilities.createScrollingList(matList), 0, 1, 2, 1, new LayoutInfo(LayoutInfo.CENTER, LayoutInfo.BOTH, null, null));
     LayoutInfo buttonLayout = new LayoutInfo(LayoutInfo.CENTER, LayoutInfo.NONE, new Insets(2, 2, 2, 2), null);
     content.add(Translate.button("newMaterial", this, "doNewMaterial"), 0, 2, buttonLayout);
-    content.add(Translate.button("materials", this, "doEditMaterials"), 1, 2, buttonLayout);
+    
     content.add(preview = new MaterialPreviewer(firstObj.getTexture(), oldMaterial, 160, 160), 2, 1, 1, 2);
     preview.setTexture(firstObj.getTexture(), firstObj.getTextureMapping());
     preview.setMaterial(oldMaterial, oldMapping);
@@ -122,7 +122,7 @@ public class TaPDObjectMaterialDialog extends BDialog implements ListChangeListe
       if (which > -1)
       {
         Material mat = sc.getMaterial(which);
-        mat.edit(fr, sc);
+        mat.edit(frame.getFrame(), sc);
         sc.changeMaterial(which);
         preview.render();
       }
@@ -146,24 +146,18 @@ public class TaPDObjectMaterialDialog extends BDialog implements ListChangeListe
     dispose();
   }
   
+  @SuppressWarnings("ResultOfObjectAllocationIgnored")
   private void doNewMaterial()
   {
-      JOptionPane.showMessageDialog(null, "Not implemented new matreial");
-    //MaterialsDialog.showNewMaterialWindow(this, sc);
-  }
-  
-  private void doEditMaterials()
-  {
-      JOptionPane.showMessageDialog(null, "Not implemented edit materials");
-    //sc.showMaterialsDialog(fr);
-    buildList();
-    preview.render();
+    new TexturesAndMaterialsDialog(frame, sc).setVisible(true);
+    
+
   }
   
   @SuppressWarnings("ResultOfObjectAllocationIgnored")
   private void doEditMapping()
   {
-    new MaterialMappingDialog(fr, firstObj);
+    new MaterialMappingDialog(frame.getFrame(), firstObj);
     preview.setMaterial(firstObj.getMaterial(), firstObj.getMaterialMapping());
     preview.render();
   }

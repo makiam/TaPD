@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
 
 public class TaPDObjectTextureDialog extends BDialog implements ListChangeListener
 {
-  private BFrame fr;
+  private EditingWindow frame;
   private Scene sc;
   private ObjectInfo obj[], editObj;
   private BList texList, layerList;
@@ -61,11 +61,11 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
     };
 
 
-  public TaPDObjectTextureDialog(BFrame parent, Scene theScene, ObjectInfo objects[])
+  public TaPDObjectTextureDialog(EditingWindow parent, Scene theScene, ObjectInfo objects[])
   {
-    super(parent, Translate.text("objectTextureTitle"), false);
+    super(parent.getFrame(), Translate.text("objectTextureTitle"), false);
     
-    fr = parent;
+    frame = parent;
     sc = theScene;
     obj = objects;
     renderProcessor = new ActionProcessor();
@@ -118,7 +118,7 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
     listPanel.add(UIUtilities.createScrollingList(texList), 0, 0, new LayoutInfo(LayoutInfo.CENTER, LayoutInfo.BOTH, null, null));
     RowContainer texButtonRow = new RowContainer();
     texButtonRow.add(Translate.button("newTexture", this, "doNewTexture"));
-    texButtonRow.add(Translate.button("textures", this, "doEditTextures"));
+    
     listPanel.add(texButtonRow, 0, 1);
     
     // Create the section of the window for layered textures.
@@ -344,7 +344,7 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
     {
       int which = texList.getSelectedIndex();
       Texture tex = sc.getTexture(which);
-      tex.edit(fr, sc);
+      tex.edit(frame.getFrame(), sc);
       sc.changeTexture(which);
       renderPreview();
     }
@@ -354,7 +354,7 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
   private void doEditMapping()
   {
     int index = layerList.getSelectedIndex();
-    new TextureMappingDialog(fr, editObj.object, index);
+    new TextureMappingDialog(frame.getFrame(), editObj.object, index);
     editObj.setTexture(editObj.object.getTexture(), editObj.object.getTextureMapping());
     preview.setTexture(editObj.object.getTexture(), editObj.object.getTextureMapping());
     renderPreview();
@@ -362,15 +362,7 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
   
   private void doNewTexture()
   {
-    //TexturesDialog.showNewTextureWindow(this, sc);
-  }
-  
-  private void doEditTextures()
-  {
-      JOptionPane.showMessageDialog(null, "Not implemented edit textures");
-    //sc.showTexturesDialog(fr);
-    buildList();
-    renderPreview();
+    new TexturesAndMaterialsDialog(frame, sc).setVisible(true);
   }
   
   private void doAddLayer()
@@ -437,10 +429,10 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
         obj[i].object.setParameterValue(param[j], paramValue[j].duplicate());
     }
     obj[0].object.copyObject(editObj.object);
-    if (fr instanceof LayoutWindow)
+    if (frame instanceof LayoutWindow)
     {
-      ((LayoutWindow) fr).updateImage();
-      ((LayoutWindow) fr).getScore().tracksModified(false);
+      ((LayoutWindow) frame).updateImage();
+      ((LayoutWindow) frame).getScore().tracksModified(false);
     }
     if (callback != null)
       callback.run();
