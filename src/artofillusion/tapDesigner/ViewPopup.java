@@ -22,7 +22,7 @@ import javax.swing.*;
 /**
  *  The popup menu that appears on any view to split it and add a new view.
  *
- *@author     François Guillet
+ *@author     FranÃ§ois Guillet
  *@created    1 mai 2004
  */
 public class ViewPopup

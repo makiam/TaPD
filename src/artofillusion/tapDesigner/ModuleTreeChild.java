@@ -17,8 +17,8 @@ package artofillusion.tapDesigner;
 /**
  *  A simple placeholder for module parameters edit widgets info
  *
- *@author     François Guillet
- *@created    12 août 2004
+ *@author     FranÃ§ois Guillet
+ *@created    12 aoÃ»t 2004
  */
 public class ModuleTreeChild
 {

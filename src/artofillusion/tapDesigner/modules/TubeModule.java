@@ -36,7 +36,7 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  Description of the Class
  *
- *@author     François Guillet
+ *@author     FranÃ§ois Guillet
  *@created    19 avril 2004
  */
 public class TubeModule

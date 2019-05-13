@@ -25,8 +25,8 @@ import javax.swing.*;
 /**
  *  Description of the Class
  *
- *@author     François Guillet
- *@created    9 août 2004
+ *@author     FranÃ§ois Guillet
+ *@created    9 aoÃ»t 2004
  */
 public class TapBToolTip
          extends BToolTip

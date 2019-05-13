@@ -35,7 +35,7 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  This widget container allows edition of module parameters.
  *
- *@author     François Guillet
+ *@author     FranÃ§ois Guillet
  *@created    14 mars 2004
  */
 public class TapParametersPanel extends BSplitPane implements TapView
@@ -584,8 +584,8 @@ public class TapParametersPanel extends BSplitPane implements TapView
     /**
      *  Data for restoring preview layouts
      *
-     *@author     François Guillet
-     *@created    15 août 2004
+     *@author     FranÃ§ois Guillet
+     *@created    15 aoÃ»t 2004
      */
     public static class ParametersLayoutData extends ProcPanelLayoutData
     {

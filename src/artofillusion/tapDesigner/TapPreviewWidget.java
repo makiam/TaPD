@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2004 by François Guillet. Some parts taken from LayoutWindow.jva by
+ *  Copyright (C) 2004 by FranÃ§ois Guillet. Some parts taken from LayoutWindow.jva by
  *  Peter Eastman.
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software

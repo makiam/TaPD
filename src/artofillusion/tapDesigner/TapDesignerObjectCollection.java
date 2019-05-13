@@ -36,7 +36,7 @@ import javax.swing.*;
 /**
  *  Description of the Class
  *
- *@author     François Guillet
+ *@author     FranÃ§ois Guillet
  *@created    9 mai 2004
  */
 public class TapDesignerObjectCollection
