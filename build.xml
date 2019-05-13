@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+
+<project name="TaPD.plugin" default="TaPD.dist" basedir=".">
+  <include file="TaPD.xml" as="TaPD"/>
+</project>
