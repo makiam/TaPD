@@ -2,7 +2,7 @@
  *  Clip range module
  */
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2004 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -28,7 +28,7 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  Description of the Class
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    19 avril 2004
  */
 public class RandomValueModule extends TapModule

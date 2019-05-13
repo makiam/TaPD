@@ -4,7 +4,7 @@
  *  on top of the first one.
  */
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2004 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -35,7 +35,7 @@ import javax.swing.*;
  *  This panel shows a graphical representation of the procedure (modules and
  *  links).
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    14 mars 2004
  */
 public class TapModulePanel extends OverlayContainer implements TapView
@@ -1685,7 +1685,7 @@ public class TapModulePanel extends OverlayContainer implements TapView
     /**
      *  An Explicit Container for which the getMinimumSize method is customized
      *
-     *@author     francois guillet
+     *@author     François Guillet
      *@created    8 avril 2004
      */
     class ModuleContainer extends ExplicitContainer

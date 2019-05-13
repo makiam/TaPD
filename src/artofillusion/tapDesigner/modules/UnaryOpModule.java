@@ -2,7 +2,7 @@
  *  Unary operation result=f(a)
  */
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2004 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -28,7 +28,7 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  This module represents a unary operation : result=f(a)
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    19 avril 2004
  */
 public class UnaryOpModule extends TapModule
@@ -357,7 +357,7 @@ public class UnaryOpModule extends TapModule
     /**
      *  Unary Operation module edit widget.
      *
-     *@author     Francois Guillet
+     *@author     François Guillet
      *@created    14 mai 2004
      */
     public class UnaryOpEditWidget extends EditWidgetBase

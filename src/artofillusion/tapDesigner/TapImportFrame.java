@@ -1,6 +1,6 @@
 /* Material or textures import/export from/to AoI scene */
 
-/* Copyright (C) 2004 by Francois Guillet
+/* Copyright (C) 2004 by François Guillet
 
    This program is free software; you can redistribute it and/or modify it under the
    terms of the GNU General Public License as published by the Free Software

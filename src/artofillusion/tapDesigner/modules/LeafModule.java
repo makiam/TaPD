@@ -234,7 +234,7 @@ public class LeafModule extends ObjectModule
     /**
      *  AoI object editor window
      *
-     *@author     Francois Guillet
+     *@author     François Guillet
      *@created    19 avril 2004
      */
     private class LeafEditWidget extends EditWidgetBase

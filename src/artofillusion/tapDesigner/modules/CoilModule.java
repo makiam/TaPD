@@ -3,7 +3,7 @@
  *  with decorator object sent in first entry port.
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -973,7 +973,7 @@ public class CoilModule extends TapModule
     /**
      *  Coil editor window
      *
-     *@author     Francois Guillet
+     *@author     François Guillet
      *@created    19 avril 2004
      */
     private class CoilModuleDialog

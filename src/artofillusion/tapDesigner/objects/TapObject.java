@@ -4,7 +4,7 @@ These methods allow to
 -get position at a given height
 -distort an object upon creating a branch (branching effect) */
 
-/* Copyright 2003 Francois Guillet
+/* Copyright 2003 François Guillet
 
    This program is free software; you can redistribute it and/or modify it under the
    terms of the GNU General Public License as published by the Free Software

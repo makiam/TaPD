@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2004 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -19,7 +19,7 @@ import buoy.widget.*;
 /**
  *  Edit widget dialog base
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    19 mai 2004
  */
 public class EditWidgetDialogBase extends BFrame implements EditWidgetDialog

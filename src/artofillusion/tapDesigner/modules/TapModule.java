@@ -3,7 +3,7 @@
  *  The subclasses represent specific kinds of modules.
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -33,7 +33,7 @@ import java.awt.Point;
  *  have. Some methods are abstract, some others implement a default behavior.
  *  The subclasses represent specific kinds of modules.
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    19 avril 2004
  */
 public abstract class TapModule
@@ -1254,7 +1254,7 @@ public abstract class TapModule
     /**
      *  A class that holds an icon and a name for each module class
      *
-     *@author     Francois Guillet
+     *@author     François Guillet
      *@created    8 mai 2004
      */
     public class ModuleTypeInfo

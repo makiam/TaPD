@@ -2,7 +2,7 @@
  *  This class represents a spline mesh module
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -260,7 +260,7 @@ public class SplineModule extends ObjectModule
     /**
      *  Spline object editor window
      *
-     *@author     Francois Guillet
+     *@author     François Guillet
      *@created    06 june 2004
      */
     private class SplineEditWidget extends EditWidgetBase

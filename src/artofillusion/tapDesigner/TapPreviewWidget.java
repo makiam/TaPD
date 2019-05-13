@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2004 by Francois Guillet. Some parts taken from LayoutWindow.java by
+ *  Copyright (C) 2004 by François Guillet. Some parts taken from LayoutWindow.java by
  *  Peter Eastman.
  *  Changes copyright (C) 2019 by Maksim Khramov
  *

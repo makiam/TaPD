@@ -1,6 +1,6 @@
 /* This class adds some information to the the traditional ObjectInfo. For some practical
 reasons, it owns an ObjectInfo rather than is an ObjectInfo. */
-/* Copyright (C) 2003 by Francois Guillet
+/* Copyright (C) 2003 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
    This program is free software; you can redistribute it and/or modify it under the

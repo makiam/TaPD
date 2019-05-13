@@ -1,4 +1,4 @@
-/* Copyright (C) 2002-2004 by Peter Eastman, adaptation to the TaPD (C) 2004 Francois Guillet
+/* Copyright (C) 2002-2004 by Peter Eastman, adaptation to the TaPD (C) 2004 François Guillet
 
    This program is free software; you can redistribute it and/or modify it under the
    terms of the GNU General Public License as published by the Free Software

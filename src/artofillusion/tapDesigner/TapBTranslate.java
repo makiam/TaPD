@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
  *  Copyright (C) 2003 by Peter Eastman for original Translate.java code
  *  Changes copyright (C) 2019 by Maksim Khramov
  *

@@ -2,7 +2,7 @@
  *  This represents a distort module .
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -384,7 +384,7 @@ public class DistortModule extends TapModule
     /**
      *  DistortModule editor window
      *
-     *@author     Francois Guillet
+     *@author     François Guillet
      *@created    19 avril 2004
      */
     private class DistortModuleDialog extends JFrame implements ActionListener, DocumentListener, ChangeListener

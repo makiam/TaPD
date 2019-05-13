@@ -4,7 +4,7 @@
  *  This process can be used to populate a field with grass and plants.
  */
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2004 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -19,7 +19,7 @@ package artofillusion.tapDesigner;
 /**
  *  A simple placeholder for module parameters edit widgets info
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    12 ao�t 2004
  */
 public class ModuleTreeChild

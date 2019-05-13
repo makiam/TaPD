@@ -2,7 +2,7 @@
  *  This TapView show full or partial previews
  */
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2004 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -31,7 +31,7 @@ import java.awt.Insets;
 /**
  *  This widget container allows visualization of previews.
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    14 ao�t 2004
  */
 public class PreviewTapView extends BSplitPane implements TapView

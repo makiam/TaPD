@@ -3,7 +3,7 @@
  *  showing views or modules parameters
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -33,7 +33,7 @@ import java.awt.Insets;
 /**
  *  This widget container allows edition of module parameters.
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    14 mars 2004
  */
 public class TapParametersPanel extends BSplitPane implements TapView

@@ -3,7 +3,7 @@
  *  This process can be used to populate a field with grass and plants.
  */
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2004 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -32,7 +32,7 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  This module decorates the faces of a triangle mesh with objects
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    16 july 2004
  */
 public class FieldModule extends TapModule
@@ -847,7 +847,7 @@ public class FieldModule extends TapModule
     /**
      *  AoI object editor window
      *
-     *@author     Francois Guillet
+     *@author     François Guillet
      *@created    19 avril 2004
      */
     private class FieldModuleEditWidget extends EditWidgetBase

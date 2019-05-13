@@ -2,7 +2,7 @@
  *  Custom BToolTip
  */
 /*
- *  Copyright 2004 Francois Guillet
+ *  Copyright 2004 François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -23,7 +23,7 @@ import javax.swing.*;
 /**
  *  Description of the Class
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    9 ao�t 2004
  */
 public class TapBToolTip extends BToolTip

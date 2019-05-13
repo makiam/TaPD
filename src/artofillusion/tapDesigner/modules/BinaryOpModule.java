@@ -2,7 +2,7 @@
  *  Binary operation result=f(a,b)
  */
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2004 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -26,7 +26,7 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  This module represents a unary operation : result=f(a,b)
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    19 avril 2004
  */
 public class BinaryOpModule extends TapModule
@@ -353,7 +353,7 @@ public class BinaryOpModule extends TapModule
     /**
      *  Binary Operation module edit widget
      *
-     *@author     Francois Guillet
+     *@author     François Guillet
      *@created    14 mai 2004
      */
     public class BinaryOpEditWidget extends EditWidgetBase

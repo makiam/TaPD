@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2004 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -20,7 +20,7 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  The tree renderer for the modules tree
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    8 mai 2004
  */
 public class ParametersTreeRenderer extends DefaultTreeCellRenderer

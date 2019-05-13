@@ -2,7 +2,7 @@
  *  The popup menu that appears on any view to split it and add a new view, or to remove a view.
  */
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2004 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -23,7 +23,7 @@ import buoy.widget.*;
 /**
  *  The popup menu that appears on any view to split it and add a new view.
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    1 mai 2004
  */
 public class ViewPopup extends BPopupMenu

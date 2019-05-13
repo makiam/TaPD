@@ -5,7 +5,7 @@
  *  interpolate or approximate the vertices of the control mesh.
  */
 /*
- *  Copyright (C) 1999-2002 by Peter Eastman, (C) 2003 by Francois Guillet
+ *  Copyright (C) 1999-2002 by Peter Eastman, (C) 2003 by François Guillet
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.

@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2004 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -24,7 +24,7 @@ import java.util.*;
  *  can use it for their edit widgets. It is however not mandatory to derive
  *  this class : only implementing the EditWidget interface is mandatory.
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    14 mai 2004
  */
 public abstract class EditWidgetBase extends BorderContainer implements EditWidget

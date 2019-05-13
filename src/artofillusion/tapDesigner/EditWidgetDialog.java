@@ -3,7 +3,7 @@
  *  EditWidgetDialog interface
  */
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2004 by François Guillet
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -18,7 +18,7 @@ package artofillusion.tapDesigner;
  *  EditWidget interface. This interface is implemented by all the edit widgets
  *  used to edit module parameters
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    14 aout 2004
  */
 

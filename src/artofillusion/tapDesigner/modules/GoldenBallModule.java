@@ -3,7 +3,7 @@
  *  with decorator object sent in first entry port according to golden ratio rules.
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
  *  Changes copyright (C) 2019 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
@@ -36,7 +36,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *  This modules layouts decorator objects along a sphere, following the golden
  *  ratio rule.
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    19 avril 2004
  */
 public class GoldenBallModule extends TapModule
@@ -888,7 +888,7 @@ public class GoldenBallModule extends TapModule
     /**
      *  GoldenBallModule editor window
      *
-     *@author     Francois Guillet
+     *@author     François Guillet
      *@created    19 avril 2004
      */
     private class GoldenBallModuleDialog extends JFrame implements ActionListener, DocumentListener, ChangeListener
