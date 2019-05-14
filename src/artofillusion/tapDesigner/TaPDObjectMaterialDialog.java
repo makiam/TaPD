@@ -1,5 +1,6 @@
 /* Copyright (C) 1999-2004 by Peter Eastman
-
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
    This program is free software; you can redistribute it and/or modify it under the
    terms of the GNU General Public License as published by the Free Software
    Foundation; either version 2 of the License, or (at your option) any later version.
@@ -17,6 +18,7 @@ import artofillusion.*;
 import buoy.event.*;
 import buoy.widget.*;
 import java.awt.*;
+import javax.swing.JOptionPane;
 
 /** This class implements the dialog box which is used to choose materials for objects. 
     It presents a list of all available materials from which the user can select one.
@@ -146,12 +148,13 @@ public class TaPDObjectMaterialDialog extends BDialog implements ListChangeListe
   
   private void doNewMaterial()
   {
-    MaterialsDialog.showNewMaterialWindow(this, sc);
+      JOptionPane.showMessageDialog(this.component, "MaterialsDialog class and showNewMaterialWindow method deleted.");
   }
   
   private void doEditMaterials()
   {
-    sc.showMaterialsDialog(fr);
+    JOptionPane.showMessageDialog(this.component, "Scene's showMessageDialog method deleted.");
+    
     buildList();
     preview.render();
   }

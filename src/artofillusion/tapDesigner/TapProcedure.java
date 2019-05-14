@@ -4,6 +4,8 @@
  */
 /*
  *  Copyright (C) 2003 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -13,28 +15,22 @@
  */
 package artofillusion.tapDesigner;
 
-//{{{ imports
+
 import artofillusion.*;
-import artofillusion.animation.*;
 import artofillusion.image.*;
-import artofillusion.image.filter.*;
 import artofillusion.material.*;
-import artofillusion.math.*;
 import artofillusion.object.*;
 import artofillusion.texture.*;
-import artofillusion.tapDesigner.TapModule;
 import buoy.event.*;
 import buoy.widget.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
 import java.lang.reflect.*;
 import java.text.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.event.*;
 
-//}}}
+
 
 /**
  *  Description of the Class
@@ -1082,8 +1078,8 @@ public class TapProcedure
      */
     public void manageTextures( BFrame parentFrame )
     {
-        theScene.showTexturesDialog( parentFrame );
-        setModified( true );
+        //theScene.showTexturesDialog( parentFrame );
+        //setModified( true );
     }
 
 
@@ -1106,8 +1102,8 @@ public class TapProcedure
      */
     public void manageMaterials( BFrame parentFrame )
     {
-        theScene.showMaterialsDialog( parentFrame );
-        setModified( true );
+        //theScene.showMaterialsDialog( parentFrame );
+        //setModified( true );
     }
 
 
