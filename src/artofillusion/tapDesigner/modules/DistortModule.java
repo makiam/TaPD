@@ -2,7 +2,9 @@
  *  This represents a distort module .
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -15,12 +17,9 @@ import artofillusion.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
 import buoy.widget.*;
-import buoy.event.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.lang.Math.*;
-import java.lang.reflect.*;
 import java.text.*;
 import java.util.*;
 import javax.swing.*;
@@ -36,8 +35,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *@author     pims
  *@created    19 avril 2004
  */
-public class DistortModule
-         extends TapModule
+public class DistortModule extends TapModule
 {
     private DistortModule module;
     private static TapModule.ModuleTypeInfo typeInfo;
@@ -53,7 +51,7 @@ public class DistortModule
      */
     public DistortModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "distort" ), position );
+        super( procedure, TapBTranslate.text( "distort" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "distortName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/distort_tree.png" ) ) );
 
@@ -73,9 +71,9 @@ public class DistortModule
         inputNature[0] = OBJECT_PORT;
         outputNature[0] = OBJECT_PORT;
         inputTooltips = new String[1];
-        inputTooltips[0] = TapDesignerTranslate.text( "objectToDistort" );
+        inputTooltips[0] = TapBTranslate.text( "objectToDistort" );
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "distortedObject" );
+        outputTooltips[0] = TapBTranslate.text( "distortedObject" );
         setBackgroundColor( Color.orange.darker() );
         module = this;
     }
@@ -89,8 +87,7 @@ public class DistortModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public DistortModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public DistortModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -112,6 +109,7 @@ public class DistortModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -127,6 +125,7 @@ public class DistortModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         DistortModule module = new DistortModule( this.procedure, this.location );
@@ -143,6 +142,7 @@ public class DistortModule
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -164,6 +164,7 @@ public class DistortModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( int outputPort, long seed )
     {
         TapDesignerObjectCollection col = null;
@@ -257,6 +258,7 @@ public class DistortModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( TapDesignerObjectCollection collection, int inputPort, long seed )
     {
         ObjectInfo anInfo;
@@ -311,6 +313,7 @@ public class DistortModule
      *@param  seed        Description of the Parameter
      *@return             The value value
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         return (double) 0.0;
@@ -322,6 +325,7 @@ public class DistortModule
      *
      *@param  modifiers  Description of the Parameter
      */
+    @Override
     public void showPreviewFrame( int modifiers )
     {
         super.showPreviewFrame( modifiers );
@@ -349,6 +353,7 @@ public class DistortModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -360,6 +365,7 @@ public class DistortModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return true;
@@ -371,6 +377,7 @@ public class DistortModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -499,7 +506,7 @@ public class DistortModule
             curveRateTF.setColumns( 4 );
             pp.add( p );
 
-            TitledBorder border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "yCurveParameters" ) );
+            TitledBorder border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "yCurveParameters" ) );
             pp.setBorder( border );
             contentPane.add( pp );
 
@@ -528,7 +535,7 @@ public class DistortModule
             p.add( perpCurveRateTF = new JTextField( format.format( smParms.perpCurveRate ) ) );
             perpCurveRateTF.setColumns( 4 );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "rCurveParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "rCurveParameters" ) );
             pp.setBorder( border );
             contentPane.add( pp );
 
@@ -540,7 +547,7 @@ public class DistortModule
             p.add( TapDesignerTranslate.jlabel( "randomTiltDiv" ) );
             p.add( randomTiltDivTF = new JTextField( format.format( smParms.randomTiltDiv ) ) );
             randomTiltDivTF.setColumns( 3 );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "randomTilt" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "randomTilt" ) );
             p.setBorder( border );
             contentPane.add( p );
 
@@ -560,7 +567,7 @@ public class DistortModule
             pRB.add( twistDistURB );
             pRB.add( twistDistGRB );
             p.add( pRB );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "sectionParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "sectionParameters" ) );
             p.setBorder( border );
             contentPane.add( p );
 
@@ -602,12 +609,12 @@ public class DistortModule
 
             Hashtable labelTable = new Hashtable();
             JLabel tmpLabel;
-            labelTable.put( new Integer( 0 ), tmpLabel = TapDesignerTranslate.jlabel( "constant" ) );
-            labelTable.put( new Integer( 100 ), tmpLabel = TapDesignerTranslate.jlabel( "normalized" ) );
+            labelTable.put(0, tmpLabel = TapDesignerTranslate.jlabel( "constant" ) );
+            labelTable.put(100, tmpLabel = TapDesignerTranslate.jlabel( "normalized" ) );
             leafRRatioSL.setLabelTable( labelTable );
             leafRRatioSL.setPaintLabels( true );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "leafCurveParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "leafCurveParameters" ) );
             pp.setBorder( border );
             contentPane.add( pp );
 
@@ -617,11 +624,12 @@ public class DistortModule
             p.add( applyButton = TapDesignerTranslate.jButton( "apply", this ) );
             p.add( cancelButton = TapDesignerTranslate.jButton( "cancel", this ) );
             contentPane.add( p );
-            this.setTitle( TapDesignerTranslate.text( "distortModuleTitle", module.getName() ) );
+            this.setTitle( TapBTranslate.text( "distortModuleTitle", module.getName() ) );
 
             addWindowListener(
                 new java.awt.event.WindowAdapter()
                 {
+                    @Override
                     public void windowClosing( java.awt.event.WindowEvent evt )
                     {
                         exitForm( evt );
@@ -711,6 +719,7 @@ public class DistortModule
          *
          *@param  evt  Description of the Parameter
          */
+        @Override
         public void actionPerformed( java.awt.event.ActionEvent evt )
         {
             String command = evt.getActionCommand();
@@ -743,6 +752,7 @@ public class DistortModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void stateChanged( ChangeEvent e )
         {
             if ( setupFlag )
@@ -833,6 +843,7 @@ public class DistortModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void changedUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -844,6 +855,7 @@ public class DistortModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void insertUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -855,6 +867,7 @@ public class DistortModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void removeUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -916,7 +929,7 @@ public class DistortModule
         {
             if ( modified )
             {
-                int r = JOptionPane.showConfirmDialog( this, TapDesignerTranslate.text( "parametersModified" ), TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
+                int r = JOptionPane.showConfirmDialog( this, TapBTranslate.text( "parametersModified" ), TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
 
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;

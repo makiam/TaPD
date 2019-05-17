@@ -3,7 +3,9 @@
  *  with decorator object sent in first entry port.
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -13,29 +15,15 @@
 package artofillusion.tapDesigner;
 
 import artofillusion.*;
-
 import artofillusion.math.*;
-
 import artofillusion.object.*;
-
 import artofillusion.texture.*;
-
-import buoy.event.*;
-
 import buoy.widget.*;
-
 import java.awt.*;
 import java.awt.event.*;
-
 import java.io.*;
-
-import java.lang.Math.*;
-import java.lang.reflect.*;
-
 import java.text.*;
-
 import java.util.*;
-
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
@@ -50,8 +38,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *@author     pims
  *@created    19 avril 2004
  */
-public class CoilModule
-         extends TapModule
+public class CoilModule extends TapModule
 {
     private CoilModule module;
     private static TapModule.ModuleTypeInfo typeInfo;
@@ -115,7 +102,7 @@ public class CoilModule
      */
     public CoilModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "coil" ), position );
+        super( procedure, TapBTranslate.text( "coil" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "coilName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/coil_tree.png" ) ) );
         setNumInput( 5 );
@@ -184,14 +171,14 @@ public class CoilModule
         outputNature[0] = OBJECT_PORT;
         outputNature[1] = VALUE_PORT;
         inputTooltips = new String[5];
-        inputTooltips[0] = TapDesignerTranslate.text( "objectDecorate" );
-        inputTooltips[1] = TapDesignerTranslate.text( "objectDecorated" );
-        inputTooltips[2] = TapDesignerTranslate.text( "yValueInput" );
-        inputTooltips[3] = TapDesignerTranslate.text( "rSizeValue" );
-        inputTooltips[4] = TapDesignerTranslate.text( "ySizeValue" );
+        inputTooltips[0] = TapBTranslate.text( "objectDecorate" );
+        inputTooltips[1] = TapBTranslate.text( "objectDecorated" );
+        inputTooltips[2] = TapBTranslate.text( "yValueInput" );
+        inputTooltips[3] = TapBTranslate.text( "rSizeValue" );
+        inputTooltips[4] = TapBTranslate.text( "ySizeValue" );
         outputTooltips = new String[2];
-        outputTooltips[0] = TapDesignerTranslate.text( "objectOutput" );
-        outputTooltips[1] = TapDesignerTranslate.text( "yValueOutput" );
+        outputTooltips[0] = TapBTranslate.text( "objectOutput" );
+        outputTooltips[1] = TapBTranslate.text( "yValueOutput" );
         setBackgroundColor( Color.orange.darker() );
         module = this;
     }
@@ -273,6 +260,7 @@ public class CoilModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
+    @Override
     public void writeToFile( DataOutputStream out, Scene theScene )
         throws IOException
     {
@@ -333,6 +321,7 @@ public class CoilModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         CoilModule module = new CoilModule( this.procedure, this.location );
@@ -395,6 +384,7 @@ public class CoilModule
      *@param  inputPort  Description of the Parameter
      *@return            Description of the Return Value
      */
+    @Override
     public int remap( int inputPort )
     {
         return inputPort;
@@ -406,6 +396,7 @@ public class CoilModule
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -427,6 +418,7 @@ public class CoilModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( int outputPort, long seed )
     {
         TapDesignerObjectCollection col = null;
@@ -490,6 +482,7 @@ public class CoilModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( TapDesignerObjectCollection collection, int inputPort, long seed )
     {
         double Ysize;
@@ -895,6 +888,7 @@ public class CoilModule
      *@param  seed        Description of the Parameter
      *@return             The value value
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         if ( outputPort == 1 )
@@ -909,6 +903,7 @@ public class CoilModule
      *
      *@param  modifiers  Description of the Parameter
      */
+    @Override
     public void showPreviewFrame( int modifiers )
     {
         super.showPreviewFrame( modifiers );
@@ -937,6 +932,7 @@ public class CoilModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -948,6 +944,7 @@ public class CoilModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return true;
@@ -959,6 +956,7 @@ public class CoilModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -1280,7 +1278,7 @@ public class CoilModule
             else
                 dampingTF.setEnabled( false );
 
-            TitledBorder border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "generationParameters" ) );
+            TitledBorder border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "generationParameters" ) );
             p.setBorder( border );
             first.add( p );
 
@@ -1296,7 +1294,7 @@ public class CoilModule
             useGoldenCB.setSelected( useGoldenRatio );
             p.add( flipChildrenCB = TapDesignerTranslate.jCheckBox( "flipChildren", this ) );
             flipChildrenCB.setSelected( flipChildren );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "RParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "RParameters" ) );
             p.setBorder( border );
             first.add( p );
 
@@ -1327,7 +1325,7 @@ public class CoilModule
             pRB.add( YdistURB );
             pRB.add( YdistGRB );
             p.add( pRB );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "YParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "YParameters" ) );
             p.setBorder( border );
             first.add( p );
 
@@ -1386,7 +1384,7 @@ public class CoilModule
             rShiftFunctionInputCB.setAlignmentX( 0.5f );
             p.add( yvPanel );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "angularParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "angularParameters" ) );
             pp.setBorder( border );
             first.add( pp );
 
@@ -1466,7 +1464,7 @@ public class CoilModule
             dim.height = densityParameterSL.getPreferredSize().height;
             densityParameterSL.setPreferredSize( dim );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "sizeParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "sizeParameters" ) );
             pp.setBorder( border );
             first.add( pp );
 
@@ -1533,7 +1531,7 @@ public class CoilModule
             curveRateFunctionInputCB.setAlignmentX( 0.5f );
             p.add( yvPanel );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "yCurveParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "yCurveParameters" ) );
             pp.setBorder( border );
             second.add( pp );
 
@@ -1570,7 +1568,7 @@ public class CoilModule
             p.add( perpCurveRateTF = new JTextField( format.format( smParms.perpCurveRate ) ) );
             perpCurveRateTF.setColumns( 4 );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "rCurveParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "rCurveParameters" ) );
             pp.setBorder( border );
             second.add( pp );
 
@@ -1586,7 +1584,7 @@ public class CoilModule
             p.add( TapDesignerTranslate.jlabel( "recoverRate" ) );
             p.add( recoverRateTF = new JTextField( format.format( smParms.recoverRate ) ) );
             recoverRateTF.setColumns( 4 );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "branchReaction" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "branchReaction" ) );
             p.setBorder( border );
             second.add( p );
 
@@ -1598,7 +1596,7 @@ public class CoilModule
             p.add( TapDesignerTranslate.jlabel( "randomTiltDiv" ) );
             p.add( randomTiltDivTF = new JTextField( format.format( smParms.randomTiltDiv ) ) );
             randomTiltDivTF.setColumns( 3 );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "randomTilt" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "randomTilt" ) );
             p.setBorder( border );
             second.add( p );
 
@@ -1618,7 +1616,7 @@ public class CoilModule
             pRB.add( twistDistURB );
             pRB.add( twistDistGRB );
             p.add( pRB );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "sectionParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "sectionParameters" ) );
             p.setBorder( border );
 
             pp = new JPanel();
@@ -1673,12 +1671,12 @@ public class CoilModule
             leafRRatioSL.setMinorTickSpacing( 10 );
             leafRRatioSL.setPaintTicks( true );
             labelTable = new Hashtable();
-            labelTable.put( new Integer( 0 ), tmpLabel = TapDesignerTranslate.jlabel( "constant" ) );
-            labelTable.put( new Integer( 100 ), tmpLabel = TapDesignerTranslate.jlabel( "normalized" ) );
+            labelTable.put(0, tmpLabel = TapDesignerTranslate.jlabel( "constant" ) );
+            labelTable.put(100, tmpLabel = TapDesignerTranslate.jlabel( "normalized" ) );
             leafRRatioSL.setLabelTable( labelTable );
             leafRRatioSL.setPaintLabels( true );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "leafCurveParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "leafCurveParameters" ) );
             pp.setBorder( border );
             second.add( pp );
 
@@ -1693,8 +1691,8 @@ public class CoilModule
             yCurveLeafFunctionInputCB.setSelected( yCurveLeafFunctionInput );
             yLeafDepartureAngleFunctionInputCB.setSelected( yLeafDepartureAngleFunctionInput );
 
-            tabbedPane.addTab( TapDesignerTranslate.text( "commonParameters" ), null, first, null );
-            tabbedPane.addTab( TapDesignerTranslate.text( "tapdParameters" ), null, second, null );
+            tabbedPane.addTab( TapBTranslate.text( "commonParameters" ), null, first, null );
+            tabbedPane.addTab( TapBTranslate.text( "tapdParameters" ), null, second, null );
             tabbedPane.setSelectedIndex( 0 );
             contentPane.add( tabbedPane );
 
@@ -1704,11 +1702,12 @@ public class CoilModule
             p.add( applyButton = TapDesignerTranslate.jButton( "apply", this ) );
             p.add( cancelButton = TapDesignerTranslate.jButton( "cancel", this ) );
             contentPane.add( p );
-            this.setTitle( TapDesignerTranslate.text( "coilModuleTitle", module.getName() ) );
+            this.setTitle( TapBTranslate.text( "coilModuleTitle", module.getName() ) );
 
             addWindowListener(
                 new java.awt.event.WindowAdapter()
                 {
+                    @Override
                     public void windowClosing( java.awt.event.WindowEvent evt )
                     {
                         exitForm( evt );
@@ -1810,6 +1809,7 @@ public class CoilModule
             editDialog = yLeafDepartureAngleFunction.edit( this, TapBTranslate.text( "leafDepartureAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1826,6 +1826,7 @@ public class CoilModule
             editDialog = yCurveLeafFunction.edit( this, TapBTranslate.text( "leafCurveYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1842,6 +1843,7 @@ public class CoilModule
             editDialog = rShiftFunction.edit( this, TapBTranslate.text( "rShiftYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1858,6 +1860,7 @@ public class CoilModule
             editDialog = yStepFunction.edit( this, TapBTranslate.text( "yStepYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1874,6 +1877,7 @@ public class CoilModule
             editDialog = branchingAngleFunction.edit( this, TapBTranslate.text( "branchingAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1890,6 +1894,7 @@ public class CoilModule
             editDialog = perpAngleFunction.edit( this, TapBTranslate.text( "perpAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1906,6 +1911,7 @@ public class CoilModule
             editDialog = backAngleFunction.edit( this, TapBTranslate.text( "backAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1922,6 +1928,7 @@ public class CoilModule
             editDialog = curveRateFunction.edit( this, TapBTranslate.text( "curveRateYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1938,6 +1945,7 @@ public class CoilModule
             editDialog = curveAngleFunction.edit( this, TapBTranslate.text( "curveAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1954,6 +1962,7 @@ public class CoilModule
             editDialog = vertAngleFunction.edit( this, TapBTranslate.text( "vertAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1970,6 +1979,7 @@ public class CoilModule
             editDialog = probFunction.edit( this, TapBTranslate.text( "probYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -2009,6 +2019,7 @@ public class CoilModule
          *
          *@param  evt  Description of the Parameter
          */
+        @Override
         public void actionPerformed( java.awt.event.ActionEvent evt )
         {
             String command = evt.getActionCommand();
@@ -2064,6 +2075,7 @@ public class CoilModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void stateChanged( ChangeEvent e )
         {
             if ( setupFlag )
@@ -2230,6 +2242,7 @@ public class CoilModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void changedUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -2241,6 +2254,7 @@ public class CoilModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void insertUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -2252,6 +2266,7 @@ public class CoilModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void removeUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -2403,7 +2418,7 @@ public class CoilModule
         {
             if ( modified )
             {
-                int r = JOptionPane.showConfirmDialog( this, TapDesignerTranslate.text( "parametersModified" ), TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
+                int r = JOptionPane.showConfirmDialog( this, TapBTranslate.text( "parametersModified" ), TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
 
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;

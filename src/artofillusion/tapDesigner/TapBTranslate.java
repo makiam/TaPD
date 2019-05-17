@@ -1,6 +1,8 @@
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
  *  Copyright (C) 2003 by Peter Eastman for original Translate.java code
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -12,16 +14,10 @@ package artofillusion.tapDesigner;
 
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.event.*;
 import java.text.*;
 import java.util.*;
-import java.util.zip.*;
 import buoy.event.*;
 import buoy.widget.*;
-import artofillusion.ui.*;
-import artofillusion.*;
-import java.io.*;
 
 /**
  *  This class extends AoI Translate Class so that i) the tap Designer
@@ -47,31 +43,6 @@ public class TapBTranslate
     public static void setLocale( Locale l )
     {
         locale = l;
-        /*
-         *  File dir = new File(ModellingApp.PLUGIN_DIRECTORY);
-         *  if (dir.exists())
-         *  {	String[] files = dir.list();
-         *  for (int i = 0; i < files.length; i++)
-         *  if (files[i].startsWith("TaPD"))
-         *  {	ZipFile zf = null;
-         *  try
-         *  {
-         *  zf = new ZipFile(new File(ModellingApp.PLUGIN_DIRECTORY, files[i]));
-         *  }
-         *  catch (IOException ex)
-         *  {
-         *  continue;  // Not a zip file.
-         *  }
-         *  if (zf!=null)
-         *  {	JarClassLoader jcl = new JarClassLoader(zf);
-         *  resources = ResourceBundle.getBundle("tapdesigner", locale, jcl);
-         *  }
-         *  }
-         *  }
-         *  else
-         *  {	System.out.println("Dir does not exist");
-         *  }
-         */
         resources = ResourceBundle.getBundle( "tapdesigner", locale );
     }
 
@@ -427,7 +398,7 @@ public class TapBTranslate
 
     /**
      *  Get the text given by the property "name". If the property is not found,
-     *  this simply uses name. Any occurrances of the patterns "{0}" and "{1}"
+     *  this simply uses name. Any occurrences of the patterns "{0}" and "{1}"
      *  in the text string will be replaced with the strings representations of
      *  arg1 and arg2, respectively.
      *
@@ -462,7 +433,7 @@ public class TapBTranslate
      *@return       Description of the Return Value
      */
 
-    public static String text( String name, Object args[] )
+    public static String text( String name, Object... args)
     {
         String pattern = name;
         try

@@ -4,6 +4,8 @@
  */
 /*
  *  Copyright (C) 2003 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -14,21 +16,11 @@
 package artofillusion.tapDesigner;
 
 import artofillusion.*;
-import artofillusion.animation.*;
-import artofillusion.material.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
-import artofillusion.texture.*;
-import artofillusion.ui.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.lang.reflect.*;
-import java.text.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
 
 
 /**
@@ -37,8 +29,7 @@ import javax.swing.text.*;
  *@author     pims
  *@created    30 mai 2004
  */
-public abstract class ObjectModule
-         extends TapModule
+public abstract class ObjectModule extends TapModule
 {
     /**
      *  Description of the Field
@@ -106,12 +97,12 @@ public abstract class ObjectModule
     {
         outputNature[0] = OBJECT_PORT;
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "objectOutput" );
+        outputTooltips[0] = TapBTranslate.text( "objectOutput" );
         inputNature[0] = VALUE_PORT;
         inputNature[1] = VALUE_PORT;
         inputTooltips = new String[2];
-        inputTooltips[0] = TapDesignerTranslate.text( "sizeRInput", "1" );
-        inputTooltips[1] = TapDesignerTranslate.text( "sizeYInput", "1" );
+        inputTooltips[0] = TapBTranslate.text( "sizeRInput", "1" );
+        inputTooltips[1] = TapBTranslate.text( "sizeYInput", "1" );
         setBackgroundColor( Color.blue.darker() );
         currentSizeY = 1.0;
         currentSizeR = 1.0;
@@ -128,8 +119,7 @@ public abstract class ObjectModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public ObjectModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public ObjectModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -151,14 +141,13 @@ public abstract class ObjectModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    @Override
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
         out.writeBoolean( deliverDuplicates );
         out.writeInt( procedure.getScene().indexOf( currentObject ) );
-        //System.out.println(name+": index "+procedure.getScene().indexOf(currentObject));
     }
 
 
@@ -167,6 +156,7 @@ public abstract class ObjectModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public abstract TapModule duplicate();
 
 
@@ -225,10 +215,10 @@ public abstract class ObjectModule
     {
         Scene theScene = procedure.getScene();
         int index = 0;
-        if ( translation != null )
-            index = translation[theScene.indexOf( currentObject )];
-        else
+        if ( translation == null )
             index = theScene.indexOf( currentObject );
+        else
+            index = translation[theScene.indexOf( currentObject )];
         ObjectModule module = (ObjectModule) this.duplicate();
         int removeIndex = theScene.indexOf( module.currentObject );
         module.registerInScene( toScene, index );
@@ -282,6 +272,7 @@ public abstract class ObjectModule
     /**
      *  Description of the Method
      */
+    @Override
     public void prepareToBeDeleted()
     {
         Scene theScene = procedure.getScene();
@@ -394,6 +385,7 @@ public abstract class ObjectModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( int outputPort, long seed )
     {
         TapRandomGenerator gen = new TapRandomGenerator( seed );
@@ -452,6 +444,7 @@ public abstract class ObjectModule
      *@param  seed        Description of the Parameter
      *@return             The value value
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         System.out.println( "value asked for AoI object module" );
@@ -466,6 +459,7 @@ public abstract class ObjectModule
      *
      *@param  modifiers  Description of the Parameter
      */
+    @Override
     public void showPreviewFrame( int modifiers )
     {
         super.showPreviewFrame( modifiers );
@@ -494,6 +488,7 @@ public abstract class ObjectModule
     /**
      *  Description of the Method
      */
+    @Override
     public void initGenerationProcess()
     {
         //called once before generation
@@ -507,6 +502,7 @@ public abstract class ObjectModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return true;
@@ -518,6 +514,7 @@ public abstract class ObjectModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return true;

@@ -2,7 +2,9 @@
  *  Unary operation result=f(a)
  */
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -12,35 +14,26 @@
  */
 package artofillusion.tapDesigner;
 
-//{{{ imports
+
 import artofillusion.*;
-import artofillusion.animation.*;
-import artofillusion.math.*;
-import artofillusion.object.*;
-import artofillusion.texture.*;
-import artofillusion.ui.*;
 import buoy.event.*;
 import buoy.widget.*;
 import java.awt.*;
 import java.io.*;
-import java.lang.reflect.*;
-import java.util.*;
 import javax.swing.*;
 import artofillusion.tapDesigner.TapModule.*;
 
-//}}}
 
 
 /**
  *  This module represents a unary operation : result=f(a)
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    19 avril 2004
  */
-public class UnaryOpModule
-         extends TapModule
+public class UnaryOpModule extends TapModule
 {
-    //{{{ variables
+
     private static TapModule.ModuleTypeInfo typeInfo;
     private short opType;
     private short backOpType;
@@ -56,9 +49,6 @@ public class UnaryOpModule
             };
 
 
-    //}}}
-
-    //{{{ constructor
     /**
      *  Constructor for the UnaryOpModule object
      *
@@ -89,10 +79,10 @@ public class UnaryOpModule
     {
         outputNature[0] = VALUE_PORT;
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "resultOutput" );
+        outputTooltips[0] = TapBTranslate.text( "resultOutput" );
         inputNature[0] = VALUE_PORT;
         inputTooltips = new String[1];
-        inputTooltips[0] = TapDesignerTranslate.text( "a" );
+        inputTooltips[0] = TapBTranslate.text( "a" );
         opNames[ABS] = TapBTranslate.text( "abs" );
         opNames[SINE] = TapBTranslate.text( "sine" );
         opNames[COSINE] = TapBTranslate.text( "cosine" );
@@ -104,9 +94,6 @@ public class UnaryOpModule
     }
 
 
-    //}}}
-
-    //{{{ read/write method
     /**
      *  Reads a UnaryOpModule object from file
      *
@@ -116,8 +103,7 @@ public class UnaryOpModule
      *@exception  IOException             Read exception
      *@exception  InvalidObjectException  Object version Exception
      */
-    public UnaryOpModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public UnaryOpModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -140,38 +126,31 @@ public class UnaryOpModule
      *      is attached
      *@exception  IOException  Write exception
      */
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    @Override
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
         out.writeShort( opType );
     }
 
-
-    //}}}
-
-    //{{{ get module type info
-
     /**
      *  Gets the moduleTypeInfo associated to the UnaryOpModule object
      *
      *@return    The module type info
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
     }
 
-
-    //}}}
-
-    //{{{ duplicate method
     /**
      *  Returns a duplicate of this module.
      *
      *@return    New module
      */
+    @Override
     public TapModule duplicate()
     {
         UnaryOpModule module = new UnaryOpModule( this.procedure, this.location );
@@ -182,9 +161,6 @@ public class UnaryOpModule
     }
 
 
-    //}}}
-
-    //{{{ getValue stuff
     /**
      *  Gets the value output of the UnaryOpModule object
      *
@@ -193,6 +169,7 @@ public class UnaryOpModule
      *@param  seed        The random seed
      *@return             The value output
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         if ( outputPort == 0 )
@@ -264,8 +241,6 @@ public class UnaryOpModule
     }
 
 
-    //}}}
-
     //{{{ acceptsMainEntry : doesn't accept main entry nor preview
     /**
      *  This module isn't eligible for being a main entry and thus this method
@@ -273,6 +248,7 @@ public class UnaryOpModule
      *
      *@return    Always false
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -285,20 +261,18 @@ public class UnaryOpModule
      *
      *@return    Always false
      */
+    @Override
     public boolean acceptsPreview()
     {
         return false;
     }
 
-
-    //}}}
-
-    //{{{ edit
     /**
      *  This method creates and displays an edit window.
      *
      *@param  parentFrame  the parent frame
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -314,15 +288,12 @@ public class UnaryOpModule
         }
     }
 
-
-    //}}}
-
-    //{{{ edit frame methods and class
     /**
      *  Gets the number of edit frames used by the unary operation module
      *
      *@return    The number of edit frames to take into account
      */
+    @Override
     public int getNumEditWidgets()
     {
         return 1;
@@ -337,6 +308,7 @@ public class UnaryOpModule
      *@param  standalone  Whether the widget is in standalone frame or embedded
      *@return             The edit frame widget
      */
+    @Override
     public Widget getEditWidget( int index, Runnable cb, boolean standalone )
     {
         //System.out.println( "getEditWidget" );
@@ -350,6 +322,7 @@ public class UnaryOpModule
      *@param  index  The reference to the edit frame
      *@return        The edit frame value
      */
+    @Override
     public String getEditWidgetName( int index )
     {
         return "";
@@ -405,6 +378,7 @@ public class UnaryOpModule
         /**
          *  Fetch the values currently displayed object
          */
+        @Override
         protected void getValues()
         {
             opType = (short) opCombo.getSelectedIndex();
@@ -421,6 +395,7 @@ public class UnaryOpModule
         /**
          *  Initializes backup values
          */
+        @Override
         protected void initBackValues()
         {
             backOpType = opType;
@@ -430,6 +405,7 @@ public class UnaryOpModule
         /**
          *  Gets the undo values
          */
+        @Override
         protected void getUndoValues()
         {
             opType = backOpType;
@@ -442,6 +418,7 @@ public class UnaryOpModule
          *
          *@param  force  Description of the Parameter
          */
+        @Override
         public void showValues( boolean force )
         {
             if ( force || changed )
@@ -472,7 +449,6 @@ public class UnaryOpModule
 
     }
 
-    //}}}
 
 }
 

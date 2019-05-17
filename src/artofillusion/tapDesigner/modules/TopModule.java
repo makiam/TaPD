@@ -2,7 +2,9 @@
  *  A top module arranges a decorator on top of the decorated object.
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -17,18 +19,13 @@ import artofillusion.math.*;
 import artofillusion.object.*;
 
 import buoy.widget.*;
-import buoy.event.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.lang.Math.*;
-import java.lang.reflect.*;
 import java.text.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.text.*;
 
 import artofillusion.tapDesigner.TapModule.*;
 
@@ -38,9 +35,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *@author     pims
  *@created    19 avril 2004
  */
-public class TopModule
-         extends TapModule
-         implements Cloneable
+public class TopModule extends TapModule implements Cloneable
 {
     private TopModule module;
     private static TapModule.ModuleTypeInfo typeInfo;
@@ -62,7 +57,7 @@ public class TopModule
      */
     public TopModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "top" ), position );
+        super( procedure, TapBTranslate.text( "top" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "topName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/top_tree.png" ) ) );
 
@@ -88,10 +83,10 @@ public class TopModule
         inputNature[1] = OBJECT_PORT;
         outputNature[0] = OBJECT_PORT;
         inputTooltips = new String[2];
-        inputTooltips[0] = TapDesignerTranslate.text( "objectDecorate" );
-        inputTooltips[1] = TapDesignerTranslate.text( "objectDecorated" );
+        inputTooltips[0] = TapBTranslate.text( "objectDecorate" );
+        inputTooltips[1] = TapBTranslate.text( "objectDecorated" );
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "objectOutput" );
+        outputTooltips[0] = TapBTranslate.text( "objectOutput" );
         setBackgroundColor( Color.orange.darker() );
         module = this;
     }
@@ -105,8 +100,7 @@ public class TopModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public TopModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public TopModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -133,8 +127,8 @@ public class TopModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    @Override
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -153,6 +147,7 @@ public class TopModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -164,6 +159,7 @@ public class TopModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         TopModule module = new TopModule( this.procedure, this.location );
@@ -185,6 +181,7 @@ public class TopModule
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -207,6 +204,7 @@ public class TopModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( int outputPort, long seed )
     {
         TapDesignerObjectCollection col;
@@ -269,6 +267,7 @@ public class TopModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( TapDesignerObjectCollection collection, int inputPort, long seed )
     {
         double Ysize;
@@ -469,6 +468,7 @@ public class TopModule
      *@param  seed        Description of the Parameter
      *@return             The value value
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         return (double) 0.0;
@@ -480,6 +480,7 @@ public class TopModule
      *
      *@param  modifiers  Description of the Parameter
      */
+    @Override
     public void showPreviewFrame( int modifiers )
     {
         super.showPreviewFrame( modifiers );
@@ -507,6 +508,7 @@ public class TopModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -518,6 +520,7 @@ public class TopModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return true;
@@ -692,10 +695,11 @@ public class TopModule
 
             contentPane.add( p );
 
-            this.setTitle( TapDesignerTranslate.text( "topModuleTitle", module.getName() ) );
+            this.setTitle( TapBTranslate.text( "topModuleTitle", module.getName() ) );
             addWindowListener(
                 new java.awt.event.WindowAdapter()
                 {
+                    @Override
                     public void windowClosing( java.awt.event.WindowEvent evt )
                     {
                         exitForm( evt );
@@ -730,6 +734,7 @@ public class TopModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void stateChanged( ChangeEvent e )
         {
             if ( setup )
@@ -760,6 +765,7 @@ public class TopModule
          *
          *@param  evt  Description of the Parameter
          */
+        @Override
         public void actionPerformed( java.awt.event.ActionEvent evt )
         {
             String command = evt.getActionCommand();
@@ -823,6 +829,7 @@ public class TopModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void changedUpdate( DocumentEvent e )
         {
             doLiveCheck();
@@ -834,6 +841,7 @@ public class TopModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void insertUpdate( DocumentEvent e )
         {
             doLiveCheck();
@@ -845,6 +853,7 @@ public class TopModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void removeUpdate( DocumentEvent e )
         {
             doLiveCheck();
@@ -881,7 +890,7 @@ public class TopModule
             {
                 getBackValues();
                 randomYRotation = backRandomYRotation;
-                JOptionPane.showMessageDialog( null, TapDesignerTranslate.text( "nonValueMessage" ), TapDesignerTranslate.text( "error" ), JOptionPane.ERROR_MESSAGE );
+                JOptionPane.showMessageDialog( null, TapBTranslate.text( "nonValueMessage" ), TapBTranslate.text( "error" ), JOptionPane.ERROR_MESSAGE );
             }
         }
 
@@ -908,7 +917,7 @@ public class TopModule
         {
             if ( modified )
             {
-                int r = JOptionPane.showConfirmDialog( this, TapDesignerTranslate.text( "parametersModified" ), TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
+                int r = JOptionPane.showConfirmDialog( this, TapBTranslate.text( "parametersModified" ), TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
 
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;

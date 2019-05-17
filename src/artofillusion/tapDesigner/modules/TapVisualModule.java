@@ -3,7 +3,9 @@
  *  of a tapmodule. It owns a module rather than extend it.
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -13,22 +15,15 @@
  */
 package artofillusion.tapDesigner;
 
-import artofillusion.*;
-import artofillusion.math.*;
-import artofillusion.tapDesigner.*;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import java.io.*;
-import java.util.*;
-import java.lang.reflect.*;
 import buoy.event.*;
 import buoy.widget.*;
 
 /**
  *  Description of the Class
  *
- *@author     Fancois Guillet
+ *@author     François Guillet
  *@created    4 avril 2004
  */
 public class TapVisualModule extends OverlayContainer
@@ -209,6 +204,7 @@ public class TapVisualModule extends OverlayContainer
      *
      *@return    The bounds value
      */
+    @Override
     public Rectangle getBounds()
     {
         Rectangle rect = new Rectangle( buttonContainer.getPreferredSize() );
@@ -647,6 +643,7 @@ public class TapVisualModule extends OverlayContainer
      *
      *@param  newName  The new name value
      */
+    @Override
     public void setName( String newName )
     {
         buttonContainer.button.setText( newName );
@@ -892,7 +889,7 @@ public class TapVisualModule extends OverlayContainer
                         return "No tooltip";
                 }
 
-            return TapDesignerTranslate.text( "clickSelectMove" );
+            return TapBTranslate.text( "clickSelectMove" );
         }
 
 
@@ -947,6 +944,7 @@ public class TapVisualModule extends OverlayContainer
          *
          *@param  color  The new background value
          */
+        @Override
         public void setBackground( Color color )
         {
             background = color;
@@ -1073,6 +1071,7 @@ public class TapVisualModule extends OverlayContainer
          *
          *@return    The preferredSize value
          */
+        @Override
         public Dimension getPreferredSize()
         {
             return preferredSize;

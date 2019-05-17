@@ -2,7 +2,9 @@
  *  Clip range module
  */
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -13,22 +15,12 @@
 package artofillusion.tapDesigner;
 
 import artofillusion.*;
-import artofillusion.animation.*;
-import artofillusion.math.*;
-import artofillusion.object.*;
-import artofillusion.texture.*;
-import artofillusion.ui.*;
 import buoy.event.*;
 import buoy.widget.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
-import java.lang.reflect.*;
 import java.text.*;
-import java.util.*;
 import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
 
 import artofillusion.tapDesigner.TapModule.*;
 
@@ -36,11 +28,10 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  Description of the Class
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    19 avril 2004
  */
-public class RandomValueModule
-         extends TapModule
+public class RandomValueModule extends TapModule
 {
     private static TapModule.ModuleTypeInfo typeInfo;
 
@@ -78,7 +69,7 @@ public class RandomValueModule
     {
         outputNature[0] = VALUE_PORT;
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "randomValueOutput" );
+        outputTooltips[0] = TapBTranslate.text( "randomValueOutput" );
 
         setBackgroundColor( Color.black );
         module = this;
@@ -93,8 +84,7 @@ public class RandomValueModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public RandomValueModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public RandomValueModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -117,8 +107,8 @@ public class RandomValueModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    @Override
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -133,6 +123,7 @@ public class RandomValueModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -144,6 +135,7 @@ public class RandomValueModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         RandomValueModule module = new RandomValueModule( this.procedure, this.location );
@@ -164,6 +156,7 @@ public class RandomValueModule
      *@param  seed        Description of the Parameter
      *@return             The value value
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         if ( outputPort == 0 )
@@ -189,6 +182,7 @@ public class RandomValueModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -200,6 +194,7 @@ public class RandomValueModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return false;
@@ -211,6 +206,7 @@ public class RandomValueModule
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );

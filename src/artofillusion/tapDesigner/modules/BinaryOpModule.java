@@ -2,7 +2,9 @@
  *  Binary operation result=f(a,b)
  */
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2004 by François Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -13,34 +15,21 @@
 package artofillusion.tapDesigner;
 
 import artofillusion.*;
-import artofillusion.animation.*;
-import artofillusion.math.*;
-import artofillusion.object.*;
-import artofillusion.texture.*;
-import artofillusion.ui.*;
 import buoy.event.*;
 import buoy.widget.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
-import java.lang.Math.*;
-import java.lang.reflect.*;
-import java.text.*;
-import java.util.*;
 import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
 import artofillusion.tapDesigner.TapModule.*;
 
 
 /**
  *  This module represents a unary operation : result=f(a,b)
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    19 avril 2004
  */
-public class BinaryOpModule
-         extends TapModule
+public class BinaryOpModule extends TapModule
 {
     //{{{ Variables
     private static TapModule.ModuleTypeInfo typeInfo;
@@ -61,9 +50,6 @@ public class BinaryOpModule
             };
 
 
-//}}}
-
-    //{{{ Constructor
     /**
      *  Constructor for the BinaryOpModule object
      *
@@ -81,10 +67,6 @@ public class BinaryOpModule
         setup();
     }
 
-
-    //}}}
-
-    //{{{ Module setup
     /**
      *  Module setup
      */
@@ -92,12 +74,12 @@ public class BinaryOpModule
     {
         outputNature[0] = VALUE_PORT;
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "resultOutput" );
+        outputTooltips[0] = TapBTranslate.text( "resultOutput" );
         inputNature[0] = VALUE_PORT;
         inputNature[1] = VALUE_PORT;
         inputTooltips = new String[2];
-        inputTooltips[0] = TapDesignerTranslate.text( "a" );
-        inputTooltips[1] = TapDesignerTranslate.text( "b" );
+        inputTooltips[0] = TapBTranslate.text( "a" );
+        inputTooltips[1] = TapBTranslate.text( "b" );
         setBackgroundColor( Color.black );
         opNames[POWER] = TapBTranslate.text( "power" );
         opNames[MIN] = TapBTranslate.text( "min" );
@@ -105,9 +87,6 @@ public class BinaryOpModule
     }
 
 
-    //}}}
-
-    //{{{ read/write method
     /**
      *  Reads a BinaryOpModule object from file
      *
@@ -117,8 +96,7 @@ public class BinaryOpModule
      *@exception  IOException             Read exception
      *@exception  InvalidObjectException  Object version Exception
      */
-    public BinaryOpModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public BinaryOpModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -141,8 +119,8 @@ public class BinaryOpModule
      *      is attached
      *@exception  IOException  Write exception
      */
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    @Override
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -150,14 +128,12 @@ public class BinaryOpModule
     }
 
 
-    //}}}
-
-    //{{{ duplicate
     /**
      *  Returns a duplicate of this module
      *
      *@return    New module
      */
+    @Override
     public TapModule duplicate()
     {
         BinaryOpModule module = new BinaryOpModule( this.procedure, this.location );
@@ -168,9 +144,6 @@ public class BinaryOpModule
     }
 
 
-    //}}}
-
-    //{{{ get value
     /**
      *  Gets the value output of the BinaryOpModule object
      *
@@ -179,6 +152,7 @@ public class BinaryOpModule
      *@param  seed        The random seed
      *@return             The value output
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         if ( outputPort == 0 )
@@ -219,11 +193,6 @@ public class BinaryOpModule
             //should never happen !!!
         }
     }
-
-
-    //}}}
-
-    //{{{ value calculus
 
     /**
      *  Actual calculation of the value
@@ -282,8 +251,6 @@ public class BinaryOpModule
     }
 
 
-    //}}}
-
     //{{{ acceptsMainEntry : doesn't accept main entry nor preview
     /**
      *  This module isn't eligible for being a main entry and thus this method
@@ -291,6 +258,7 @@ public class BinaryOpModule
      *
      *@return    Always false
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -303,20 +271,18 @@ public class BinaryOpModule
      *
      *@return    Always false
      */
+    @Override
     public boolean acceptsPreview()
     {
         return false;
     }
 
-
-    //}}}
-
-    //{{{ edit
     /**
      *  This method creates and displays an edit window.
      *
      *@param  parentFrame  the parent frame
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -331,30 +297,23 @@ public class BinaryOpModule
             isEditDialogOn = true;
         }
     }
-
-
-    //}}}
-
-    //{{{ get module type info
     /**
      *  Gets the moduleTypeInfo associated to the BinaryOpModule object
      *
      *@return    The module type info
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
     }
 
-
-    //}}}
-
-    //{{{ edit frame methods and class
     /**
      *  Gets the number of edit frames used by the unary operation module
      *
      *@return    The number of edit frames to take into account
      */
+    @Override
     public int getNumEditWidgets()
     {
         return 1;
@@ -369,9 +328,9 @@ public class BinaryOpModule
      *@param  standalone  Whether the widget is in standalone frame or embedded
      *@return             The edit frame widget
      */
+    @Override
     public Widget getEditWidget( int index, Runnable cb, boolean standalone )
     {
-        //System.out.println( "getEditWidget" );
         return new BinaryOpEditWidget( cb, standalone, this );
     }
 
@@ -382,6 +341,7 @@ public class BinaryOpModule
      *@param  index  The reference to the edit frame
      *@return        The edit frame value
      */
+    @Override
     public String getEditWidgetName( int index )
     {
         return "";
@@ -394,8 +354,7 @@ public class BinaryOpModule
      *@author     Francois Guillet
      *@created    14 mai 2004
      */
-    public class BinaryOpEditWidget
-             extends EditWidgetBase
+    public class BinaryOpEditWidget extends EditWidgetBase
     {
         private BComboBox opCombo;
 
@@ -436,6 +395,7 @@ public class BinaryOpModule
         /**
          *  Fetch the values currently displayed object
          */
+        @Override
         protected void getValues()
         {
             opType = (short) opCombo.getSelectedIndex();
@@ -452,6 +412,7 @@ public class BinaryOpModule
         /**
          *  Initializes backup values
          */
+        @Override
         protected void initBackValues()
         {
             backOpType = opType;
@@ -461,6 +422,7 @@ public class BinaryOpModule
         /**
          *  Gets the backup values
          */
+        @Override
         protected void getBackValues()
         {
             getUndoValues();
@@ -471,6 +433,7 @@ public class BinaryOpModule
         /**
          *  Gets the undo values
          */
+        @Override
         protected void getUndoValues()
         {
             opType = backOpType;
@@ -483,6 +446,7 @@ public class BinaryOpModule
          *
          *@param  force  Description of the Parameter
          */
+        @Override
         public void showValues( boolean force )
         {
             if ( force || changed )
@@ -512,6 +476,5 @@ public class BinaryOpModule
         }
 
     }
-    //}}}
 }
 

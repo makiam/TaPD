@@ -3,7 +3,9 @@
  *  This process can be used to populate a field with grass and plants.
  */
 /*
- *  Copyright (C) 2004 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -16,21 +18,13 @@ import artofillusion.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
 import artofillusion.object.TriangleMesh.*;
-import artofillusion.texture.*;
 import artofillusion.ui.*;
 import buoy.event.*;
 import buoy.widget.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.lang.Math.*;
-import java.lang.reflect.*;
-import java.text.*;
-import java.util.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
 
 import artofillusion.tapDesigner.TapModule.*;
 
@@ -38,11 +32,10 @@ import artofillusion.tapDesigner.TapModule.*;
 /**
  *  This module decorates the faces of a triangle mesh with objects
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    16 july 2004
  */
-public class FieldModule
-         extends TapModule
+public class FieldModule extends TapModule
 {
     private FieldModule module;
     private static TapModule.ModuleTypeInfo typeInfo;
@@ -75,7 +68,7 @@ public class FieldModule
      */
     public FieldModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "field" ), position );
+        super( procedure, TapBTranslate.text( "field" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "fieldName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/field_tree.png" ) ) );
 
@@ -107,10 +100,10 @@ public class FieldModule
         inputNature[1] = OBJECT_PORT;
         outputNature[0] = OBJECT_PORT;
         inputTooltips = new String[2];
-        inputTooltips[0] = TapDesignerTranslate.text( "objectDecorate" );
-        inputTooltips[1] = TapDesignerTranslate.text( "objectDecorated" );
+        inputTooltips[0] = TapBTranslate.text( "objectDecorate" );
+        inputTooltips[1] = TapBTranslate.text( "objectDecorated" );
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "objectOutput" );
+        outputTooltips[0] = TapBTranslate.text( "objectOutput" );
         setBackgroundColor( Color.orange.darker() );
         module = this;
     }
@@ -124,8 +117,7 @@ public class FieldModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public FieldModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public FieldModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -157,8 +149,8 @@ public class FieldModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    @Override
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -183,6 +175,7 @@ public class FieldModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         FieldModule module = new FieldModule( this.procedure, this.location );
@@ -212,6 +205,7 @@ public class FieldModule
      *@param  inputPort  Description of the Parameter
      *@return            Description of the Return Value
      */
+    @Override
     public int remap( int inputPort )
     {
         return inputPort;
@@ -223,6 +217,7 @@ public class FieldModule
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -244,6 +239,7 @@ public class FieldModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( int outputPort, long seed )
     {
         TapDesignerObjectCollection col = null;
@@ -396,6 +392,7 @@ public class FieldModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( TapDesignerObjectCollection collection, int inputPort, long seed )
     {
 
@@ -756,6 +753,7 @@ public class FieldModule
      *@return             The value value
      */
 
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         return 0.0;
@@ -767,6 +765,7 @@ public class FieldModule
      *
      *@param  modifiers  Description of the Parameter
      */
+    @Override
     public void showPreviewFrame( int modifiers )
     {
         super.showPreviewFrame( modifiers );
@@ -797,6 +796,7 @@ public class FieldModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -808,6 +808,7 @@ public class FieldModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return true;
@@ -819,6 +820,7 @@ public class FieldModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -831,6 +833,7 @@ public class FieldModule
      *
      *@return    The number of edit frames to take into account
      */
+    @Override
     public int getNumEditWidgets()
     {
         return 1;
@@ -858,30 +861,20 @@ public class FieldModule
      *@param  standalone  Whether the widget is in standalone frame or embedded
      *@return             The edit frame widget
      */
+    @Override
     public Widget getEditWidget( int index, Runnable cb, boolean standalone )
     {
         return new FieldModuleEditWidget( cb, standalone, this );
-        /*
-         *  switch ( index )
-         *  {
-         *  default:
-         *  case 0:
-         *  return new FieldModuleEditWidget( cb, standalone, this );
-         *  case 1:
-         *  return parms.getFirstEditWidget( cb, standalone, "fieldModuleTitle", this );
-         *  }
-         */
     }
 
 
     /**
      *  AoI object editor window
      *
-     *@author     Francois Guillet
+     *@author     François Guillet
      *@created    19 avril 2004
      */
-    private class FieldModuleEditWidget
-             extends EditWidgetBase
+    private class FieldModuleEditWidget extends EditWidgetBase
     {
         private BComboBox coverChoice;
         private BCheckBox followOrientCB;
@@ -1090,6 +1083,7 @@ public class FieldModule
          *
          *@param  force  Description of the Parameter
          */
+        @Override
         public void showValues( boolean force )
         {
             if ( force || changed )
@@ -1138,6 +1132,7 @@ public class FieldModule
         /**
          *  Gets the undoValues
          */
+        @Override
         protected void getUndoValues()
         {
             occupancy = backOccupancy;
@@ -1159,6 +1154,7 @@ public class FieldModule
         /**
          *  Gets the backValues
          */
+        @Override
         protected void getValues()
         {
             estimate = ( (Integer) estimateSpinner.getValue() ).intValue();
@@ -1182,6 +1178,7 @@ public class FieldModule
         /**
          *  Initializes backup values
          */
+        @Override
         protected void initBackValues()
         {
             backOccupancy = occupancy;
@@ -1203,13 +1200,14 @@ public class FieldModule
         /**
          *  Description of the Method
          */
+        @Override
         protected void doModified()
         {
             super.doModified();
         }
 
     }
-    //}}}
+
 
 }
 

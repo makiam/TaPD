@@ -4,6 +4,8 @@
  */
 /*
  *  Copyright (C) 2003 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -13,25 +15,15 @@
 package artofillusion.tapDesigner;
 
 import artofillusion.*;
-import artofillusion.math.*;
 import artofillusion.object.*;
-import artofillusion.tapDesigner.BackModuleLink;
 import artofillusion.tapDesigner.BackModuleLink.BackLink;
-
 import buoy.event.*;
 import buoy.widget.*;
-
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
-import java.lang.Math.*;
-import java.lang.reflect.*;
 import java.text.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
 
 import artofillusion.tapDesigner.TapModule.*;
 
@@ -42,8 +34,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *@author     pims
  *@created    19 avril 2004
  */
-public class RandomObjectModule
-         extends TapModule
+public class RandomObjectModule extends TapModule
 {
     private RandomObjectModule module;
     private static TapModule.ModuleTypeInfo typeInfo;
@@ -69,7 +60,7 @@ public class RandomObjectModule
      */
     public RandomObjectModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "random" ), position );
+        super( procedure, TapBTranslate.text( "random" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "randomObjectName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/randobj_tree.png" ) ) );
 
@@ -93,9 +84,9 @@ public class RandomObjectModule
         inputNature[0] = OBJECT_PORT;
         outputNature[0] = OBJECT_PORT;
         inputTooltips = new String[1];
-        inputTooltips[0] = TapDesignerTranslate.text( "portInput" );
+        inputTooltips[0] = TapBTranslate.text( "portInput" );
         outputTooltips = new String[1];
-        outputTooltips[0] = TapDesignerTranslate.text( "portOutput" );
+        outputTooltips[0] = TapBTranslate.text( "portOutput" );
         setBackgroundColor( Color.orange.darker() );
         module = this;
     }
@@ -109,8 +100,7 @@ public class RandomObjectModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public RandomObjectModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public RandomObjectModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -168,8 +158,8 @@ public class RandomObjectModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    @Override
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
 
@@ -203,6 +193,7 @@ public class RandomObjectModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -214,6 +205,7 @@ public class RandomObjectModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         return duplicate( 0 );
@@ -226,6 +218,7 @@ public class RandomObjectModule
      *@param  offset  Description of the Parameter
      *@return         Description of the Return Value
      */
+    @Override
     public TapModule duplicate( int offset )
     {
         int i;
@@ -270,6 +263,7 @@ public class RandomObjectModule
      *
      *@param  translationTable  Translation table to apply
      */
+    @Override
     public void applyTranslation( int[] translationTable )
     {
         super.applyTranslation( translationTable );
@@ -303,6 +297,7 @@ public class RandomObjectModule
     /**
      *  Description of the Method
      */
+    @Override
     public void newInputLinkCreated()
     {
         if ( isEditDialogOn )
@@ -316,6 +311,7 @@ public class RandomObjectModule
     /**
      *  Description of the Method
      */
+    @Override
     public void newOutputLinkCreated()
     {
         if ( isEditDialogOn )
@@ -328,6 +324,7 @@ public class RandomObjectModule
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -354,6 +351,7 @@ public class RandomObjectModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( int outputPort, long seed )
     {
         TapDesignerObjectCollection col = null;
@@ -408,6 +406,7 @@ public class RandomObjectModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( TapDesignerObjectCollection collection, int inputPort, long seed )
     {
         ObjectInfo anInfo;
@@ -474,6 +473,7 @@ public class RandomObjectModule
     /**
      *  Description of the Method
      */
+    @Override
     public void initGenerationProcess()
     {
         checkConsistency();
@@ -639,6 +639,7 @@ public class RandomObjectModule
      *@param  seed        Description of the Parameter
      *@return             The value value
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         return (double) 0.0;
@@ -653,6 +654,7 @@ public class RandomObjectModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -667,6 +669,7 @@ public class RandomObjectModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return false;

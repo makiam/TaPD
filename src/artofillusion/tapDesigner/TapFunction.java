@@ -4,6 +4,8 @@
  */
 /*
  *  Copyright (C) 2000,2002 by Peter Eastman, 2003 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -13,21 +15,14 @@
  */
 package artofillusion.tapDesigner;
 
-import artofillusion.*;
 import artofillusion.math.*;
-import artofillusion.object.*;
-import artofillusion.ui.*;
-import artofillusion.procedural.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.io.*;
-import java.util.*;
 import java.text.*;
-import java.lang.reflect.*;
 import buoy.widget.*;
-import buoy.event.*;
 
 
 /**
@@ -95,8 +90,7 @@ public class TapFunction
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public TapFunction( DataInputStream in )
-        throws IOException, InvalidObjectException
+    public TapFunction( DataInputStream in ) throws IOException, InvalidObjectException
     {
         int count;
         short version = in.readShort();
@@ -471,6 +465,7 @@ public class TapFunction
             canvas =
                 new Canvas()
                 {
+                    @Override
                     public void paint( Graphics g )
                     {
                         paintAxes( g );
@@ -478,6 +473,7 @@ public class TapFunction
                     }
 
 
+                    @Override
                     public Dimension getPreferredSize()
                     {
                         return new Dimension( 400, 300 );
@@ -568,6 +564,7 @@ public class TapFunction
             addWindowListener(
                 new java.awt.event.WindowAdapter()
                 {
+                    @Override
                     public void windowClosing( java.awt.event.WindowEvent evt )
                     {
                         exitForm( evt );
@@ -882,6 +879,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void actionPerformed( ActionEvent ev )
         {
             String command = ev.getActionCommand();
@@ -981,8 +979,8 @@ public class TapFunction
             if ( modified )
             {
                 int r = JOptionPane.showConfirmDialog( this,
-                        TapDesignerTranslate.text( "parametersModified" ),
-                        TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE,
+                        TapBTranslate.text( "parametersModified" ),
+                        TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE,
                         JOptionPane.YES_NO_OPTION );
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;
@@ -1010,6 +1008,7 @@ public class TapFunction
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void stateChanged( ChangeEvent e )
         {
             modified = true;
@@ -1024,18 +1023,9 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void keyPressed( KeyEvent ev )
         {
-            /*
-             *  if (ev.getKeyCode() == KeyEvent.VK_ENTER)
-             *  {	modified = true;
-             *  clickedOk = true;
-             *  repeat = repeatBox.isSelected();
-             *  shape = smoothBox.isSelected() ? INTERPOLATING : LINEAR;
-             *  calcCoefficients();
-             *  editDialogClosed();
-             *  }
-             */
             if ( ev.getSource() != canvas )
                 return;
             if ( ev.getKeyCode() == KeyEvent.VK_BACK_SPACE || ev.getKeyCode() == KeyEvent.VK_DELETE )
@@ -1054,6 +1044,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mousePressed( MouseEvent ev )
         {
             fixRange = true;
@@ -1093,6 +1084,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mouseDragged( MouseEvent ev )
         {
             if ( clickPoint == null )
@@ -1159,6 +1151,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mouseReleased( MouseEvent ev )
         {
             clickPoint = null;
@@ -1176,6 +1169,7 @@ public class TapFunction
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void changedUpdate( DocumentEvent e )
         {
             if ( !deactivateTextFields )
@@ -1188,6 +1182,7 @@ public class TapFunction
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void insertUpdate( DocumentEvent e )
         {
             if ( !deactivateTextFields )
@@ -1200,6 +1195,7 @@ public class TapFunction
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void removeUpdate( DocumentEvent e )
         {
             if ( !deactivateTextFields )
@@ -1220,14 +1216,14 @@ public class TapFunction
             modified = true;
             try
             {
-                newx = Double.valueOf( xField.getText() ).doubleValue();
+                newx = Double.parseDouble(xField.getText());
             }
             catch ( NumberFormatException ex )
             {
             }
             try
             {
-                newy = Double.valueOf( yField.getText() ).doubleValue();
+                newy = Double.parseDouble(yField.getText());
             }
             catch ( NumberFormatException ex )
             {
@@ -1273,6 +1269,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void itemStateChanged( ItemEvent ev )
         {
             function.repeat = repeatBox.isSelected();
@@ -1290,6 +1287,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void keyReleased( KeyEvent ev )
         {
         }
@@ -1300,6 +1298,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void keyTyped( KeyEvent ev )
         {
         }
@@ -1310,6 +1309,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mouseClicked( MouseEvent ev )
         {
         }
@@ -1320,6 +1320,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mouseEntered( MouseEvent ev )
         {
         }
@@ -1330,6 +1331,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mouseExited( MouseEvent ev )
         {
         }
@@ -1340,6 +1342,7 @@ public class TapFunction
          *
          *@param  ev  Description of the Parameter
          */
+        @Override
         public void mouseMoved( MouseEvent ev )
         {
         }

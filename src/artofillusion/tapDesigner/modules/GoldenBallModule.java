@@ -3,7 +3,9 @@
  *  with decorator object sent in first entry port according to golden ratio rules.
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -16,13 +18,10 @@ import artofillusion.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
 import artofillusion.texture.*;
-import buoy.event.*;
 import buoy.widget.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.lang.Math.*;
-import java.lang.reflect.*;
 import java.text.*;
 import java.util.*;
 import javax.swing.*;
@@ -37,7 +36,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *  This modules layouts decorator objects along a sphere, following the golden
  *  ratio rule.
  *
- *@author     Francois Guillet
+ *@author     François Guillet
  *@created    19 avril 2004
  */
 public class GoldenBallModule
@@ -84,7 +83,7 @@ public class GoldenBallModule
      */
     public GoldenBallModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "goldenBall" ), position );
+        super( procedure, TapBTranslate.text( "goldenBall" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "goldenBallName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/golden_tree.png" ) ) );
 
@@ -133,14 +132,14 @@ public class GoldenBallModule
         outputNature[0] = OBJECT_PORT;
         outputNature[1] = VALUE_PORT;
         inputTooltips = new String[5];
-        inputTooltips[0] = TapDesignerTranslate.text( "objectDecorate" );
-        inputTooltips[1] = TapDesignerTranslate.text( "objectDecorated" );
-        inputTooltips[2] = TapDesignerTranslate.text( "yValueInput" );
-        inputTooltips[3] = TapDesignerTranslate.text( "rSizeValue" );
-        inputTooltips[4] = TapDesignerTranslate.text( "ySizeValue" );
+        inputTooltips[0] = TapBTranslate.text( "objectDecorate" );
+        inputTooltips[1] = TapBTranslate.text( "objectDecorated" );
+        inputTooltips[2] = TapBTranslate.text( "yValueInput" );
+        inputTooltips[3] = TapBTranslate.text( "rSizeValue" );
+        inputTooltips[4] = TapBTranslate.text( "ySizeValue" );
         outputTooltips = new String[2];
-        outputTooltips[0] = TapDesignerTranslate.text( "objectOutput" );
-        outputTooltips[1] = TapDesignerTranslate.text( "yValueOutput" );
+        outputTooltips[0] = TapBTranslate.text( "objectOutput" );
+        outputTooltips[1] = TapBTranslate.text( "yValueOutput" );
         setBackgroundColor( Color.orange.darker() );
         module = this;
     }
@@ -154,8 +153,7 @@ public class GoldenBallModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public GoldenBallModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public GoldenBallModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -201,8 +199,8 @@ public class GoldenBallModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    @Override
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -240,6 +238,7 @@ public class GoldenBallModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         GoldenBallModule module = new GoldenBallModule( this.procedure, this.location );
@@ -281,6 +280,7 @@ public class GoldenBallModule
      *@param  inputPort  Description of the Parameter
      *@return            Description of the Return Value
      */
+    @Override
     public int remap( int inputPort )
     {
         return inputPort;
@@ -292,6 +292,7 @@ public class GoldenBallModule
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -313,6 +314,7 @@ public class GoldenBallModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( int outputPort, long seed )
     {
         TapDesignerObjectCollection col = null;
@@ -515,6 +517,7 @@ public class GoldenBallModule
      *@param  seed        Description of the Parameter
      *@return             The object value
      */
+    @Override
     public TapDesignerObjectCollection getObject( TapDesignerObjectCollection collection, int inputPort, long seed )
     {
         double Ysize;
@@ -809,6 +812,7 @@ public class GoldenBallModule
      *@param  seed        Description of the Parameter
      *@return             The value value
      */
+    @Override
     public double getValue( int outputPort, double[] var, long seed )
     {
         if ( outputPort == 1 )
@@ -825,6 +829,7 @@ public class GoldenBallModule
      *
      *@param  modifiers  Description of the Parameter
      */
+    @Override
     public void showPreviewFrame( int modifiers )
     {
         super.showPreviewFrame( modifiers );
@@ -855,6 +860,7 @@ public class GoldenBallModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsMainEntry()
     {
         return false;
@@ -866,6 +872,7 @@ public class GoldenBallModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public boolean acceptsPreview()
     {
         return true;
@@ -877,6 +884,7 @@ public class GoldenBallModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -1237,7 +1245,7 @@ public class GoldenBallModule
             curveRateFunctionInputCB.setAlignmentX( 0.5f );
             p.add( yvPanel );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "yCurveParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "yCurveParameters" ) );
             pp.setBorder( border );
             second.add( pp );
             pp = new JPanel();
@@ -1273,7 +1281,7 @@ public class GoldenBallModule
             p.add( perpCurveRateTF = new JTextField( format.format( smParms.perpCurveRate ) ) );
             perpCurveRateTF.setColumns( 4 );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "rCurveParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "rCurveParameters" ) );
             pp.setBorder( border );
             second.add( pp );
             p = new JPanel();
@@ -1284,7 +1292,7 @@ public class GoldenBallModule
             p.add( TapDesignerTranslate.jlabel( "randomTiltDiv" ) );
             p.add( randomTiltDivTF = new JTextField( format.format( smParms.randomTiltDiv ) ) );
             randomTiltDivTF.setColumns( 3 );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "randomTilt" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "randomTilt" ) );
             p.setBorder( border );
             second.add( p );
             p = new JPanel();
@@ -1303,7 +1311,7 @@ public class GoldenBallModule
             pRB.add( twistDistURB );
             pRB.add( twistDistGRB );
             p.add( pRB );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "sectionParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "sectionParameters" ) );
             p.setBorder( border );
             second.add( p );
             pp = new JPanel();
@@ -1363,7 +1371,7 @@ public class GoldenBallModule
             leafRRatioSL.setLabelTable( labelTable );
             leafRRatioSL.setPaintLabels( true );
             pp.add( p );
-            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapDesignerTranslate.text( "leafCurveParameters" ) );
+            border = BorderFactory.createTitledBorder( BorderFactory.createEtchedBorder( EtchedBorder.RAISED ), TapBTranslate.text( "leafCurveParameters" ) );
             pp.setBorder( border );
             second.add( pp );
             curveAngleFunctionInputCB.setSelected( curveAngleFunctionInput );
@@ -1373,8 +1381,8 @@ public class GoldenBallModule
             curveRateFunctionInputCB.setSelected( curveRateFunctionInput );
             yCurveLeafFunctionInputCB.setSelected( yCurveLeafFunctionInput );
             yLeafDepartureAngleFunctionInputCB.setSelected( yLeafDepartureAngleFunctionInput );
-            tabbedPane.addTab( TapDesignerTranslate.text( "commonParameters" ), null, first, null );
-            tabbedPane.addTab( TapDesignerTranslate.text( "tapdParameters" ), null, second, null );
+            tabbedPane.addTab( TapBTranslate.text( "commonParameters" ), null, first, null );
+            tabbedPane.addTab( TapBTranslate.text( "tapdParameters" ), null, second, null );
             tabbedPane.setSelectedIndex( 0 );
             contentPane.add( tabbedPane );
             p = new JPanel();
@@ -1383,10 +1391,11 @@ public class GoldenBallModule
             p.add( applyButton = TapDesignerTranslate.jButton( "apply", this ) );
             p.add( cancelButton = TapDesignerTranslate.jButton( "cancel", this ) );
             contentPane.add( p );
-            this.setTitle( TapDesignerTranslate.text( "goldenBallModuleTitle", module.getName() ) );
+            this.setTitle( TapBTranslate.text( "goldenBallModuleTitle", module.getName() ) );
             addWindowListener(
                 new java.awt.event.WindowAdapter()
                 {
+                    @Override
                     public void windowClosing( java.awt.event.WindowEvent evt )
                     {
                         exitForm( evt );
@@ -1478,6 +1487,7 @@ public class GoldenBallModule
             editDialog = yLeafDepartureAngleFunction.edit( this, TapBTranslate.text( "leafDepartureAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1494,6 +1504,7 @@ public class GoldenBallModule
             editDialog = yCurveLeafFunction.edit( this, TapBTranslate.text( "leafCurveYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1510,6 +1521,7 @@ public class GoldenBallModule
             editDialog = densityFunction.edit( this, TapBTranslate.text( "densityFunctionValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1526,6 +1538,7 @@ public class GoldenBallModule
             editDialog = perpAngleFunction.edit( this, TapBTranslate.text( "perpAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1542,6 +1555,7 @@ public class GoldenBallModule
             editDialog = backAngleFunction.edit( this, TapBTranslate.text( "backAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1558,6 +1572,7 @@ public class GoldenBallModule
             editDialog = curveRateFunction.edit( this, TapBTranslate.text( "curveRateYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1574,6 +1589,7 @@ public class GoldenBallModule
             editDialog = curveAngleFunction.edit( this, TapBTranslate.text( "curveAngleYValue", module.getName() ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -1613,6 +1629,7 @@ public class GoldenBallModule
          *
          *@param  evt  Description of the Parameter
          */
+        @Override
         public void actionPerformed( java.awt.event.ActionEvent evt )
         {
             String command = evt.getActionCommand();
@@ -1658,6 +1675,7 @@ public class GoldenBallModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void stateChanged( ChangeEvent e )
         {
             if ( setupFlag )
@@ -1770,6 +1788,7 @@ public class GoldenBallModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void changedUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -1781,6 +1800,7 @@ public class GoldenBallModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void insertUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -1792,6 +1812,7 @@ public class GoldenBallModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void removeUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -1900,7 +1921,7 @@ public class GoldenBallModule
         {
             if ( modified )
             {
-                int r = JOptionPane.showConfirmDialog( this, TapDesignerTranslate.text( "parametersModified" ), TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
+                int r = JOptionPane.showConfirmDialog( this, TapBTranslate.text( "parametersModified" ), TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
 
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;

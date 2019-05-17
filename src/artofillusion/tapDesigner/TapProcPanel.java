@@ -6,6 +6,8 @@
  */
 /*
  *  Copyright (C) 2003 by Francois Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -15,20 +17,14 @@
  */
 package artofillusion.tapDesigner;
 
-//{{{ imports
-import artofillusion.*;
-import artofillusion.math.*;
-import artofillusion.tapDesigner.*;
+
 import buoy.event.*;
 import buoy.widget.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.lang.reflect.*;
 import java.util.*;
 import javax.swing.*;
 
-//}}}
+
 
 /**
  *  This tabbed pane holds all the panels necessary for procedure editing
@@ -924,7 +920,7 @@ public class TapProcPanel
     {
         if ( getChildCount() == 1 )
         {
-            JOptionPane.showMessageDialog( null, TapDesignerTranslate.text( "cannotDeleteLastView" ), TapDesignerTranslate.text( "warning" ), JOptionPane.INFORMATION_MESSAGE );
+            JOptionPane.showMessageDialog( null, TapBTranslate.text( "cannotDeleteLastView" ), TapBTranslate.text( "warning" ), JOptionPane.INFORMATION_MESSAGE );
         }
         else
         {
@@ -938,7 +934,7 @@ public class TapProcPanel
      */
     public void doRenameTab()
     {
-        String inputValue = JOptionPane.showInputDialog( TapDesignerTranslate.text( "tabName" ), getTabName( getSelectedTab() ) );
+        String inputValue = JOptionPane.showInputDialog( TapBTranslate.text( "tabName" ), getTabName( getSelectedTab() ) );
         if ( inputValue != null && !inputValue.equals( "" ) )
         {
             setTabName( getSelectedTab(), inputValue );

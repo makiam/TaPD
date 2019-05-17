@@ -2,7 +2,9 @@
  *  This class represents an AoI object Module
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -13,31 +15,21 @@
 package artofillusion.tapDesigner;
 
 import artofillusion.*;
-import artofillusion.animation.*;
-import artofillusion.material.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
-import artofillusion.texture.*;
-import artofillusion.ui.*;
 import buoy.event.*;
 import buoy.widget.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
-import java.lang.reflect.*;
-import java.text.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
 import artofillusion.tapDesigner.TapModule.*;
 
 
 /**
  *  This class represents an AoI object module
  *
- *@author     Franc�ois Guillet
+ *@author     François Guillet
  *@created    19 avril 2004
  */
 public class AoIObjectModule
@@ -54,7 +46,7 @@ public class AoIObjectModule
      */
     public AoIObjectModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "object" ), position );
+        super( procedure, TapBTranslate.text( "object" ), position );
         setCurrentObject( procedure.getScene().getObject( 0 ).duplicate() );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "aoiObjectName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/aoi_tree.png" ) ) );
@@ -90,8 +82,8 @@ public class AoIObjectModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    @Override
+    public void writeToFile( DataOutputStream out, Scene theScene )throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -104,6 +96,7 @@ public class AoIObjectModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         AoIObjectModule module = new AoIObjectModule( this.procedure, this.location );
@@ -123,6 +116,7 @@ public class AoIObjectModule
      *@param  sizeY  Description of the Parameter
      *@param  info   Description of the Parameter
      */
+    @Override
     protected void resizeObject( Vec3 size, double sizeR, double sizeY, ObjectInfo info )
     {
         info.object.setSize( size.x * sizeR, size.y * sizeY, size.z * sizeR );
@@ -142,6 +136,7 @@ public class AoIObjectModule
      *@param  sizeY  Description of the Parameter
      *@param  info   Description of the Parameter
      */
+    @Override
     protected void sizeObject( Vec3 size, double sizeR, double sizeY, ObjectInfo info )
     {
         resizeObject( size, sizeR, sizeY, info );
@@ -153,6 +148,7 @@ public class AoIObjectModule
      *
      *@param  parentFrame  The parent BFrame
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -177,6 +173,7 @@ public class AoIObjectModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -189,6 +186,7 @@ public class AoIObjectModule
      *
      *@return    The number of edit frames to take into account
      */
+    @Override
     public int getNumEditWidgets()
     {
         return 1;
@@ -203,6 +201,7 @@ public class AoIObjectModule
      *@param  standalone  Whether the widget is in standalone frame or embedded
      *@return             The edit frame widget
      */
+    @Override
     public Widget getEditWidget( int index, Runnable cb, boolean standalone )
     {
         return new AoIObjectEditWidget( cb, standalone, this );
@@ -212,11 +211,10 @@ public class AoIObjectModule
     /**
      *  AoI object editor window
      *
-     *@author     Francois Guillet
+     *@author     François Guillet
      *@created    19 avril 2004
      */
-    private class AoIObjectEditWidget
-             extends EditWidgetBase
+    private class AoIObjectEditWidget extends EditWidgetBase
     {
         private BComboBox objectChoice;
         private ObjectInfo dialogCurrentObject;
@@ -343,6 +341,7 @@ public class AoIObjectModule
             dialogCurrentObject.object.edit( procedure.getWindow(), dialogCurrentObject,
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         updateObject();
@@ -357,6 +356,7 @@ public class AoIObjectModule
          *
          *@param  force  Description of the Parameter
          */
+        @Override
         public void showValues( boolean force )
         {
             if ( force || changed )
@@ -395,6 +395,7 @@ public class AoIObjectModule
         /**
          *  Gets the undoValues attribute of the AoIObjectEditWidget object
          */
+        @Override
         protected void getUndoValues()
         {
             setCurrentObject( backupObject );
@@ -407,6 +408,7 @@ public class AoIObjectModule
         /**
          *  Gets the backValues attribute of the AoIObjectEditWidget object
          */
+        @Override
         protected void getValues()
         {
             setCurrentObject( dialogCurrentObject );
@@ -419,6 +421,7 @@ public class AoIObjectModule
         /**
          *  Initializes backup values
          */
+        @Override
         protected void initBackValues()
         {
             backupObject = currentObject.duplicate( currentObject.object.duplicate() );
@@ -430,6 +433,7 @@ public class AoIObjectModule
         /**
          *  Description of the Method
          */
+        @Override
         protected void doModified()
         {
             super.doModified();
@@ -440,6 +444,7 @@ public class AoIObjectModule
         /**
          *  Description of the Method
          */
+        @Override
         public void pushValues()
         {
             stackObject = dialogCurrentObject;
@@ -449,6 +454,7 @@ public class AoIObjectModule
         /**
          *  Description of the Method
          */
+        @Override
         public void popValues()
         {
             dialogCurrentObject = stackObject;

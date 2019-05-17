@@ -2,7 +2,9 @@
  *  This class represents a tube module
  */
 /*
- *  Copyright (C) 2003 by Francois Guillet
+ *  Copyright (C) 2003 by François Guillet
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -13,20 +15,13 @@
 package artofillusion.tapDesigner;
 
 import artofillusion.*;
-import artofillusion.animation.*;
-import artofillusion.material.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
-import artofillusion.texture.*;
-import artofillusion.ui.*;
 import buoy.widget.*;
 import buoy.event.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.lang.reflect.*;
-import java.text.*;
-import java.util.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.text.*;
@@ -39,8 +34,7 @@ import artofillusion.tapDesigner.TapModule.*;
  *@author     François Guillet
  *@created    19 avril 2004
  */
-public class TubeModule
-         extends ObjectModule
+public class TubeModule extends ObjectModule
 {
     private static TapModule.ModuleTypeInfo typeInfo;
 
@@ -53,7 +47,7 @@ public class TubeModule
      */
     public TubeModule( TapProcedure procedure, Point position )
     {
-        super( procedure, TapDesignerTranslate.text( "tube" ), position );
+        super( procedure, TapBTranslate.text( "tube" ), position );
         if ( typeInfo == null )
             typeInfo = new ModuleTypeInfo( TapBTranslate.text( "tubeName" ), new ImageIcon( getClass().getResource( "/artofillusion/tapDesigner/icons/tube_tree.png" ) ) );
 
@@ -87,8 +81,7 @@ public class TubeModule
      *@exception  IOException             Description of the Exception
      *@exception  InvalidObjectException  Description of the Exception
      */
-    public TubeModule( DataInputStream in, Scene theScene )
-        throws IOException, InvalidObjectException
+    public TubeModule( DataInputStream in, Scene theScene ) throws IOException, InvalidObjectException
     {
         super( in, theScene );
 
@@ -108,8 +101,8 @@ public class TubeModule
      *@param  theScene         Description of the Parameter
      *@exception  IOException  Description of the Exception
      */
-    public void writeToFile( DataOutputStream out, Scene theScene )
-        throws IOException
+    @Override
+    public void writeToFile( DataOutputStream out, Scene theScene ) throws IOException
     {
         super.writeToFile( out, theScene );
         out.writeShort( 0 );
@@ -121,6 +114,7 @@ public class TubeModule
      *
      *@return    The moduleTypeInfo value
      */
+    @Override
     public ModuleTypeInfo getModuleTypeInfo()
     {
         return typeInfo;
@@ -132,6 +126,7 @@ public class TubeModule
      *
      *@return    Description of the Return Value
      */
+    @Override
     public TapModule duplicate()
     {
         TubeModule module = new TubeModule( this.procedure, this.location );
@@ -145,6 +140,7 @@ public class TubeModule
      *
      *@param  parentFrame  Description of the Parameter
      */
+    @Override
     public void edit( BFrame parentFrame )
     {
         super.edit( parentFrame );
@@ -170,6 +166,7 @@ public class TubeModule
      *@param  sizeY  Description of the Parameter
      *@param  info   Description of the Parameter
      */
+    @Override
     protected void resizeObject( Vec3 size, double sizeR, double sizeY, ObjectInfo info )
     {
         ( (TapTube) info.object ).setSize( size.x, size.y * sizeY, size.z, -sizeR, null );
@@ -184,6 +181,7 @@ public class TubeModule
      *@param  sizeY  Description of the Parameter
      *@param  info   Description of the Parameter
      */
+    @Override
     public void sizeObject( Vec3 size, double sizeR, double sizeY, ObjectInfo info )
     {
         ( (TapTube) info.object ).setSize( size.x, size.y * sizeY, size.z, sizeR, null );
@@ -196,6 +194,7 @@ public class TubeModule
      *
      *@return    The number of edit frames to take into account
      */
+    @Override
     public int getNumEditWidgets()
     {
         return 1;
@@ -210,6 +209,7 @@ public class TubeModule
      *@param  standalone  Whether the widget is in standalone frame or embedded
      *@return             The edit frame widget
      */
+    @Override
     public Widget getEditWidget( int index, Runnable cb, boolean standalone )
     {
         return new TubeEditWidget( cb, standalone, this );
@@ -309,6 +309,7 @@ public class TubeModule
         /**
          *  Description of the Method
          */
+        @Override
         protected void doModified()
         {
             super.doModified();
@@ -324,6 +325,7 @@ public class TubeModule
             ( (TapTube) currentObject.object ).getRShape().edit( (JFrame) TapUtils.getParentBFrame( this ).getComponent(), TapBTranslate.text( "rShape" ),
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -338,10 +340,11 @@ public class TubeModule
         private void doYCurve()
         {
             ObjectInfo yc = currentObject.duplicate();
-            yc.name = module.getName() + ": " + TapDesignerTranslate.text( "tube" );
+            yc.name = module.getName() + ": " + TapBTranslate.text( "tube" );
             ( (Tube) currentObject.object ).edit( procedure.getWindow(), yc,
                 new Runnable()
                 {
+                    @Override
                     public void run()
                     {
                         doRunnableUpdate();
@@ -355,6 +358,7 @@ public class TubeModule
          *
          *@param  force  Description of the Parameter
          */
+        @Override
         public void showValues( boolean force )
         {
             if ( force || changed )
@@ -385,6 +389,7 @@ public class TubeModule
         /**
          *  Gets the undoValues attribute of the AoIObjectEditWidget object
          */
+        @Override
         protected void getUndoValues()
         {
             setCurrentObject( backupObject );
@@ -397,6 +402,7 @@ public class TubeModule
         /**
          *  Gets the backValues attribute of the AoIObjectEditWidget object
          */
+        @Override
         protected void getValues()
         {
             setCurrentObject( currentObject );
@@ -409,6 +415,7 @@ public class TubeModule
         /**
          *  Initializes backup values
          */
+        @Override
         protected void initBackValues()
         {
             backupObject = currentObject.duplicate( currentObject.object.duplicate() );
@@ -441,6 +448,7 @@ public class TubeModule
         /**
          *  Description of the Method
          */
+        @Override
         public void pushValues()
         {
             stackObject = currentObject;
@@ -450,6 +458,7 @@ public class TubeModule
         /**
          *  Description of the Method
          */
+        @Override
         public void popValues()
         {
             currentObject = stackObject;
@@ -457,8 +466,6 @@ public class TubeModule
 
     }
 
-
-    //}}}
 
     /**
      *  Description of the Class
@@ -618,11 +625,12 @@ public class TubeModule
             cancelButton = TapDesignerTranslate.jButton( "cancel", this );
             contentPane.add( cancelButton, c );
 
-            this.setTitle( TapDesignerTranslate.text( "tubeModuleTitle", module.getName() ) );
+            this.setTitle( TapBTranslate.text( "tubeModuleTitle", module.getName() ) );
 
             addWindowListener(
                 new java.awt.event.WindowAdapter()
                 {
+                    @Override
                     public void windowClosing( java.awt.event.WindowEvent evt )
                     {
                         exitForm( evt );
@@ -705,6 +713,7 @@ public class TubeModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void stateChanged( ChangeEvent e )
         {
             modified = true;
@@ -716,6 +725,7 @@ public class TubeModule
          *
          *@param  evt  Description of the Parameter
          */
+        @Override
         public void actionPerformed( java.awt.event.ActionEvent evt )
         {
             String command = evt.getActionCommand();
@@ -764,9 +774,10 @@ public class TubeModule
                 editDialogClosed();
             }
             else if ( command.equals( rShapeButton.getActionCommand() ) )
-                ( (TapTube) currentObject.object ).getRShape().edit( this, TapDesignerTranslate.text( "rShape" ),
+                ( (TapTube) currentObject.object ).getRShape().edit(this, TapBTranslate.text( "rShape" ),
                     new Runnable()
                     {
+                @Override
                         public void run()
                         {
                             doRunnableUpdate();
@@ -775,10 +786,11 @@ public class TubeModule
             else if ( command.equals( yCurveButton.getActionCommand() ) )
             {
                 ObjectInfo yc = currentObject.duplicate();
-                yc.name = module.getName() + ": " + TapDesignerTranslate.text( "tube" );
-                ( (Tube) currentObject.object ).edit( procedure.getWindow(), yc,
+                yc.name = module.getName() + ": " + TapBTranslate.text( "tube" );
+                ( (Tube) currentObject.object ).edit(procedure.getWindow(), yc,
                     new Runnable()
                     {
+                    @Override
                         public void run()
                         {
                             doRunnableUpdate();
@@ -822,6 +834,7 @@ public class TubeModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void changedUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -833,6 +846,7 @@ public class TubeModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void insertUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -844,6 +858,7 @@ public class TubeModule
          *
          *@param  e  Description of the Parameter
          */
+        @Override
         public void removeUpdate( DocumentEvent e )
         {
             doLiveCheck( e );
@@ -857,7 +872,7 @@ public class TubeModule
         {
             if ( modified )
             {
-                int r = JOptionPane.showConfirmDialog( this, TapDesignerTranslate.text( "parametersModified" ), TapDesignerTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
+                int r = JOptionPane.showConfirmDialog( this, TapBTranslate.text( "parametersModified" ), TapBTranslate.text( "warning" ), JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION );
 
                 if ( r == JOptionPane.YES_OPTION )
                     modified = false;
