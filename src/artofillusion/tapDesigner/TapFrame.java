@@ -1,10 +1,7 @@
 /*
- *  This frame allows the user to design plants and trees made of several template objects. It is
- *  only a placeholder for a TapProcPanel in which all events are taken care of. Only TaPD object interaction with AoI scene
- *  is addressed here
- */
-/*
  *  Copyright 2003 Francois Guillet
+    Changes copyright (C) 2020 by Maksim Khramov
+
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -14,43 +11,30 @@
  */
 package artofillusion.tapDesigner;
 
-//{{{ Imports
+
 import artofillusion.*;
 import artofillusion.animation.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
-import artofillusion.object.TriangleMesh.*;
-import artofillusion.ui.*;
 import buoy.event.*;
-import buoy.internal.*;
 import buoy.widget.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.lang.*;
-import java.lang.Math;
-import java.lang.reflect.*;
 import java.util.*;
-import java.util.zip.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.plaf.*;
-import javax.swing.plaf.metal.*;
 
-//}}}
+
 
 /**
- *  This frame allows the user to design a Tree or a Plant object. Its function
- *  is to edit a TaPD procedure.
+ *  This frame allows the user to design plants and trees made of several template objects. 
+ *  It is only a placeholder for a TapProcPanel in which all events are taken care of.
+ *  Only TaPD object interaction with AoI scene is addressed here
  *
  *@author     Francois Guillet
  *@created    14 mars 2004
  */
-public class TapFrame
-         extends BFrame
-         implements TapProcPanelHolder
+public class TapFrame extends BFrame implements TapProcPanelHolder
 {
-    //{{{ Variables
+
     private LayoutWindow window;
     private BMenuBar theMenuBar;
     private BMenu editMenu;
@@ -84,10 +68,6 @@ public class TapFrame
     private ObjectInfo tapdObject;
     private ObjectInfo savedTapdObject;
 
-
-    //}}}
-
-    //{{{ TapFrame constructor
     /**
      *  Constructor for the TapFrame object
      *
@@ -163,9 +143,7 @@ public class TapFrame
     }
 
 
-    //}}}
 
-    //{{{ Components initialization
     /**
      *  Initialization of the frame widgets
      *
@@ -442,9 +420,7 @@ public class TapFrame
     }
 
 
-    //}}}
 
-    //{{{ Ok button clicked
     /**
      *  Description of the Method
      */
@@ -473,11 +449,8 @@ public class TapFrame
     }
 
 
-    //}}}
-
-    //{{{ Cancel button clicked
     /**
-     *  Description of the Method
+     *   Cancel button clicked
      */
     private void doCancel()
     {
@@ -485,11 +458,8 @@ public class TapFrame
     }
 
 
-    //}}}
-
-    //{{{ Paste as objects
     /**
-     *  Description of the Method
+     * Paste as objects
      */
     public void pasteAsObjects()
     {
@@ -501,11 +471,8 @@ public class TapFrame
     }
 
 
-    //}}}
-
-    //{{{ Paste as plant
     /**
-     *  Description of the Method
+     *  Paste as plant
      */
     public void pasteAsPlantCommand()
     {
@@ -579,9 +546,6 @@ public class TapFrame
     }
 
 
-    //}}}
-
-    //{{{ Resized Event
     /**
      *  Description of the Method
      */
@@ -590,11 +554,9 @@ public class TapFrame
         procPanel.getProcedure().notifyMinorChange();
     }
 
-    //}}}
 
-    //{{{ Import TaPD procedure
     /**
-     *  Description of the Method
+     *  Import TaPD procedure
      */
     public void importFromTaPDObject()
     {
@@ -630,10 +592,9 @@ public class TapFrame
     }
 
 
-    //}}}
-    //{{{ Import from scene
+
     /**
-     *  Description of the Method
+     *  Import from scene
      */
     public void importFromScene()
     {
@@ -751,9 +712,7 @@ public class TapFrame
     }
 
 
-    //}}}
 
-    //{{{ Getters
     /**
      *  Gets the procedure attribute of the TapFrame object
      *
@@ -781,6 +740,7 @@ public class TapFrame
      *
      *@return    The bFrame value
      */
+    @Override
     public BFrame getBFrame()
     {
         return (BFrame) this;
@@ -793,6 +753,7 @@ public class TapFrame
      *@param  canUndo  The new undoRedoFlags value
      *@param  canRedo  The new undoRedoFlags value
      */
+    @Override
     public void setUndoRedoFlags( boolean canUndo, boolean canRedo )
     {
         if ( undoItem != null )
@@ -803,14 +764,13 @@ public class TapFrame
     }
 
 
-    //}}}
 
-    //{{{ Called each time the selection in the proc panel changes
     /**
-     *  Description of the Method
+     *  Called each time the selection in the proc panel changes
      *
      *@param  numSelected  Description of the Parameter
      */
+    @Override
     public void selectionChanged( short numSelected )
     {
         switch ( numSelected )
@@ -862,14 +822,13 @@ public class TapFrame
     }
 
 
-    //}}}
 
-    //{{{ Is the procedure a valid TaPD object ?
     /**
-     *  Description of the Method
+     *  Is the procedure a valid TaPD object ?
      *
      *@param  isValid  Description of the Parameter
      */
+    @Override
     public void validObject( boolean isValid )
     {
         if ( isValid )
@@ -887,11 +846,8 @@ public class TapFrame
     }
 
 
-    //}}}
-
-    //{{{ Quits the designer
     /**
-     *  Quits the designer
+     *   Quits the designer
      */
     public void exitDesigner()
     {
@@ -899,29 +855,5 @@ public class TapFrame
         dispose();
     }
 
-    //}}}
-
-    //{{{ Themes selection
-
-    // private void doPlafItem( CommandEvent evt )
-    // {
-    // for ( int i = 0; i < plafItems.length; ++i )
-    // {
-    // if ( plafItems[i] == evt.getWidget() )
-    // {
-    // try
-    // {
-    // UIManager.setLookAndFeel( plafInfo[i].getClassName() );
-    // SwingUtilities.updateComponentTreeUI( this.getComponent() );
-    // TaPDPreferences.getPreferences().setDefaultTheme( plafInfo[i].getName() );
-    // }
-    // catch ( Exception e )
-    // {
-    // e.printStackTrace();
-    // }
-    // }
-    // }
-    // }
-    //}}}
 }
 
