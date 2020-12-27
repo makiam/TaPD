@@ -7,8 +7,9 @@
   <property name="build" value="build" />
   <property name="docs" value="docs" />
   <property name="dist" value="Plugins" />
-  <property name="aoijar" value="../ArtOfIllusion.jar" />
-  <property name="lib" value="lib" />
+  <property name="aoilocation" value="./" />
+  <property name="aoijar" value="${aoilocation}/ArtOfIllusion.jar" />
+  <property name="lib" value="${aoilocation}/lib" />
 
 
   <target name="init">
@@ -23,13 +24,12 @@
 
   <target name="compile" depends="init">
     <!-- Compile the java code from ${src} into ${build} -->
-	  <javac source="1.6" target="1.6" srcdir="${src}" destdir="${build}" classpath="${aoijar}:${lib}/buoy.jar" debug="on" extdirs="" />
+	  <javac source="1.8" target="1.8" srcdir="${src}" destdir="${build}" classpath="${aoijar}:${lib}/buoy.jar" debug="on" extdirs="" />
   </target>
 
   <target name="dist" depends="compile">
     <!-- Copy all necessary files into ${build}, then create the jar file -->
-    <copy file="${src}/TaPD.xml" todir="${build}" />
-    <copy file="${src}/plugins" todir="${build}" />
+    <copy file="${src}/extensions.xml" todir="${build}" />
     <copy todir="${build}">
       <fileset dir="${src}" includes="*.properties" /> 
     </copy>
@@ -42,7 +42,7 @@
   <target name="docs" depends="init">
     <javadoc packagenames="artofillusion.*"
         sourcepath="${src}"
-        classpath="${xmljar};${buoyjar};${aoijar}"
+    classpath="${aoijar}"
         defaultexcludes="yes"
         destdir="${docs}"
         author="true"
