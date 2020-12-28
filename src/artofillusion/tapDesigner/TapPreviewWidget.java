@@ -1,32 +1,24 @@
 /*
  *  Copyright (C) 2004 by François Guillet. Some parts taken from LayoutWindow.jva by
- *  Peter Eastman.
+ *  Peter Eastman
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
- *  This program is distributed in the hope that it will be useful, but WITHOUT ANY
+ *  This program is distributed in the hope that it will be useful, but WITHOUT ANY *  Peter Eastman
+
  *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
  *  PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  */
 package artofillusion.tapDesigner;
 
-import artofillusion.animation.*;
-import artofillusion.animation.distortion.*;
-import artofillusion.image.*;
-import artofillusion.material.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
-import artofillusion.script.*;
-import artofillusion.texture.*;
 import artofillusion.ui.*;
 import artofillusion.*;
-import bsh.*;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.BorderFactory;
-import java.io.*;
-import java.text.*;
-import java.util.Vector;
 import buoy.event.*;
 import buoy.widget.*;
 
@@ -40,14 +32,13 @@ import buoy.widget.*;
  *@created    27 mai 2004
  */
 
-public class TapPreviewWidget extends BorderContainer
-         implements EditingWindow
+public class TapPreviewWidget extends BorderContainer implements EditingWindow
 {
     private SceneViewer theView;
     private Scene theScene;
     private TapModule module;
     private ToolPalette tools;
-    private EditingTool defaultTool, currentTool;
+    private EditingTool defaultTool;
     private BRadioButton displayItem[];
 
 
@@ -103,7 +94,7 @@ public class TapPreviewWidget extends BorderContainer
         EditingTool altTool;
         tools.addTool( metaTool = new MoveViewTool( this ) );
         tools.addTool( altTool = new RotateViewTool( this ) );
-        ( (RotateViewTool) altTool ).setUseSelectionCenter( true );
+        
         defaultTool = metaTool;
         tools.selectTool( defaultTool );
         theView.setTool( defaultTool );
@@ -116,11 +107,13 @@ public class TapPreviewWidget extends BorderContainer
 
     }
 
+    @Override
     public void setModified()
     {
 
     }
 
+    @Override
     public ToolPalette getToolPalette()
     {
         return tools;
@@ -246,6 +239,7 @@ public class TapPreviewWidget extends BorderContainer
      *
      *@return    The scene value
      */
+    @Override
     public Scene getScene()
     {
         return theScene;
@@ -269,10 +263,10 @@ public class TapPreviewWidget extends BorderContainer
      *@param  tool  The new tool value
      */
 
+    @Override
     public void setTool( EditingTool tool )
     {
         theView.setTool( tool );
-        currentTool = tool;
     }
 
 
@@ -282,6 +276,7 @@ public class TapPreviewWidget extends BorderContainer
      *@param  text  The new helpText value
      */
 
+    @Override
     public void setHelpText( String text )
     {
 
@@ -295,6 +290,7 @@ public class TapPreviewWidget extends BorderContainer
      *@return    The frame value
      */
 
+    @Override
     public BFrame getFrame()
     {
         return TapUtils.getParentBFrame( this );
@@ -305,6 +301,7 @@ public class TapPreviewWidget extends BorderContainer
      *  Update the image displayed in this window.
      */
 
+    @Override
     public void updateImage()
     {
         if ( ! theView.getComponent().isShowing() )
@@ -320,6 +317,7 @@ public class TapPreviewWidget extends BorderContainer
      *  Update which menus are enabled.
      */
 
+    @Override
     public void updateMenus()
     {
 
@@ -332,6 +330,7 @@ public class TapPreviewWidget extends BorderContainer
      *@param  command  The new undoRecord value
      */
 
+    @Override
     public void setUndoRecord( UndoRecord command )
     {
 
@@ -345,6 +344,7 @@ public class TapPreviewWidget extends BorderContainer
      *@return    The view value
      */
 
+    @Override
     public ViewerCanvas getView()
     {
         return null;
@@ -359,9 +359,15 @@ public class TapPreviewWidget extends BorderContainer
      *@return    Description of the Return Value
      */
 
+    @Override
     public boolean confirmClose()
     {
         return true;
+    }
+
+    @Override
+    public ViewerCanvas[] getAllViews() {
+        return new ViewerCanvas[0];
     }
 
 }

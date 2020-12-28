@@ -1,4 +1,6 @@
 /* Copyright (C) 1999-2004 by Peter Eastman
+ *  Changes copyright (C) 2019 by Maksim Khramov
+ *
 
    This program is free software; you can redistribute it and/or modify it under the
    terms of the GNU General Public License as published by the Free Software
@@ -18,6 +20,7 @@ import buoy.event.*;
 import buoy.widget.*;
 
 import java.awt.*;
+import javax.swing.JOptionPane;
 
 /** This class implements the dialog box which is used to choose textures for objects. 
     It presents a list of all available textures from which the user can select one.
@@ -86,7 +89,7 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
     // Add the title and combo box at the top.
     
     content = new BorderContainer();
-    setContent(BOutline.createEmptyBorder(content, ModellingApp.standardDialogInsets));
+    setContent(BOutline.createEmptyBorder(content, UIUtilities.getStandardDialogInsets()));
     FormContainer northPanel = new FormContainer(1, 2);
     String title;
     if (obj.length == 1)
@@ -116,8 +119,8 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
     listPanel = new FormContainer(new double [] {1.0}, new double [] {1.0, 0.0});
     listPanel.add(UIUtilities.createScrollingList(texList), 0, 0, new LayoutInfo(LayoutInfo.CENTER, LayoutInfo.BOTH, null, null));
     RowContainer texButtonRow = new RowContainer();
-    texButtonRow.add(newTextureButton = Translate.button("newTexture", this, "doNewTexture"));
-    texButtonRow.add(editTexturesButton = Translate.button("textures", this, "doEditTextures"));
+    texButtonRow.add(Translate.button("newTexture", this, "doNewTexture"));
+    texButtonRow.add(Translate.button("textures", this, "doEditTextures"));
     listPanel.add(texButtonRow, 0, 1);
     
     // Create the section of the window for layered textures.
@@ -358,12 +361,13 @@ public class TaPDObjectTextureDialog extends BDialog implements ListChangeListen
   
   private void doNewTexture()
   {
-    TexturesDialog.showNewTextureWindow(this, sc);
+    JOptionPane.showMessageDialog(this.component, "TexturesDialog class and showNewTextureWindow method deleted.");
   }
   
   private void doEditTextures()
   {
-    sc.showTexturesDialog(fr);
+    JOptionPane.showMessageDialog(this.component, "Scene's showTexturesDialog method parameters not match to Frame.");
+    
     buildList();
     renderPreview();
   }

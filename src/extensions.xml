@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="yes"?>
+<extension name="Tree And Plant Designer" version="0.12b8">
+    <author>François Guillet</author>
+    <date>14/05/2019</date>
+    <description>
+        The Tree and Plant Designer is a tool plugin for creation of procedural trees and plants.
+        See http://aoisp.sourceforge.net
+    </description>
+    <comments>
+	0.12b8: Сompatibility release for AoI v3.X
+    </comments>
+    <plugin class="artofillusion.tapDesigner.TapDesignerTool"/>
+    <history>
+    <log version="0.12b8" date="14 may 2019" author="Maksim Khramov">
+	      Сompatibility release for AoI v3.X
+    </log>
+    <log version="0.12b7" date="29 august 2006" author="Francois Guillet">
+	      compatibility release for AoI v2.5
+    </log>
+    <log version="0.12b6" date="29 june 2006" author="Francois Guillet">
+	      compatibility release for AoI v2.3
+    </log>
+    </history>
+
+</extension>
