@@ -1,6 +1,6 @@
 /*
  *  Copyright 2003 Francois Guillet
-    Changes copyright (C) 2020 by Maksim Khramov
+    Changes copyright (C) 2020-2021 by Maksim Khramov
 
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
@@ -466,7 +466,7 @@ public class TapFrame extends BFrame implements TapProcPanelHolder
         TapProcedure procedure = procPanel.getProcedure();
         TapDesignerObjectCollection collection = procedure.getObject();
         ObjectInfo[] objects = collection.getAoIObjects();
-        ModellingApp.copyToClipboard( objects, procedure.getScene() );
+        ArtOfIllusion.copyToClipboard( objects, procedure.getScene() );
         window.updateMenus();
     }
 

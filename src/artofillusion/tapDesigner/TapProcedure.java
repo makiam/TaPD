@@ -4,7 +4,7 @@
  */
 /*
  *  Copyright (C) 2003 by Francois Guillet
- *  Changes copyright (C) 2019 by Maksim Khramov
+ *  Changes copyright (C) 2019-2021 by Maksim Khramov
  *
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
@@ -840,7 +840,7 @@ public class TapProcedure
         if ( ( version < 0 ) || ( version > 3 ) )
             throw new InvalidObjectException( "" );
 
-        TapBTranslate.setLocale( ModellingApp.getPreferences().getLocale() );
+        TapBTranslate.setLocale( ArtOfIllusion.getPreferences().getLocale() );
         seed = in.readLong();
         renderingLevel = in.readInt();
         viewLevel = in.readInt();
@@ -857,7 +857,7 @@ public class TapProcedure
             byte[] bytes = new byte[len];
             in.readFully( bytes );
 
-            Class cls = ModellingApp.getClass( classname );
+            Class cls = ArtOfIllusion.getClass( classname );
 
             try
             {

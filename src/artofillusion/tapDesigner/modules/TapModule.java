@@ -4,6 +4,7 @@
  */
 /*
  *  Copyright (C) 2003 by Francois Guillet
+ *  Changes copyright (C) 2021 by Maksim Khramov
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -11,22 +12,17 @@
  *  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
  *  PARTICULAR PURPOSE.  See the GNU General Public License for more details.
  */
+
 package artofillusion.tapDesigner;
 
 import artofillusion.*;
 import artofillusion.animation.*;
 import artofillusion.math.*;
 import artofillusion.object.*;
-import artofillusion.texture.*;
-import artofillusion.tapDesigner.*;
-import artofillusion.ui.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
-import java.lang.reflect.*;
 import java.util.*;
 import javax.swing.*;
-import buoy.event.*;
 import buoy.widget.*;
 
 
@@ -957,7 +953,7 @@ public abstract class TapModule
     {
         // set up a new temporary scene
         Scene previewScene = new Scene();
-        CoordinateSystem coords = new CoordinateSystem( new Vec3( 0.0, 0.0, ModellingApp.DIST_TO_SCREEN ), new Vec3( 0.0, 0.0, -1.0 ), Vec3.vy() );
+        CoordinateSystem coords = new CoordinateSystem( new Vec3( 0.0, 0.0,  Camera.DEFAULT_DISTANCE_TO_SCREEN ), new Vec3( 0.0, 0.0, -1.0 ), Vec3.vy() );
         ObjectInfo info;
 
         info = new ObjectInfo( new SceneCamera(), coords, "Camera 1" );
@@ -1195,7 +1191,7 @@ public abstract class TapModule
         {
             // set up a new temporary scene
             Scene previewScene = new Scene();
-            CoordinateSystem coords = new CoordinateSystem( new Vec3( 0.0, 0.0, ModellingApp.DIST_TO_SCREEN ), new Vec3( 0.0, 0.0, -1.0 ), Vec3.vy() );
+            CoordinateSystem coords = new CoordinateSystem( new Vec3( 0.0, 0.0, Camera.DEFAULT_DISTANCE_TO_SCREEN ), new Vec3( 0.0, 0.0, -1.0 ), Vec3.vy() );
             ObjectInfo info;
 
             info = new ObjectInfo( new SceneCamera(), coords, "Camera 1" );
@@ -1226,6 +1222,7 @@ public abstract class TapModule
      *
      *@return    String representation of the module, equivalent to getName()
      */
+    @Override
     public String toString()
     {
         return getName();

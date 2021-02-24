@@ -1,6 +1,7 @@
 
 /*
  *  Copyright 2003 Francois Guillet
+ *  Changes copyright (C) 2021 by Maksim Khramov
  *  This program is free software; you can redistribute it and/or modify it under the
  *  terms of the GNU General Public License as published by the Free Software
  *  Foundation; either version 2 of the License, or (at your option) any later version.
@@ -11,9 +12,7 @@
 package artofillusion.tapDesigner;
 
 import artofillusion.*;
-import artofillusion.ui.*;
 import java.util.*;
-import artofillusion.tapDesigner.*;
 
 /**
  *@author     pims
@@ -22,11 +21,6 @@ import artofillusion.tapDesigner.*;
 
 public class TapDesignerTool implements ModellingTool
 {
-    /**
-     *  instance this tool,load it in memory
-     */
-
-    public TapDesignerTool() { }
 
 
     /**
@@ -34,10 +28,12 @@ public class TapDesignerTool implements ModellingTool
      *
      *@return    The name value
      */
+    @Override
     public String getName()
     {
-        TapBTranslate.setLocale( ModellingApp.getPreferences().getLocale() );
-        TapDesignerTranslate.setLocale( ModellingApp.getPreferences().getLocale() );
+        Locale locale = ArtOfIllusion.getPreferences().getLocale();
+        TapBTranslate.setLocale(locale);
+        TapDesignerTranslate.setLocale(locale);
         return TapBTranslate.text( "tapDesignerTitle" );
         //return "Tree and Plant Designer";
     }
@@ -49,6 +45,7 @@ public class TapDesignerTool implements ModellingTool
      *
      *@param  window  Description of the Parameter
      */
+    @Override
     public void commandSelected( LayoutWindow window )
     {
         new TapFrame( window, null );
